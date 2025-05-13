@@ -1,5 +1,5 @@
 # industry-site
-This is the revamped ACM.Industry Website.
+This is the revamped ACM.Industry Website. The original site is found here: [https://industry.ucsbacm.com/](https://industry.ucsbacm.com/)
 
 # Stack:
 [Next.js + React](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
