@@ -7,8 +7,11 @@ Completely Static Site
 
 # Inspiration:
 [https://bruinai.org/](https://bruinai.org/)
+
 [https://www.slugai.org/](https://www.slugai.org/)
+
 [https://stripe.com/](https://stripe.com/)
+
 [https://www.reddit.com/r/web_design/comments/wstm6d/whats_the_most_beautiful_website_you_know/](https://www.reddit.com/r/web_design/comments/wstm6d/whats_the_most_beautiful_website_you_know/)
 
 # Some notes:
