@@ -14,6 +14,7 @@ Completely Static Site
 
 [https://www.reddit.com/r/web_design/comments/wstm6d/whats_the_most_beautiful_website_you_know/](https://www.reddit.com/r/web_design/comments/wstm6d/whats_the_most_beautiful_website_you_know/)
 
+[https://hyperbolic.studiofreight.com/](https://hyperbolic.studiofreight.com/)
 # Some notes:
 Ideally, the website structure should be the same as the current site...
 Home, Services, Team, Join, Projects pages
