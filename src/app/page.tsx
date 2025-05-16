@@ -1,103 +1,138 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Briefcase, Rocket, Users, LineChart } from 'lucide-react'
+import Hero from '@/components/landing/Hero'
+const stats = [
+  { label: 'Members', value: 500 },
+  { label: 'Projects', value: 72 },
+  { label: 'Partners', value: 16 },
+  { label: 'Workshops', value: 38 },
+]
+
+const timeline = [
+  'Apply to Join',
+  'Get Matched With a Project',
+  'Meet Your Team',
+  'Build Something Real',
+  'Showcase at Industry Night',
+]
+
+export default function HomePage() {
+  const [count, setCount] = useState(stats.map(() => 0))
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prev) =>
+        prev.map((val, i) =>
+          val < stats[i].value ? val + Math.ceil(stats[i].value / 30) : stats[i].value
+        )
+      )
+    }, 50)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Hero />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Mission Blurb */}
+      <section className="py-20 px-6 max-w-5xl mx-auto text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-bold text-gray-900 dark:text-white"
+        >
+          Real projects. Real stakes. Real growth.
+        </motion.h2>
+        <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          From hardware to AI to web apps, our teams partner with local businesses, startups, and researchers to build things that matter. Join a project, lead one, or launch your own.
+        </p>
+      </section>
+
+      {/* Programs Grid */}
+      <section className="py-16 bg-gray-100 dark:bg-zinc-900 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-6">
+          {[
+            { icon: <Rocket />, title: 'Startup Collabs', desc: 'Build MVPs with local founders.' },
+            { icon: <Briefcase />, title: 'Industry Projects', desc: 'Work with real companies.' },
+            { icon: <Users />, title: 'Student Teams', desc: 'Lead or join project groups.' },
+            { icon: <LineChart />, title: 'Research & AI', desc: 'Experiment with cutting-edge tech.' },
+          ].map((item, i) => (
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              key={i}
+              className="bg-white dark:bg-black rounded-xl shadow-lg p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-800 transition"
+            >
+              <div className="text-blue-600 dark:text-yellow-400 mb-4">{item.icon}</div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      </section>
+
+      {/* Metrics */}
+      <section className="py-20 px-6 bg-white dark:bg-black">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((s, i) => (
+            <div key={i}>
+              <div className="text-4xl font-bold text-blue-600 dark:text-yellow-400">
+                {count[i]}
+              </div>
+              <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 to-white dark:from-indigo-950 dark:to-black px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">How It Works</h2>
+          <div className="relative border-l-2 border-blue-300 dark:border-yellow-500 pl-6 space-y-12">
+            {timeline.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.2, duration: 0.5 }}
+                className="relative"
+              >
+                <div className="absolute -left-[15px] top-1 w-3 h-3 rounded-full bg-blue-600 dark:bg-yellow-400"></div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{step}</h4>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="py-16 px-6 bg-gray-50 dark:bg-zinc-950">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Our Partners</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 grayscale hover:grayscale-0 transition-all">
+            {/* Replace with logos */}
+            {Array(4).fill(0).map((_, i) => (
+              <div key={i} className="h-16 bg-gray-300 dark:bg-zinc-800 rounded-md animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-blue-600 dark:bg-yellow-400 text-white dark:text-black text-center px-6">
+        <h2 className="text-3xl font-bold">Ready to build something real?</h2>
+        <p className="mt-2 text-sm">Applications are open. Projects are waiting.</p>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/join"
+          className="mt-6 inline-block bg-white dark:bg-black text-blue-600 dark:text-yellow-400 px-6 py-3 rounded-full font-semibold shadow hover:scale-105 transition"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          Apply Now
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </section>
+    </>
+  )
 }

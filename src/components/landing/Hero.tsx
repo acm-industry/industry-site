@@ -1,0 +1,225 @@
+'use client'
+
+import { useEffect, useState, useMemo, useRef } from 'react'
+import { motion, useAnimationFrame } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { MoveDown } from 'lucide-react'
+import acmLogo from '@/public/acm-logo.png'
+import acmIndustryLogo from '@/public/industry-logo.png'
+import bruinaiLogo from '@/public/bruin-ai-logo.png'
+
+const techTags = [
+  'Web Development',
+  'AI',
+  'Machine Learning',
+  'Databases',
+  'DevOps',
+  'AR/VR',
+  'Systems',
+  'Cloud',
+  'UI/UX',
+]
+
+function useFloatingMotion(i: number, amplitude = 6, speed = 0.5) {
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const phase = useRef(Math.random() * Math.PI * 2)
+  useAnimationFrame((t) => {
+    const time = t / 1000
+    setPos({
+      x: Math.sin(time * speed + phase.current + i) * amplitude,
+      y: Math.cos(time * speed * 1.1 + phase.current + i) * amplitude,
+    })
+  })
+  return pos
+}
+
+export default function Hero() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  const tagPositions = useMemo(() => {
+    return techTags.map((tag, i) => {
+      const baseRadius = 200
+      const radiusJitter = Math.random() * 20 - 10
+      const angleStep = (2 * Math.PI) / techTags.length
+      const angleOffset = Math.random() * 0.15 - 0.075
+      const angle = i * angleStep + angleOffset
+      const radius = baseRadius + radiusJitter
+
+      const x = Math.cos(angle) * radius
+      const y = Math.sin(angle) * radius
+      const left = 110 + x
+      const top = 130 + y
+
+      return { tag, left, top }
+    })
+  }, [])
+
+  const stars = useMemo(() => {
+    return Array.from({ length: 80 }).map((_, i) => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 1,
+      delay: Math.random(),
+      duration: 3 + Math.random() * 2,
+    }))
+  }, [])
+
+  const floatPositions = techTags.map((_, i) => useFloatingMotion(i, 6, 0.4))
+
+  if (!mounted) return null
+
+  return (
+    <section
+      className="relative h-screen overflow-hidden"
+      style={{ background: 'var(--background)', color: 'var(--foreground)' }}
+    >
+      <div className="max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-12 relative z-10">
+        {/* Left Column */}
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-6xl font-extrabold"
+          >
+            Built at UCSB.
+          </motion.h1>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-5xl md:text-6xl font-extrabold"
+            style={{ color: 'var(--accent-gold)' }}
+          >
+            For the world.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mt-6 text-base max-w-md"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            ACM.Industry connects UCSB students with real-world companies to build technical solutions, gain hands-on experience, and make a lasting impact before graduation.
+          </motion.p>
+
+          {/* Buttons */}
+            <div className="flex items-center justify-center md:justify-start gap-4 mt-8">
+            {/* ACM UCSB — circular */}
+            <Link
+                href="https://ucsbacm.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-20 h-20 rounded-full border border-white/20 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
+            >
+                <Image
+                src={acmLogo}
+                alt="ACM UCSB"
+                width={64}
+                height={64}
+                className="object-contain"
+                />
+            </Link>
+
+            {/* Bruin AI — rectangular */}
+            <Link
+                href="https://bruinai.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-16 px-4 border border-white/20 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all rounded-xl"
+            >
+                <Image
+                src={bruinaiLogo}
+                alt="BruinAI"
+                width={130}
+                height={32}
+                className="object-contain"
+                />
+            </Link>
+            </div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="mt-10 flex items-center gap-2 text-sm"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            <MoveDown size={16} strokeWidth={1.75} />
+            Scroll to begin
+          </motion.div>
+        </div>
+
+        {/* Right Column */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+          className="relative w-full md:w-1/2 flex items-center justify-center mt-16 md:mt-0"
+        >
+          <div className="relative w-[300px] h-[300px]">
+            {/* Logo */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
+                <Image
+                  src={acmIndustryLogo}
+                  alt="ACM Industry Logo"
+                  className="object-contain"
+                  fill
+                />
+              </div>
+            </div>
+
+            {/* Floating Tags */}
+            {tagPositions.map(({ tag, left, top }, i) => (
+              <motion.div
+                key={tag}
+                className="absolute px-4 py-2 rounded-full text-sm font-medium shadow whitespace-nowrap"
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  backdropFilter: 'blur(6px)',
+                  color: 'var(--foreground)',
+                  left: `${left}px`,
+                  top: `${top}px`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+                animate={floatPositions[i]}
+                transition={{ type: 'linear', ease: 'linear' }}
+              >
+                {tag}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Starfield */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {stars.map((star, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              opacity: 0.1,
+              filter: 'blur(1px)',
+            }}
+            animate={{ opacity: [0.1, 0.5, 0.1] }}
+            transition={{
+              duration: star.duration,
+              repeat: Infinity,
+              repeatType: 'loop',
+              delay: star.delay,
+            }}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
