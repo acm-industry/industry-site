@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Briefcase, Rocket, Users, LineChart } from 'lucide-react'
 import Hero from '@/components/landing/Hero'
+import CompaniesCarousel from '@/components/landing/CompaniesCarousel'
 import WhatWeDo from '@/components/landing/WhatWeDo'
 
 const stats = [
@@ -38,6 +39,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <CompaniesCarousel />
       <WhatWeDo />
 
       {/* Programs Grid */}

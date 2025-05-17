@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
-import acmNavLogo from '@/public/industry-nav-logo.png'
+import acmNavLogo from '@/public/club-logos/industry-nav-logo.png'
 import { usePathname } from 'next/navigation'
 import { useScroll } from 'framer-motion'
 
@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isNavHovered, setIsNavHovered] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY } = useScroll()
+  const pathname = usePathname()
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
@@ -48,7 +49,6 @@ export default function Navbar() {
         >
           {navItems.map((item) => {
             const path = item === 'Home' ? '' : item.toLowerCase()
-            const pathname = usePathname()
             const isActive = pathname === `/${path}`
             const isHovered = hoveredItem === item
 

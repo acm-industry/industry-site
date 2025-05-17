@@ -5,9 +5,9 @@ import { motion, useAnimationFrame } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MoveDown } from 'lucide-react'
-import acmLogo from '@/public/acm-logo.png'
-import acmIndustryLogo from '@/public/industry-logo.png'
-import bruinaiLogo from '@/public/bruin-ai-logo.png'
+import acmLogo from '@/public/club-logos/acm-logo.png'
+import acmIndustryLogo from '@/public/club-logos/industry-logo.png'
+import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
 
 const techTags = [
   'UI/UX',
@@ -57,7 +57,7 @@ export default function Hero() {
   }, [])
 
   const stars = useMemo(() => {
-    return Array.from({ length: 80 }).map((_, i) => ({
+    return Array.from({ length: 80 }).map(() => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 3 + 1.5,
@@ -66,7 +66,18 @@ export default function Hero() {
     }))
   }, [])
 
-  const floatPositions = techTags.map((_, i) => useFloatingMotion(i, 10, 0.6))
+  const floatPositions = [
+    useFloatingMotion(0, 10, 0.6),
+    useFloatingMotion(1, 10, 0.6),
+    useFloatingMotion(2, 10, 0.6),
+    useFloatingMotion(3, 10, 0.6),
+    useFloatingMotion(4, 10, 0.6),
+    useFloatingMotion(5, 10, 0.6),
+    useFloatingMotion(6, 10, 0.6),
+    useFloatingMotion(7, 10, 0.6),
+    useFloatingMotion(8, 10, 0.6),
+    useFloatingMotion(9, 10, 0.6),
+  ];
 
   if (!mounted) return null
 

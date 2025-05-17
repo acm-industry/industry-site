@@ -1,44 +1,81 @@
-'use client';
+'use client'
 
-import { useRef, useEffect } from 'react';
-import { useScroll } from 'framer-motion';
-import Lenis from 'lenis';
-import Card from './Card';
-import { projects } from './Data';
+import { useEffect, useState, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import CardStack from './CardStack'
 
-export default function Home() {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end'],
-  });
-
+export default function WhatWeDo() {
+  const [stars, setStars] = useState<{x: number, y: number, size: number, delay: number, duration: number}[]>([])
   useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  }, []);
+    setStars(
+      Array.from({ length: 200 }).map(() => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 3 + 1.5,
+        delay: Math.random(),
+        duration: 3 + Math.random() * 2,
+      }))
+    )
+  }, [])
+  
+    const paragraphRef = useRef(null)
+  const firstCardRef = useRef<HTMLDivElement>(null)
+  const isCardOverParagraph = useInView(firstCardRef)
 
   return (
-    <main ref={container} className="relative">
-      {projects.map((project, i) => {
-        const targetScale = 1 - (projects.length - i) * 0.05;
-        return (
-          <Card
-            key={`p_${i}`}
-            i={i}
-            {...project}
-            progress={scrollYProgress}
-            range={[i * 0.25, 1]}
-            targetScale={targetScale}
+    <section className="relative z-10 w-full px-6 pt-32 md:pt-40 pb-24 md:pb-32 bg-[var(--background)] text-[var(--foreground)]">
+      <div className="max-w-7xl mx-auto">
+        <div className="sticky top-32 z-0 bg-[var(--background)]">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+            >
+              What We <span style={{ color: 'var(--accent-gold)', textShadow: '0 0 20px rgba(255, 207, 82, 0.15)' }}>Do</span>
+            </motion.h2>
+            <motion.p
+              ref={paragraphRef}
+              animate={{ opacity: isCardOverParagraph ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4 text-lg text-[var(--text-secondary)] max-w-xl mx-auto"
+            >
+              We connect UCSB students with industry to build real products, solve meaningful problems, and shape the future of tech — together.
+            </motion.p>
+          </div>
+        </div>
+        <div>
+          <div className="relative z-10">
+            <CardStack firstCardRef={firstCardRef} />
+          </div>
+        </div>
+      </div>
+
+      {/* Starfield */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {stars.map((star, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              opacity: 0.2,
+              filter: 'blur(0.5px)',
+            }}
+            animate={{ opacity: [0.2, 0.7, 0.2] }}
+            transition={{
+              duration: star.duration,
+              repeat: Infinity,
+              repeatType: 'loop',
+              delay: star.delay,
+            }}
           />
-        );
-      })}
-    </main>
-  );
+        ))}
+      </div>
+    </section>
+  )
 }
