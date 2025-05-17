@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Briefcase, Rocket, Users, LineChart } from 'lucide-react'
 import Hero from '@/components/landing/Hero'
+import WhatWeDo from '@/components/landing/WhatWeDo'
+
 const stats = [
   { label: 'Members', value: 500 },
   { label: 'Projects', value: 72 },
@@ -36,21 +38,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-
-      {/* Mission Blurb */}
-      <section className="py-20 px-6 max-w-5xl mx-auto text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-gray-900 dark:text-white"
-        >
-          Real projects. Real stakes. Real growth.
-        </motion.h2>
-        <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          From hardware to AI to web apps, our teams partner with local businesses, startups, and researchers to build things that matter. Join a project, lead one, or launch your own.
-        </p>
-      </section>
+      <WhatWeDo />
 
       {/* Programs Grid */}
       <section className="py-16 bg-gray-100 dark:bg-zinc-900 px-6">

@@ -10,18 +10,18 @@ import acmIndustryLogo from '@/public/industry-logo.png'
 import bruinaiLogo from '@/public/bruin-ai-logo.png'
 
 const techTags = [
-  'Web Development',
-  'AI',
-  'Machine Learning',
-  'Databases',
-  'DevOps',
-  'AR/VR',
-  'Systems',
-  'Cloud',
   'UI/UX',
+  'Databases',
+  'Machine Learning',
+  'DevOps',
+  'Web Development',
+  'AR/VR',
+  'Cloud',
+  'Systems',
+  'Artificial Intelligence',
 ]
 
-function useFloatingMotion(i: number, amplitude = 6, speed = 0.5) {
+function useFloatingMotion(i: number, amplitude = 10, speed = 0.6) {
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const phase = useRef(Math.random() * Math.PI * 2)
   useAnimationFrame((t) => {
@@ -49,7 +49,7 @@ export default function Hero() {
 
       const x = Math.cos(angle) * radius
       const y = Math.sin(angle) * radius
-      const left = 110 + x
+      const left = 95 + x
       const top = 130 + y
 
       return { tag, left, top }
@@ -60,19 +60,19 @@ export default function Hero() {
     return Array.from({ length: 80 }).map((_, i) => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2 + 1,
+      size: Math.random() * 3 + 1.5,
       delay: Math.random(),
       duration: 3 + Math.random() * 2,
     }))
   }, [])
 
-  const floatPositions = techTags.map((_, i) => useFloatingMotion(i, 6, 0.4))
+  const floatPositions = techTags.map((_, i) => useFloatingMotion(i, 10, 0.6))
 
   if (!mounted) return null
 
   return (
     <section
-      className="relative h-screen overflow-hidden"
+      className="relative h-screen h-[100vh] overflow-hidden"
       style={{ background: 'var(--background)', color: 'var(--foreground)' }}
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-12 relative z-10">
@@ -83,6 +83,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-6xl font-extrabold"
+            style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}
           >
             Built at UCSB.
           </motion.h1>
@@ -91,7 +92,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-5xl md:text-6xl font-extrabold"
-            style={{ color: 'var(--accent-gold)' }}
+            style={{ 
+              color: 'var(--accent-gold)',
+              textShadow: '0 0 20px rgba(255, 207, 82, 0.3)' 
+            }}
           >
             For the world.
           </motion.h2>
@@ -99,7 +103,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="mt-6 text-base max-w-md"
+            className="mt-6 text-lg md:text-lg max-w-xl"
             style={{ color: 'var(--text-secondary)' }}
           >
             ACM.Industry connects UCSB students with real-world companies to build technical solutions, gain hands-on experience, and make a lasting impact before graduation.
@@ -125,7 +129,7 @@ export default function Hero() {
 
             {/* Bruin AI — rectangular */}
             <Link
-                href="https://bruinai.com"
+                href="https://bruinai.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-16 px-4 border border-white/20 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all rounded-xl"
@@ -144,11 +148,11 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="mt-10 flex items-center gap-2 text-sm"
+            className="mt-10 flex items-center gap-2 text-md"
             style={{ color: 'var(--text-secondary)' }}
           >
             <MoveDown size={16} strokeWidth={1.75} />
-            Scroll to begin
+            Scroll to explore
           </motion.div>
         </div>
 
@@ -176,15 +180,17 @@ export default function Hero() {
             {tagPositions.map(({ tag, left, top }, i) => (
               <motion.div
                 key={tag}
-                className="absolute px-4 py-2 rounded-full text-sm font-medium shadow whitespace-nowrap"
+                className="absolute px-5 py-2.5 rounded-full text-sm font-medium shadow whitespace-nowrap"
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  backdropFilter: 'blur(6px)',
-                  color: 'var(--foreground)',
+                  background: 'rgba(129, 189, 200, 0.15)',
+                  border: '1px solid rgba(129, 189, 200, 0.3)',
+                  backdropFilter: 'blur(8px)',
+                  color: 'white',
                   left: `${left}px`,
                   top: `${top}px`,
                   transform: 'translate(-50%, -50%)',
+                  boxShadow: '0 4px 15px rgba(129, 189, 200, 0.15), 0 0 0 1px rgba(129, 189, 200, 0.1)',
+                  textShadow: '0 0 20px rgba(129, 189, 200, 0.9), 0 0 30px rgba(129, 189, 200, 0.5)',
                 }}
                 animate={floatPositions[i]}
                 transition={{ type: 'linear', ease: 'linear' }}
@@ -207,10 +213,10 @@ export default function Hero() {
               height: `${star.size}px`,
               left: `${star.x}%`,
               top: `${star.y}%`,
-              opacity: 0.1,
-              filter: 'blur(1px)',
+              opacity: 0.2,
+              filter: 'blur(0.5px)',
             }}
-            animate={{ opacity: [0.1, 0.5, 0.1] }}
+            animate={{ opacity: [0.2, 0.7, 0.2] }}
             transition={{
               duration: star.duration,
               repeat: Infinity,
