@@ -28,7 +28,7 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
       style={{
-        background: isScrolled ? 'rgba(1, 8, 10, 0.85)' : 'transparent',
+        background: isScrolled ? 'rgba(1, 8, 10, 0.9)' : 'transparent',
         borderColor: isScrolled ? 'rgba(255,255,255,0.05)' : 'transparent',
         color: 'var(--foreground)',
       }}

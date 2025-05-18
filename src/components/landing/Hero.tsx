@@ -8,18 +8,8 @@ import { MoveDown } from 'lucide-react'
 import acmLogo from '@/public/club-logos/acm-logo.png'
 import acmIndustryLogo from '@/public/club-logos/industry-logo.png'
 import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
-
-const techTags = [
-  'UI/UX',
-  'Databases',
-  'Machine Learning',
-  'DevOps',
-  'Web Development',
-  'AR/VR',
-  'Cloud',
-  'Systems',
-  'Artificial Intelligence',
-]
+import { techTags, heroDescription, heroTitleWhite, heroTitleGold } from '@/data/HeroData'
+import StarField from '../global/StarField'
 
 function useFloatingMotion(i: number, amplitude = 10, speed = 0.6) {
   const [pos, setPos] = useState({ x: 0, y: 0 })
@@ -56,28 +46,9 @@ export default function Hero() {
     })
   }, [])
 
-  const stars = useMemo(() => {
-    return Array.from({ length: 80 }).map(() => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1.5,
-      delay: Math.random(),
-      duration: 3 + Math.random() * 2,
-    }))
-  }, [])
-
-  const floatPositions = [
-    useFloatingMotion(0, 10, 0.6),
-    useFloatingMotion(1, 10, 0.6),
-    useFloatingMotion(2, 10, 0.6),
-    useFloatingMotion(3, 10, 0.6),
-    useFloatingMotion(4, 10, 0.6),
-    useFloatingMotion(5, 10, 0.6),
-    useFloatingMotion(6, 10, 0.6),
-    useFloatingMotion(7, 10, 0.6),
-    useFloatingMotion(8, 10, 0.6),
-    useFloatingMotion(9, 10, 0.6),
-  ];
+  const floatPositions = Array.from({ length: techTags.length }).map((_, i) => 
+    useFloatingMotion(i, 10, 0.6)
+  );
 
   if (!mounted) return null
 
@@ -96,7 +67,7 @@ export default function Hero() {
             className="text-5xl md:text-6xl font-extrabold"
             style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}
           >
-            Built at UCSB.
+            {heroTitleWhite}
           </motion.h1>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -108,7 +79,7 @@ export default function Hero() {
               textShadow: '0 0 20px rgba(255, 207, 82, 0.3)' 
             }}
           >
-            For the world.
+            {heroTitleGold}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -117,7 +88,7 @@ export default function Hero() {
             className="mt-6 text-lg md:text-lg max-w-xl"
             style={{ color: 'var(--text-secondary)' }}
           >
-            ACM.Industry connects UCSB students with real-world companies to build technical solutions, gain hands-on experience, and make a lasting impact before graduation.
+            {heroDescription}
           </motion.p>
 
           {/* Buttons */}
@@ -214,29 +185,7 @@ export default function Hero() {
       </div>
 
       {/* Starfield */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {stars.map((star, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white"
-            style={{
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              opacity: 0.2,
-              filter: 'blur(0.5px)',
-            }}
-            animate={{ opacity: [0.2, 0.7, 0.2] }}
-            transition={{
-              duration: star.duration,
-              repeat: Infinity,
-              repeatType: 'loop',
-              delay: star.delay,
-            }}
-          />
-        ))}
-      </div>
+      <StarField numberOfStars={80} />
     </section>
   )
 }

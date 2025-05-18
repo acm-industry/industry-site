@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import { Briefcase, Rocket, Users, LineChart } from 'lucide-react'
 import Hero from '@/components/landing/Hero'
 import CompaniesCarousel from '@/components/landing/CompaniesCarousel'
-import WhatWeDo from '@/components/landing/WhatWeDo'
+import WhatWeDo from '@/components/landing/WhatWeDo/WhatWeDo'
+import FeaturedProjects from '@/components/landing/FeaturedProjects/FeaturedProjects'
 
 const stats = [
   { label: 'Members', value: 500 },
@@ -41,28 +42,7 @@ export default function HomePage() {
       <Hero />
       <CompaniesCarousel />
       <WhatWeDo />
-
-      {/* Programs Grid */}
-      <section className="py-16 bg-gray-100 dark:bg-zinc-900 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-6">
-          {[
-            { icon: <Rocket />, title: 'Startup Collabs', desc: 'Build MVPs with local founders.' },
-            { icon: <Briefcase />, title: 'Industry Projects', desc: 'Work with real companies.' },
-            { icon: <Users />, title: 'Student Teams', desc: 'Lead or join project groups.' },
-            { icon: <LineChart />, title: 'Research & AI', desc: 'Experiment with cutting-edge tech.' },
-          ].map((item, i) => (
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              key={i}
-              className="bg-white dark:bg-black rounded-xl shadow-lg p-6 flex flex-col items-center text-center border border-gray-200 dark:border-gray-800 transition"
-            >
-              <div className="text-blue-600 dark:text-yellow-400 mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      <FeaturedProjects />
 
       {/* Metrics */}
       <section className="py-20 px-6 bg-white dark:bg-black">

@@ -5,25 +5,14 @@ import Slider from 'react-slick'
 import Image from 'next/image'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import googleLogo from '@/public/companies/google-logo.png'
-import pwcLogo from '@/public/companies/pwc-logo.png'
-import ciscoLogo from '@/public/companies/cisco-logo.png'
-import probabilityLogo from '@/public/companies/prob-manage-logo.png'
-import paskinLogo from '@/public/companies/paskin-logo.png'
+import { comapnies, carouselTitle } from '@/data/CompaniesCarouselData'
 
-const companyLogos = [
-  { src: googleLogo, alt: 'Google' },
-  { src: pwcLogo, alt: 'PwC' },
-  { src: ciscoLogo, alt: 'Cisco' },
-  { src: probabilityLogo, alt: 'Probablity Management' },
-  { src: paskinLogo, alt: 'Paskin Group' },
-]
 
 export default function CompaniesCarousel() {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: comapnies.length,
     slidesToScroll: 1,
     autoplay: true,
     speed: 3000,
@@ -40,7 +29,7 @@ export default function CompaniesCarousel() {
     <section className="py-20 bg-[var(--background)] px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="ml-18 text-2xl font-bold text-white mb-18 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
-          Trusted by leading organizations across tech and business
+          {carouselTitle}
         </h2>
 
         <div className="relative">
@@ -49,7 +38,7 @@ export default function CompaniesCarousel() {
           
           {/* Carousel */}
           <Slider {...settings}>
-            {companyLogos.map((logo, idx) => (
+            {comapnies.map((logo, idx) => (
               <div
                 key={idx}
                 className="px-8 opacity-80 hover:opacity-100 transition-all"
