@@ -1,10 +1,9 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { useScroll } from 'framer-motion';
-import Lenis from 'lenis';
+import React, { useEffect, useRef } from 'react';
 import Card from './Card';
 import { Rocket, Braces, NotebookPen, BadgeCheck, ArrowRight, FolderKanban, Terminal, Users2 } from 'lucide-react';
+import { useScroll } from 'framer-motion';
 
 const projects = [
   {
@@ -57,28 +56,13 @@ const projects = [
   },
 ];
 
-export default function CardStack({ firstCardRef }: { firstCardRef: React.RefObject<HTMLDivElement | null> }) {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end'],
-  });
-
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  }, []);
-
+export default function CardStack({ endCardStackRef }: { endCardStackRef: React.RefObject<HTMLDivElement | null> }) {
+  const container = useRef(null)
+  const { scrollYProgress } = useScroll({target: container, offset: ['start start', 'end end']})
+  
   return (
-    <main ref={container} className="relative">
+    <div ref={container} className="py-12 px-4">
       {projects.map((project, i) => {
-        const targetScale = 1 - (projects.length - i) * 0.05;
         const Icon = project.icon;
         const LinkIcon = project.link_value.icon;
         return (
@@ -89,18 +73,16 @@ export default function CardStack({ firstCardRef }: { firstCardRef: React.RefObj
             description={project.description}
             src={project.src}
             link={project.link}
-            progress={scrollYProgress}
-            range={[i * 0.25, 1]}
-            targetScale={targetScale}
-            projects={projects}
             icon={Icon ? <Icon size={28} /> : undefined}
             actionText={project.link_value.text}
             actionIcon={LinkIcon ? <LinkIcon size={28} /> : undefined}
-            ref={undefined}
+            progress={scrollYProgress}
+            range={[i * 0.25, 1]}
+            targetScale={1 - ((projects.length - i) * 0.05)}
           />
         );
       })}
-      <div ref={firstCardRef}/>
-    </main>
+      <div ref={endCardStackRef}/>
+    </div>
   );
 }
