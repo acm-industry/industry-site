@@ -5,13 +5,13 @@ export const featuredProjectsDescription =
   'See how our student teams build real products for real companies—creative, impactful, and industry-ready.'
 
 export const featuredProjects = [
-  {
+  /* {
     id: 'probability-management',
     name: 'Probability Management',
     description: 'A Python library built to calculate and interface with SIPs along with a Streamlit app to visualize the results.',
     image: '/projects/probability-management.png',
     link: '/projects/probability-management',
-  },
+  }, */
   {
     id: 'iv-drip',
     name: 'IV Drip Ordering System',
@@ -26,13 +26,13 @@ export const featuredProjects = [
     image: '/projects/teddy-rice.png',
     link: '/projects/teddy-rice',
   },
-  {
+  /* {
     id: 'paskin',
     name: 'Paskin Group Property Forecasting',
     description: 'Machine learning models to predict rental income and equity growth for real estate investors.',
     image: '/projects/paskin.png',
     link: '/projects/paskin',
-  },
+  }, */
   {
     id: 'finsight',
     name: 'FinSight Anomaly Detection',

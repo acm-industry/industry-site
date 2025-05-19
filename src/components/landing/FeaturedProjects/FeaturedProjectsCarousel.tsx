@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -31,7 +31,7 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
   const accumulatedRef = useRef(0)
   const indexRef = useRef(0)
 
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current)
     accumulatedRef.current = 0
     setProgress(0)
@@ -48,14 +48,14 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
         setSelectedIndex(nextIndex)
       }
     }, INTERVAL)
-  }
+  }, [projects.length]);
 
   useEffect(() => {
     resetTimer()
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [projects.length])
+  }, [projects.length, resetTimer])
 
   const incrementIndex = () => {
     const nextIndex = (selectedIndex + 1) % projects.length
@@ -99,7 +99,7 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
     let scale = 0.85
     let opacity = 0.15
     let zIndex = 0
-    let x = diff * (CARD_WIDTH + CARD_GAP)
+    const x = diff * (CARD_WIDTH + CARD_GAP)
   
     if (Math.abs(diff) === 1) {
       scale = 0.92
@@ -146,7 +146,7 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
                     key={project.id}
                     className="absolute left-1/2 top-0 flex-shrink-0 w-full sm:w-[680px] md:w-[860px] py-6 h-auto"
                     style={{
-                      x: `calc(-50% + ${x}px)` as any,
+                      x: `calc(-50% + ${x}px)`,
                       scale,
                       opacity,
                       zIndex,

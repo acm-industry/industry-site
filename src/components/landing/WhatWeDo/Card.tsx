@@ -43,12 +43,13 @@ const Card: React.FC<CardProps> = ({
   const opacity = useTransform(scale, [0.94, 0.85], [1, 0], {
     clamp: true
   })
+  const topOffset = useTransform(progress, latest => `calc(11vh - ${latest * 9}vh)`)
 
   return (
     <motion.div 
       ref={container} 
-      className="sticky flex felx-col justify-center items-center h-[100vh]"
-      style={{ top: `calc(10vh - ${progress.get() * 8}vh)`, willChange: 'transform' }}
+      className="sticky flex flex-col justify-center items-center h-[100vh]"
+      style={{ top: topOffset, willChange: 'transform' }}
     >
       <motion.div 
         className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full max-w-7xl mx-auto"

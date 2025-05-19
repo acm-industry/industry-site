@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 export default function Footer() {
   return (
     <footer
-      className="border-t mt-16"
+      className="border-t"
       style={{
         background: 'var(--background)',
         color: 'var(--foreground)',

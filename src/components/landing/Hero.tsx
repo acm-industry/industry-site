@@ -11,17 +11,36 @@ import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
 import { techTags, heroDescription, heroTitleWhite, heroTitleGold } from '@/data/HeroData'
 import StarField from '../global/StarField'
 
-function useFloatingMotion(i: number, amplitude = 10, speed = 0.6) {
-  const [pos, setPos] = useState({ x: 0, y: 0 })
-  const phase = useRef(Math.random() * Math.PI * 2)
+function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: number; i: number }) {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const phase = useRef(Math.random() * Math.PI * 2);
   useAnimationFrame((t) => {
-    const time = t / 1000
+    const time = t / 1000;
     setPos({
-      x: Math.sin(time * speed + phase.current + i) * amplitude,
-      y: Math.cos(time * speed * 1.1 + phase.current + i) * amplitude,
-    })
-  })
-  return pos
+      x: Math.sin(time * 0.6 + phase.current + i) * 10,
+      y: Math.cos(time * 0.66 + phase.current + i) * 10,
+    });
+  });
+  return (
+    <motion.div
+      className="absolute px-5 py-2.5 rounded-full text-sm font-medium shadow whitespace-nowrap"
+      style={{
+        background: 'rgba(129, 189, 200, 0.15)',
+        border: '1px solid rgba(129, 189, 200, 0.3)',
+        backdropFilter: 'blur(8px)',
+        color: 'white',
+        left: `${left}px`,
+        top: `${top}px`,
+        transform: 'translate(-50%, -50%)',
+        boxShadow: '0 4px 15px rgba(129, 189, 200, 0.15), 0 0 0 1px rgba(129, 189, 200, 0.1)',
+        textShadow: '0 0 20px rgba(129, 189, 200, 0.9), 0 0 30px rgba(129, 189, 200, 0.5)',
+      }}
+      animate={{ x: pos.x, y: pos.y }}
+      transition={{ type: 'linear', ease: 'linear' }}
+    >
+      {tag}
+    </motion.div>
+  );
 }
 
 export default function Hero() {
@@ -45,10 +64,6 @@ export default function Hero() {
       return { tag, left, top }
     })
   }, [])
-
-  const floatPositions = Array.from({ length: techTags.length }).map((_, i) => 
-    useFloatingMotion(i, 10, 0.6)
-  );
 
   if (!mounted) return null
 
@@ -160,25 +175,7 @@ export default function Hero() {
 
             {/* Floating Tags */}
             {tagPositions.map(({ tag, left, top }, i) => (
-              <motion.div
-                key={tag}
-                className="absolute px-5 py-2.5 rounded-full text-sm font-medium shadow whitespace-nowrap"
-                style={{
-                  background: 'rgba(129, 189, 200, 0.15)',
-                  border: '1px solid rgba(129, 189, 200, 0.3)',
-                  backdropFilter: 'blur(8px)',
-                  color: 'white',
-                  left: `${left}px`,
-                  top: `${top}px`,
-                  transform: 'translate(-50%, -50%)',
-                  boxShadow: '0 4px 15px rgba(129, 189, 200, 0.15), 0 0 0 1px rgba(129, 189, 200, 0.1)',
-                  textShadow: '0 0 20px rgba(129, 189, 200, 0.9), 0 0 30px rgba(129, 189, 200, 0.5)',
-                }}
-                animate={floatPositions[i]}
-                transition={{ type: 'linear', ease: 'linear' }}
-              >
-                {tag}
-              </motion.div>
+              <FloatingTag key={tag} tag={tag} left={left} top={top} i={i} />
             ))}
           </div>
         </motion.div>
