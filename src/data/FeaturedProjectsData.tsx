@@ -2,15 +2,15 @@ export const featuredProjectsTitleWhite = 'Featured'
 export const featuredProjectsTitleGold = 'Projects'
 
 export const featuredProjectsDescription =
-  'Explore some of our most impactful collaborations with companies and startups across California. Each project highlights the creativity, execution, and professionalism of our student teams.'
+  'See how our student teams build real products for real companies—creative, impactful, and industry-ready.'
 
 export const featuredProjects = [
   {
-    id: 'sweet-jane',
-    name: 'Sweet Jane Website',
-    description: 'A modern e-commerce experience for a local cookie startup built using Next.js and Stripe.',
-    image: '/projects/sweet-jane.png',
-    link: '/projects/sweet-jane',
+    id: 'probability-management',
+    name: 'Probability Management',
+    description: 'A Python library built to calculate and interface with SIPs along with a Streamlit app to visualize the results.',
+    image: '/projects/probability-management.png',
+    link: '/projects/probability-management',
   },
   {
     id: 'iv-drip',
@@ -37,7 +37,7 @@ export const featuredProjects = [
     id: 'finsight',
     name: 'FinSight Anomaly Detection',
     description: 'An AI-powered dashboard for transaction forecasting, correlation testing, and anomaly spotting.',
-    image: '/projects/finsight.png',
+    image: '/projects/pwc-project.png',
     link: '/projects/finsight',
   },
 ]

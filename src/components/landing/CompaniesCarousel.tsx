@@ -7,9 +7,9 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { comapnies, carouselTitle } from '@/data/CompaniesCarouselData'
 
-
 export default function CompaniesCarousel() {
   const settings = {
+    rtl: true,
     dots: false,
     infinite: true,
     slidesToShow: comapnies.length,
@@ -37,23 +37,25 @@ export default function CompaniesCarousel() {
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
           
           {/* Carousel */}
-          <Slider {...settings}>
-            {comapnies.map((logo, idx) => (
-              <div
-                key={idx}
-                className="px-8 opacity-80 hover:opacity-100 transition-all"
-              >
-                <div className="relative w-[180px] h-[80px] mx-auto">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain hover:grayscale-0 transition duration-300"
-                  />
+          <div className="mb-10">
+            <Slider {...settings}>
+              {comapnies.map((logo, idx) => (
+                <div
+                  key={`slider-${idx}`}
+                  className="px-8 opacity-80 hover:opacity-100 transition-all"
+                >
+                  <div className="relative w-[180px] h-[80px] mx-auto">
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      fill
+                      className="object-contain hover:grayscale-0 transition duration-300"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          </div>
 
           {/* Right gradient mask */}
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--background)] to-transparent z-10" />

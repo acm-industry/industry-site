@@ -32,14 +32,14 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-2">Connect</h3>
           <div className="flex space-x-4">
-            <a href="https://github.com/ucsbacm" target="_blank" rel="noopener noreferrer">
-              <Github size={18} />
+            <a href="https://github.com/acm-industry" target="_blank" rel="noopener noreferrer">
+              <Github size={24} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Linkedin size={18} />
+            <a href="https://www.linkedin.com/company/acmucsb/" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={24} />
             </a>
-            <a href="mailto:ucsbacm@ucsb.edu">
-              <Mail size={18} />
+            <a href="mailto:ucsbacm.industry@gmail.com">
+              <Mail size={24} />
             </a>
           </div>
         </div>
