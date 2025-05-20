@@ -11,12 +11,6 @@ import industryLogo from '@/public/club-logos/industry-logo.png'
 export default function Footer() {
   const pathname = usePathname()
 
-  const handleNavClick = (href: string) => {
-    if (href === pathname && typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }
-
   return (
     <footer className="border-t border-white/10 bg-[var(--background)] text-[var(--foreground)]">
       <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-[16px] font-medium">
