@@ -1,5 +1,11 @@
-import WorkInProgress from '@/components/global/WorkInProgress';
+import TeamHero from '@/components/team/TeamHero';
+import TeamFilterAndMembers from '@/components/team/TeamFilterAndMembers';
 
 export default function TeamPage() {
-  return <div className="flex justify-center items-center min-h-screen"><WorkInProgress /></div>;
+  return (
+    <div>
+      <TeamHero />
+      <TeamFilterAndMembers />
+    </div>
+  )
 }
