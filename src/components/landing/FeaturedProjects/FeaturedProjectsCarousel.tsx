@@ -115,7 +115,7 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
   }  
 
   return (
-    <section className="w-full max-w-7xl mx-auto pb-12">
+    <section className="w-full max-w-7xl mx-auto">
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
         <button
@@ -182,23 +182,27 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
       {/* Dot navigation with progress bar */}
       <div className="flex flex-col items-center gap-2 mt-4">
         <div className="flex gap-2">
-          {projects.map((_, idx) => (
-            <button
-              key={idx}
-              className={`relative h-3 rounded-full overflow-hidden ${selectedIndex === idx ? 'w-10 bg-gray-500' : 'w-3 bg-gray-300'} transition-all duration-300`}
-              onClick={() => goToIndex(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-            >
-              {selectedIndex === idx && (
-                <motion.span
-                  className="absolute left-0 top-0 h-full bg-[var(--accent-gold)] rounded-full"
-                  animate={{ width: `${progress}%` }}
-                  initial={{ width: '0%' }}
-                  transition={{ duration: 0 }}
-                />
-              )}
-            </button>
-          ))}
+          {projects.map((_, idx) => {
+            const isActive = selectedIndex === idx
+            return (
+              <button
+                key={idx}
+                className={`relative h-3 rounded-full overflow-hidden transition-all duration-300
+                  ${isActive ? 'w-10 bg-gray-700' : 'w-3 bg-gray-400 hover:bg-white'}`}
+                onClick={() => goToIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              >
+                {isActive && (
+                  <motion.span
+                    className="absolute left-0 top-0 h-full bg-[var(--accent-gold)] rounded-full"
+                    animate={{ width: `${progress}%` }}
+                    initial={{ width: '0%' }}
+                    transition={{ duration: 0 }}
+                  />
+                )}
+              </button>
+            )
+          })}
         </div>
       </div>
 

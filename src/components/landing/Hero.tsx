@@ -5,9 +5,7 @@ import { motion, useAnimationFrame } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MoveDown } from 'lucide-react'
-import acmLogo from '@/public/club-logos/acm-logo.png'
 import acmIndustryLogo from '@/public/club-logos/industry-logo.png'
-import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
 import { techTags, heroDescription, heroTitleWhite, heroTitleGold } from '@/data/HeroData'
 import StarField from '../global/StarField'
 
@@ -106,40 +104,26 @@ export default function Hero() {
             {heroDescription}
           </motion.p>
 
-          {/* Buttons */}
-            <div className="flex items-center justify-center md:justify-start gap-4 mt-8">
-            {/* ACM UCSB — circular */}
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
             <Link
-                href="https://ucsbacm.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-20 h-20 rounded-full border border-white/20 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
+              href="/projects"
+              className="px-6 py-3 rounded-lg text-sm font-semibold text-black bg-[var(--accent-gold)] shadow-md transition-all duration-300 hover:scale-[1.03] hover:bg-[#ffdc70] hover:shadow-[0_0_20px_rgba(255,207,82,0.5)]"
             >
-                <Image
-                src={acmLogo}
-                alt="ACM UCSB"
-                width={64}
-                height={64}
-                className="object-contain"
-                />
+              Explore Projects
             </Link>
+            <Link
+              href="/services"
+              className="px-6 py-3 rounded-lg text-sm font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] shadow-md transition-all duration-300 hover:bg-[var(--accent-gold)] hover:text-black hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,207,82,0.5)]"
+            >
+              Partner With Us
+            </Link>
+          </div>
 
-            {/* Bruin AI — rectangular */}
-            <Link
-                href="https://bruinai.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-16 px-4 border border-white/20 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all rounded-xl"
-            >
-                <Image
-                src={bruinaiLogo}
-                alt="BruinAI"
-                width={130}
-                height={32}
-                className="object-contain"
-                />
-            </Link>
-            </div>
+          {/* Affiliation Subtext */}
+          <p className="mt-4 text-sm text-[var(--text-secondary)] italic">
+            Powered by ACM UCSB, in collaboration with BruinAI.
+          </p>
 
           {/* Scroll Indicator */}
           <motion.div

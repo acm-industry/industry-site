@@ -49,13 +49,20 @@ export default function Navbar() {
         >
           {navItems.map((item) => {
             const path = item === 'Home' ? '' : item.toLowerCase()
-            const isActive = pathname === `/${path}`
+            const fullPath = `/${path}`
+            const isActive = pathname === fullPath
             const isHovered = hoveredItem === item
 
             return (
               <Link
                 key={item}
-                href={`/${path}`}
+                href={fullPath}
+                onClick={(e) => {
+                  if (pathname === fullPath) {
+                    e.preventDefault()
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }
+                }}
                 onMouseEnter={() => setHoveredItem(item)}
                 onMouseLeave={() => setHoveredItem(null)}
                 className={`relative text-base text-md font-medium transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[var(--accent-gold)] after:transition-all after:duration-300 ${
@@ -84,16 +91,27 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden px-6 pb-4 space-y-2">
-          {navItems.map((item) => (
-            <Link
-              key={item}
-              href={`/${item === 'Home' ? '' : item.toLowerCase()}`}
-              className="block text-base font-medium text-[var(--foreground)] hover:text-[var(--accent-gold)] transition"
-              onClick={() => setOpen(false)}
-            >
-              {item}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const path = item === 'Home' ? '' : item.toLowerCase()
+            const fullPath = `/${path}`
+
+            return (
+              <Link
+                key={item}
+                href={fullPath}
+                onClick={(e) => {
+                  if (pathname === fullPath) {
+                    e.preventDefault()
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }
+                  setOpen(false)
+                }}
+                className="block text-base font-medium text-[var(--foreground)] hover:text-[var(--accent-gold)] transition"
+              >
+                {item}
+              </Link>
+            )
+          })}
         </div>
       )}
     </header>

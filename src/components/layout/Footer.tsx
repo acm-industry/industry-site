@@ -1,50 +1,111 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { Github, Linkedin, Mail } from 'lucide-react'
+import acmLogo from '@/public/club-logos/acm-logo.png'
+import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
+import industryLogo from '@/public/club-logos/industry-logo.png'
 
 export default function Footer() {
+  const pathname = usePathname()
+
+  const handleNavClick = (href: string) => {
+    if (href === pathname && typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
-    <footer
-      className="border-t"
-      style={{
-        background: 'var(--background)',
-        color: 'var(--foreground)',
-        borderColor: 'rgba(255,255,255,0.08)',
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm">
-        <div>
-          <h3 className="font-semibold mb-2">ACM.Industry</h3>
-          <p>
-            Connecting UCSB students with real-world industry experience through
-            software, AI, hardware, and research projects.
-          </p>
+    <footer className="border-t border-white/10 bg-[var(--background)] text-[var(--foreground)]">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-[16px] font-medium">
+        
+        {/* Left: Logo + affiliations */}
+        <div className="flex items-center gap-5">
+          <Link href="/" className="flex items-center">
+            <Image
+              src={industryLogo}
+              alt="ACM Industry"
+              width={48}
+              height={48}
+              className="object-contain"
+            />
+          </Link>
+
+          <a
+            href="https://ucsbacm.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
+          >
+            <Image src={acmLogo} alt="ACM UCSB" width={40} height={40} />
+          </a>
+
+          <a
+            href="https://bruinai.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 px-4 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
+          >
+            <Image src={bruinaiLogo} alt="BruinAI" width={100} height={28} />
+          </a>
         </div>
-        <div>
-          <h3 className="font-semibold mb-2">Quick Links</h3>
-          <ul className="space-y-1">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/services">Services</Link></li>
-            <li><Link href="/team">Team</Link></li>
-            <li><Link href="/projects">Projects</Link></li>
-            <li><Link href="/join">Join</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-semibold mb-2">Connect</h3>
-          <div className="flex space-x-4">
-            <a href="https://github.com/acm-industry" target="_blank" rel="noopener noreferrer">
-              <Github size={24} />
-            </a>
-            <a href="https://www.linkedin.com/company/acmucsb/" target="_blank" rel="noopener noreferrer">
-              <Linkedin size={24} />
-            </a>
-            <a href="mailto:ucsbacm.industry@gmail.com">
-              <Mail size={24} />
-            </a>
-          </div>
+
+        {/* Center: Nav links */}
+        <nav className="flex flex-wrap justify-center gap-7 text-[16px]">
+          {[
+            { name: 'Home', href: '/' },
+            { name: 'Services', href: '/services' },
+            { name: 'Team', href: '/team' },
+            { name: 'Projects', href: '/projects' },
+            { name: 'Join', href: '/join' },
+          ].map(({ name, href }) => (
+            <Link
+              key={name}
+              href={href}
+              onClick={(e) => {
+                if (href === pathname) {
+                  e.preventDefault()
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+              className="hover:text-[var(--accent-gold)] transition-colors cursor-pointer"
+            >
+              {name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Right: Socials */}
+        <div className="flex items-center gap-6">
+          <a
+            href="https://github.com/acm-industry"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[var(--accent-gold)]"
+          >
+            <Github size={24} />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/acmucsb/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[var(--accent-gold)]"
+          >
+            <Linkedin size={24} />
+          </a>
+          <a
+            href="mailto:ucsbacm.industry@gmail.com"
+            className="hover:text-[var(--accent-gold)]"
+          >
+            <Mail size={24} />
+          </a>
         </div>
       </div>
-      <div className="text-center text-xs text-gray-500 dark:text-gray-600 py-4">
+
+      {/* Copyright */}
+      <div className="text-center text-sm text-white/30 py-3">
         © {new Date().getFullYear()} ACM.Industry @ UCSB. All rights reserved.
       </div>
     </footer>
