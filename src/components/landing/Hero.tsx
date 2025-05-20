@@ -10,15 +10,17 @@ import { techTags, heroDescription, heroTitleWhite, heroTitleGold } from '@/data
 import StarField from '../global/StarField'
 
 function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: number; i: number }) {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const phase = useRef(Math.random() * Math.PI * 2);
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const phase = useRef(Math.random() * Math.PI * 2)
+
   useAnimationFrame((t) => {
-    const time = t / 1000;
+    const time = t / 1000
     setPos({
       x: Math.sin(time * 0.6 + phase.current + i) * 10,
       y: Math.cos(time * 0.66 + phase.current + i) * 10,
-    });
-  });
+    })
+  })
+
   return (
     <motion.div
       className="absolute px-5 py-2.5 rounded-full text-sm font-medium shadow whitespace-nowrap"
@@ -38,16 +40,31 @@ function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: nu
     >
       {tag}
     </motion.div>
-  );
+  )
 }
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const [windowWidth, setWindowWidth] = useState<number | null>(null)
+
+  useEffect(() => {
+    const updateSize = () => setWindowWidth(window.innerWidth)
+    updateSize()
+    window.addEventListener('resize', updateSize)
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const tagPositions = useMemo(() => {
+    if (!windowWidth) return []
+
+    const isMobile = windowWidth < 768
+    const baseRadius = isMobile ? 140 : 200
+
     return techTags.map((tag, i) => {
-      const baseRadius = 200
       const radiusJitter = Math.random() * 20 - 10
       const angleStep = (2 * Math.PI) / techTags.length
       const angleOffset = Math.random() * 0.15 - 0.075
@@ -61,23 +78,34 @@ export default function Hero() {
 
       return { tag, left, top }
     })
-  }, [])
-
-  if (!mounted) return null
+  }, [windowWidth])
 
   return (
     <section
-      className="relative h-screen h-[100vh] overflow-hidden"
+      className="relative min-h-[800px] md:pb-32 lg:h-[100vh] overflow-visible"
       style={{ background: 'var(--background)', color: 'var(--foreground)' }}
     >
-      <div className="max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto h-full flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 md:px-12 sm:px-24 relative z-10 pt-32 pb-40 md:pt-32 lg:pt-40 md:pb-0">
         {/* Left Column */}
-        <div className="w-full md:w-1/2 text-center md:text-left">
+        <div
+          className="
+            w-full 
+            flex 
+            flex-col 
+            items-center 
+            text-center 
+            pb-16 md:pb-32 
+            lg:items-start 
+            lg:text-left 
+            lg:w-1/2 
+            lg:pb-0
+          "
+        >
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl font-extrabold"
+            className="text-5xl lg:text-6xl font-extrabold"
             style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}
           >
             {heroTitleWhite}
@@ -86,10 +114,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-5xl md:text-6xl font-extrabold"
-            style={{ 
+            className="text-5xl lg:text-6xl font-extrabold"
+            style={{
               color: 'var(--accent-gold)',
-              textShadow: '0 0 20px rgba(255, 207, 82, 0.3)' 
+              textShadow: '0 0 20px rgba(255, 207, 82, 0.3)',
             }}
           >
             {heroTitleGold}
@@ -98,14 +126,14 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="mt-6 text-lg md:text-lg max-w-xl"
+            className="mt-6 text-lg lg:text-lg max-w-xl"
             style={{ color: 'var(--text-secondary)' }}
           >
             {heroDescription}
           </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
+          <div className="flex flex-col md:flex-row lg:justify-start md:justify-center items-center gap-4 mt-8">
             <Link
               href="/projects"
               className="px-6 py-3 rounded-lg text-sm font-semibold text-black bg-[var(--accent-gold)] shadow-md transition-all duration-300 hover:scale-[1.03] hover:bg-[#ffdc70] hover:shadow-[0_0_20px_rgba(255,207,82,0.5)]"
@@ -129,11 +157,11 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="mt-10 flex items-center gap-2 text-md"
+            className="mt-10 flex flex-col-reverse sm:flex-row items-center gap-2 text-md"
             style={{ color: 'var(--text-secondary)' }}
           >
             <MoveDown size={16} strokeWidth={1.75} />
-            Scroll to explore
+            <span>Scroll to explore</span>
           </motion.div>
         </div>
 
@@ -158,9 +186,10 @@ export default function Hero() {
             </div>
 
             {/* Floating Tags */}
-            {tagPositions.map(({ tag, left, top }, i) => (
-              <FloatingTag key={tag} tag={tag} left={left} top={top} i={i} />
-            ))}
+            {mounted &&
+              tagPositions.map(({ tag, left, top }, i) => (
+                <FloatingTag key={tag} tag={tag} left={left} top={top} i={i} />
+              ))}
           </div>
         </motion.div>
       </div>

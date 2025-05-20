@@ -26,9 +26,9 @@ export default function CompaniesCarousel() {
   }
 
   return (
-    <section className="relative py-10 px-6 bg-black text-white overflow-hidden border-y border-white/10">
+    <section className="relative py-8 px-4 sm:py-12 sm:px-6 lg:py-20 lg:px-12 bg-black text-white overflow-hidden border-y border-white/10">
       <div className="relative z-10 max-w-7xl mx-auto">
-        <h2 className="text-center text-3xl font-extrabold mb-12 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+        <h2 className="text-center text-sm sm:text-xl md:text-3xl font-extrabold mb-12 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
           {carouselTitle}
         </h2>
 
@@ -44,7 +44,7 @@ export default function CompaniesCarousel() {
                   key={`slider-${idx}`}
                   className="px-8 opacity-80 hover:opacity-100 transition-all"
                 >
-                  <div className="relative w-[180px] h-[80px] mx-auto">
+                  <div className="relative w-[15vw] h-[80px] mx-auto">
                     <Image
                       src={logo.src}
                       alt={logo.alt}
