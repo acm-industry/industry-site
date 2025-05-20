@@ -26,18 +26,18 @@ export default function CompaniesCarousel() {
   }
 
   return (
-    <section className="py-20 bg-[var(--background)] px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="ml-18 text-2xl font-bold text-white mb-18 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+    <section className="relative py-10 px-6 bg-black text-white overflow-hidden border-y border-white/10">
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <h2 className="text-center text-3xl font-extrabold mb-12 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
           {carouselTitle}
         </h2>
 
         <div className="relative">
           {/* Left gradient mask */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
-          
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10" />
+
           {/* Carousel */}
-          <div className="mb-10">
+          <div>
             <Slider {...settings}>
               {comapnies.map((logo, idx) => (
                 <div
@@ -58,7 +58,7 @@ export default function CompaniesCarousel() {
           </div>
 
           {/* Right gradient mask */}
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--background)] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10" />
         </div>
       </div>
     </section>

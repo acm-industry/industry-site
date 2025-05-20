@@ -27,7 +27,7 @@ const WhatWeDo = () => {
   const isCardOverParagraph = useInView(endCardStackRef) || isOverViewport
 
   return (
-    <section className="relative z-10 w-full px-6 bg-[var(--background)] text-[var(--foreground)]">
+    <section className="relative z-10 w-full px-6 bg-[var(--background)] text-[var(--foreground)] pt-32">
       <div className="max-w-7xl mx-auto">
         <div className="sticky top-28 z-0 bg-[var(--background)]">
           <div className="text-center mb-16">
@@ -56,7 +56,7 @@ const WhatWeDo = () => {
       </div>
 
       {/* Starfield */}
-      <StarField numberOfStars={200} />
+      <StarField numberOfStars={300} />
     </section>
   )
 }

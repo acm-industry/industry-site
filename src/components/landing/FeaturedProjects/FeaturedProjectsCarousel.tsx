@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import StarField from '@/components/global/StarField'
 
 interface Project {
   id: string;
@@ -205,8 +204,6 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
           })}
         </div>
       </div>
-
-      <StarField numberOfStars={80} />
     </section>
   )
 }
