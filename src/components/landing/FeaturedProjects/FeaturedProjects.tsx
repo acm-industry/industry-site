@@ -3,11 +3,11 @@
 import React from 'react'
 import FeaturedProjectsCarousel from './FeaturedProjectsCarousel'
 import {
-  featuredProjects,
+  projects,
   featuredProjectsTitleWhite,
   featuredProjectsTitleGold,
   featuredProjectsDescription,
-} from '@/data/FeaturedProjectsData'
+} from '@/data/ProjectsData'
 import { Boxes } from 'lucide-react'
 
 const FeaturedProjects = () => (
@@ -40,7 +40,7 @@ const FeaturedProjects = () => (
     </div>
     
     <div className="max-w-7xl mx-auto">
-      <FeaturedProjectsCarousel projects={featuredProjects} />
+      <FeaturedProjectsCarousel projects={projects.filter((project) => project.featured)} />
     </div>
   </section>
 )

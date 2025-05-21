@@ -33,7 +33,7 @@ export default function TeamSection() {
     .filter(group => group.members.length > 0)
 
   return (
-    <section className="w-full px-6 sm:px-10 lg:px-20 py-24 bg-[var(--background)] text-[var(--foreground)]">
+    <section className="relative w-full px-6 sm:px-10 lg:px-20 py-24 bg-[var(--background)] text-[var(--foreground)] z-10">
       <div className="max-w-7xl mx-auto text-center">
         {/* Filter Chips */}
         <div className="flex flex-wrap justify-center gap-4 mb-16">

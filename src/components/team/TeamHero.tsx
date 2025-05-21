@@ -6,8 +6,9 @@ import StarField from '../global/StarField'
 export default function TeamHero() {
   return (
     <section
-      className="w-full px-6 pt-40 text-center bg-[var(--background)] text-[var(--foreground)]"
+      className="relative overflow-hidden w-full px-6 pt-50 pb-40 text-center bg-[black] text-[var(--foreground)]"
     >
+      <StarField numberOfStars={100} />
       <motion.h1
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -25,7 +26,6 @@ export default function TeamHero() {
       >
         Builders, designers, and visionaries — united by our passion for creating impactful technology.
       </motion.p>
-      <StarField numberOfStars={100} />
     </section>
   )
 }
