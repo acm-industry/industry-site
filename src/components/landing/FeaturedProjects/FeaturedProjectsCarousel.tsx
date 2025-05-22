@@ -10,7 +10,7 @@ interface Project {
   id: string;
   name: string;
   description: string;
-  image: string;
+  image: string | null;
   link: string;
 }
 
