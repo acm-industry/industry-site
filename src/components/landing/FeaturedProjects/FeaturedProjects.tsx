@@ -11,7 +11,7 @@ import {
 import { Boxes } from 'lucide-react'
 
 const FeaturedProjects = () => (
-  <section className="relative z-10 w-full px-6 pt-16 md:pt-20 bg-[var(--background)] text-[var(--foreground)] mb-12">
+  <section className="relative z-10 w-full px-6 bg-[var(--background)] text-[var(--foreground)] mb-12">
     <div className="max-w-7xl mx-auto text-center mb-0">
       <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] mb-1">
         {featuredProjectsTitleWhite}{' '}
