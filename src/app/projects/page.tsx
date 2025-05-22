@@ -1,5 +1,16 @@
-import WorkInProgress from '@/components/global/WorkInProgress';
+import ProjectsHero from '@/components/projects/ProjectsHero';
+import ProjectsFilterAndCards from '@/components/projects/ProjectsFilterAndCards';
+import ScrollProjectShowcase from '@/components/projects/ProjectsDetails';
+import ProjectsCTA from '@/components/projects/ProjectsCTA';
 
 export default function ProjectsPage() {
-  return <div className="flex justify-center items-center min-h-screen"><WorkInProgress /></div>;
+  return (
+    <div>
+      <ProjectsHero />
+      <ProjectsFilterAndCards />
+      <ScrollProjectShowcase />
+      {/* <ProjectsMetrics /> */}
+      <ProjectsCTA />
+    </div>
+  );
 }

@@ -3,18 +3,20 @@
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import StarField from '../global/StarField'
+import SectionGlow from '../global/SectionGlow'
 
 export default function TeamCTA() {
   return (
     <section className="relative bg-black py-20 px-6 sm:px-10 lg:px-20 border-t border-white/10">
       <StarField numberOfStars={100} />
+      <SectionGlow size={600} opacity={0.028} />
 
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--accent-gold)] drop-shadow-[0_0_10px_rgba(255,207,82,0.4)] mb-6">
           Want to join the team?
         </h2>
         <p className="text-white/80 text-lg max-w-xl mx-auto mb-12">
-          We're always looking for passionate students to help build, design, and lead with us.
+          We&apos;re always looking for passionate students to help build, design, and lead with us.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-6">

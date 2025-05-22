@@ -8,6 +8,7 @@ import { MoveDown } from 'lucide-react'
 import acmIndustryLogo from '@/public/club-logos/industry-logo.png'
 import { techTags, heroDescription, heroTitleWhite, heroTitleGold } from '@/data/HeroData'
 import StarField from '../global/StarField'
+import SectionGlow from '../global/SectionGlow'
 
 function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: number; i: number }) {
   const [pos, setPos] = useState({ x: 0, y: 0 })
@@ -174,6 +175,7 @@ export default function Hero() {
         >
           <div className="relative w-[300px] h-[300px]">
             {/* Logo */}
+            <SectionGlow size={400} opacity={0.04} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
                 <Image
@@ -195,7 +197,8 @@ export default function Hero() {
       </div>
 
       {/* Starfield */}
-      <StarField numberOfStars={80} />
+      <StarField numberOfStars={80} />\
+      {/* <SectionGlow size={900} opacity={0.02} /> */}
     </section>
   )
 }

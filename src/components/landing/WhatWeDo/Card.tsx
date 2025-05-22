@@ -64,7 +64,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <motion.div
       ref={container}
-      className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[100vh]' : 'h-[80vh]'}`}
+      className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[100vh]' : 'h-[80vh]'} mb-[40vh]`}
       style={{ top: topOffset, willChange: 'transform' }}
     >
       <motion.div

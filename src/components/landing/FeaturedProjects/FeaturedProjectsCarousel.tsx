@@ -159,7 +159,7 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
                     <Link href={project.link} className="flex flex-col group bg-[var(--bg-tertiary)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition h-auto">
                       <div className="relative w-full h-[420px]">
                         <Image
-                          src={project.image || '/fallback.jpg'}
+                          src={`/projects/${project.image}` || '/fallback.jpg'}
                           alt={project.name || 'Project'}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
