@@ -183,6 +183,7 @@ export default function Hero() {
                   alt="ACM Industry Logo"
                   className="object-contain"
                   fill
+                  unoptimized={true}
                 />
               </div>
             </div>

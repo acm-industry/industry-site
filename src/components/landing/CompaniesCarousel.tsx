@@ -50,6 +50,7 @@ export default function CompaniesCarousel() {
                       alt={logo.alt}
                       fill
                       className="object-contain hover:grayscale-0 transition duration-300"
+                      unoptimized={true}
                     />
                   </div>
                 </div>

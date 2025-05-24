@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { projects, currentQuarter } from '@/data/ProjectsData'
 import { Star } from 'lucide-react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 // Quarter name map
 const quarterNames = ['Fall', 'Winter', 'Spring', 'Summer']
@@ -41,6 +42,57 @@ export default function ProjectFilterAndCards() {
     return String(p.quarter[1]) === activeFilter
   })
 
+  const scrollToProjectDetail = (index: number) => {
+    const section = document.getElementById('project-details')
+    if (!section) return
+  
+    const total = projects.length
+  
+    // This is the total scrollable height dedicated to the sticky scrolling behavior
+    const scrollSpan = section.scrollHeight - window.innerHeight
+  
+    // Target scroll is section top + index proportion * sticky scroll range
+    const scrollTarget = section.offsetTop + (((index+1) / total) * scrollSpan)
+  
+    const startScroll = window.scrollY
+    const distance = scrollTarget - startScroll
+    const duration = 800
+    let startTime: number | null = null
+  
+    const easeInOutQuad = (t: number) =>
+      t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+  
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const time = timestamp - startTime
+      const percent = Math.min(time / duration, 1)
+      const eased = easeInOutQuad(percent)
+  
+      window.scrollTo(0, startScroll + distance * eased)
+  
+      if (time < duration) {
+        window.requestAnimationFrame(step)
+      }
+    }
+  
+    window.requestAnimationFrame(step)
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const targetId = params.get('project')
+  
+    if (targetId) {
+      const index = projects.findIndex(p => p.id === targetId)
+      if (index !== -1) {
+        // delay to ensure layout is rendered
+        setTimeout(() => {
+          scrollToProjectDetail(index)
+        }, 200)
+      }
+    }
+  }, [])
+  
   return (
     <section className="w-full px-6 sm:px-10 lg:px-20 py-24 bg-[var(--background)] text-[var(--foreground)]">
       <div className="max-w-7xl mx-auto">
@@ -71,18 +123,19 @@ export default function ProjectFilterAndCards() {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {filteredProjects.map(p => (
-            <Link
+            <div
               key={p.id}
-              href={p.link}
-              className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.015] transition-all backdrop-blur-sm"
-            >
+              onClick={() => scrollToProjectDetail(projects.findIndex(pr => pr.id === p.id))}
+              className="cursor-pointer group bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.015] transition-all backdrop-blur-sm"
+            >          
               <div className="relative w-full h-48">
-              {p.image ? (
+              {p.images ? (
                 <Image
-                    src={`/projects/${p.image}`}
+                    src={`/projects/${p.images[0]}`}
                     alt={p.name}
                     fill
                     className="object-cover"
+                    unoptimized={true}
                 />
                 ) : (
                 <div className="w-full h-full bg-gray-700/50 backdrop-blur flex items-center justify-center">
@@ -92,7 +145,7 @@ export default function ProjectFilterAndCards() {
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-semibold text-white mb-1">{p.name}</h3>
-                <p className="text-sm text-white/60 mb-2">{p.description}</p>
+                <p className="text-sm text-white/60 mb-2">{p.short_description}</p>
                 <p className="text-xs text-white/40">{formatQuarter(p.quarter)}</p>
                 {p.featured && (
                   <span className="inline-flex items-center gap-1 text-xs text-yellow-400 font-semibold mt-2">
@@ -100,7 +153,7 @@ export default function ProjectFilterAndCards() {
                   </span>
                 )}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

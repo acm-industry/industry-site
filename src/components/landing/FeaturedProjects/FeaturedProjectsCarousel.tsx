@@ -9,8 +9,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 interface Project {
   id: string;
   name: string;
-  description: string;
-  image: string | null;
+  short_description: string;
+  images: string[] | null;
   link: string;
 }
 
@@ -156,18 +156,19 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
                     exit={{ opacity: 0, scale: 0.85 }}
                     transition={{ type: 'spring', stiffness: 200, damping: 30 }}
                   >
-                    <Link href={project.link} className="flex flex-col group bg-[var(--bg-tertiary)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition h-auto">
+                    <Link href={`/projects?project=${project.id}`} scroll={false} className="flex flex-col group bg-[var(--bg-tertiary)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition h-auto">
                       <div className="relative w-full h-[420px]">
                         <Image
-                          src={`/projects/${project.image}` || '/fallback.jpg'}
+                          src={`/projects/${project.images?.[0]}` || '/fallback.jpg'}
                           alt={project.name || 'Project'}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          unoptimized={true}
                         />
                       </div>
                       <div className="p-6 flex-1 flex flex-col">
                         <h3 className="text-2xl font-bold mb-2 text-[var(--text-primary)]">{project.name}</h3>
-                        <p className="text-[var(--text-secondary)] text-base line-clamp-3">{project.description}</p>
+                        <p className="text-[var(--text-secondary)] text-base line-clamp-3">{project.short_description}</p>
                       </div>
                     </Link>
                   </motion.div>

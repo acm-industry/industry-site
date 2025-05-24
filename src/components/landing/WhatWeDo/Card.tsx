@@ -140,6 +140,7 @@ const Card: React.FC<CardProps> = ({
                 style={{ objectFit: 'contain' }}
                 sizes="(max-width: 768px) 100vw, 60vw"
                 priority
+                unoptimized={true}
               />
             </motion.div>
           </div>

@@ -84,7 +84,7 @@ function TeamCard({ member }: { member: TeamMember }) {
   return (
     <div className="flex flex-col items-center text-center bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-md backdrop-blur-sm transition hover:scale-[1.02]">
       <div className="relative w-32 h-32 sm:w-40 sm:h-40 mb-4 sm:mb-5 rounded-xl overflow-hidden border-4 border-[var(--accent-gold)] shadow">
-        <Image src={member.img} alt={member.name} fill className="object-cover" />
+        <Image src={member.img} alt={member.name} fill className="object-cover" unoptimized={true} />
       </div>
       <h3 className="text-lg sm:text-xl font-bold mb-1">{member.name}</h3>
       <p className="text-sm sm:text-base text-[var(--text-secondary)] mb-3 sm:mb-4">{member.role}</p>
