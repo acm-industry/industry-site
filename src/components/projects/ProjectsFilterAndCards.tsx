@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import clsx from 'clsx'
 import { projects, currentQuarter } from '@/data/ProjectsData'
 import { Star } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
 
 // Quarter name map
 const quarterNames = ['Fall', 'Winter', 'Spring', 'Summer']

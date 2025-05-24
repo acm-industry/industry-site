@@ -6,6 +6,23 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (!Array.isArray(media) || media.length === 0) return;
+    
+    const currentMedia = media[currentIndex];
+    const isVideo = currentMedia.endsWith('.mp4') || currentMedia.endsWith('.webm') || currentMedia.endsWith('.mov');
+    
+    let timeoutId: NodeJS.Timeout;
+
+    if (!isVideo) {
+      timeoutId = setTimeout(() => {
+        setCurrentIndex((i) => (i + 1) % media.length);
+      }, 3000);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [currentIndex, media]);
+
   if (!Array.isArray(media) || media.length === 0) {
     return (
       <div className="w-full min-h-[60vh] bg-gray-700/50 backdrop-blur flex items-center justify-center rounded-2xl">
@@ -16,18 +33,6 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
 
   const currentMedia = media[currentIndex];
   const isVideo = currentMedia.endsWith('.mp4') || currentMedia.endsWith('.webm') || currentMedia.endsWith('.mov');
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    if (!isVideo) {
-      timeoutId = setTimeout(() => {
-        setCurrentIndex((i) => (i + 1) % media.length);
-      }, 3000);
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [currentIndex, media, isVideo]);
 
   const handleVideoEnded = () => {
     setCurrentIndex((i) => (i + 1) % media.length);
