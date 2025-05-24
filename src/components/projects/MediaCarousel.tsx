@@ -44,24 +44,24 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
     >
       {isVideo ? (
         <video
-            ref={videoRef}
-            src={`/projects/${currentMedia}`}
-            className="w-auto h-auto max-w-full max-h-full object-contain"
-            autoPlay
-            muted
-            playsInline
-            onEnded={handleVideoEnded}
+          ref={videoRef}
+          src={`/projects/${currentMedia}`}
+          className="w-full h-auto object-cover object-top"
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnded}
         />
-        ) : (
+      ) : (
         <Image
-            src={`/projects/${currentMedia}`}
-            alt={`Project media ${currentIndex + 1}`}
-            className="w-auto h-auto max-w-full max-h-full object-contain"
-            width={800}  // Doesn't affect layout because of class styles, helps preload
-            height={600}
-            unoptimized
+          src={`/projects/${currentMedia}`}
+          alt={`Project media ${currentIndex + 1}`}
+          className="w-full h-auto object-cover object-top"
+          width={800}
+          height={600}
+          unoptimized
         />
-        )}
+      )}
     </motion.div>
   );
 }

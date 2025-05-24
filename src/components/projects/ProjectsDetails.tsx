@@ -28,7 +28,7 @@ export default function ScrollProjectShowcase() {
 
   return (
     <section className="relative w-full bg-black text-[var(--foreground)]" ref={containerRef}>
-      <StarField numberOfStars={100} />
+      <StarField numberOfStars={3000} />
 
       {/* Header */}
       <div className="max-w-5xl mx-auto text-center px-6 pt-32 pb-0 z-10 relative">
