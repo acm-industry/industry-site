@@ -8,11 +8,11 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
 
   if (!Array.isArray(media) || media.length === 0) {
     return (
-      <div className="w-full h-full bg-gray-700/50 backdrop-blur flex items-center justify-center">
+      <div className="w-full min-h-[60vh] bg-gray-700/50 backdrop-blur flex items-center justify-center rounded-2xl">
         <span className="text-white text-lg font-medium">Coming Soon</span>
       </div>
     );
-  }
+  }  
 
   const currentMedia = media[currentIndex];
   const isVideo = currentMedia.endsWith('.mp4') || currentMedia.endsWith('.webm') || currentMedia.endsWith('.mov');
@@ -40,13 +40,13 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="absolute w-full h-full z-10"
+      className="relative w-full max-h-full z-10 flex items-start justify-center"
     >
       {isVideo ? (
         <video
           ref={videoRef}
           src={`/projects/${currentMedia}`}
-          className="w-full h-auto object-cover object-top"
+          className="max-h-full w-auto h-auto object-contain"
           autoPlay
           muted
           playsInline
@@ -56,7 +56,7 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
         <Image
           src={`/projects/${currentMedia}`}
           alt={`Project media ${currentIndex + 1}`}
-          className="w-full h-auto object-cover object-top"
+          className="max-h-full w-auto h-auto object-contain"
           width={800}
           height={600}
           unoptimized

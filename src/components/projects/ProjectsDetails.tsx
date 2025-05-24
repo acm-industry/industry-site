@@ -123,7 +123,7 @@ export default function ScrollProjectShowcase() {
               </div>
 
               {/* Right section (image or video) */}
-              <div className="basis-[60%] grow-0 shrink-0 h-[500px] sm:h-[600px] rounded-2xl overflow-hidden bg-black/20 flex items-center justify-center relative">
+              <div className="basis-[60%] grow-0 shrink-0 max-h-[600px] w-full rounded-2xl overflow-hidden bg-black/20 flex items-start justify-center relative">
                 <MediaCarousel key={projects[activeIndex].name} media={projects[activeIndex].images} />
               </div>
             </motion.div>
