@@ -134,6 +134,7 @@ export default function ProjectFilterAndCards() {
                     fill
                     className="object-cover"
                     unoptimized={true}
+                    priority
                 />
                 ) : (
                 <div className="w-full h-full bg-gray-700/50 backdrop-blur flex items-center justify-center">

@@ -184,6 +184,7 @@ export default function Hero() {
                   className="object-contain"
                   fill
                   unoptimized={true}
+                  priority
                 />
               </div>
             </div>

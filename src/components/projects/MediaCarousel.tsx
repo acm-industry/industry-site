@@ -65,6 +65,7 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
           width={800}
           height={600}
           unoptimized
+          priority
         />
       )}
     </motion.div>

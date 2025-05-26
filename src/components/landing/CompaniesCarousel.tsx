@@ -51,6 +51,7 @@ export default function CompaniesCarousel() {
                       fill
                       className="object-contain hover:grayscale-0 transition duration-300"
                       unoptimized={true}
+                      priority
                     />
                   </div>
                 </div>

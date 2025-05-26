@@ -25,6 +25,7 @@ export default function Footer() {
               height={48}
               className="object-contain"
               unoptimized={true}
+              priority
             />
           </Link>
 
@@ -34,7 +35,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="w-12 h-12 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
           >
-            <Image src={acmLogo} alt="ACM UCSB" width={40} height={40} unoptimized={true} />
+            <Image src={acmLogo} alt="ACM UCSB" width={40} height={40} unoptimized={true} priority/>
           </a>
 
           <a
@@ -43,7 +44,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="h-12 px-4 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
           >
-            <Image src={bruinaiLogo} alt="BruinAI" width={100} height={28} unoptimized={true} />
+            <Image src={bruinaiLogo} alt="BruinAI" width={100} height={28} unoptimized={true} priority/>
           </a>
         </div>
 

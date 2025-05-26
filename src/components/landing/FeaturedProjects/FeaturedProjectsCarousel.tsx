@@ -164,6 +164,7 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           unoptimized={true}
+                          priority
                         />
                       </div>
                       <div className="p-6 flex-1 flex flex-col">
