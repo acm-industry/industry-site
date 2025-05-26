@@ -69,8 +69,8 @@ export default function ScrollProjectShowcase() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4"
-          style={{ color: textPrimary }}
+          className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4"
+          style={{ color: textPrimary, willChange: 'transform' }}
         >
           Dive Into{' '}
           <span style={{ color: accent, textShadow: `0 0 20px ${accent}44` }}>Our Work</span>
@@ -79,8 +79,8 @@ export default function ScrollProjectShowcase() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.3 }}
-          className="text-md sm:text-lg max-w-2xl mx-auto"
-          style={{ color: textSecondary }}
+          className="text-md sm:text-lg lg:text-xl max-w-2xl mx-auto"
+          style={{ color: textSecondary, willChange: 'transform' }}
         >
           A showcase of the projects we’ve built — what they are, who built them, and why they matter.
         </motion.p>
@@ -91,11 +91,11 @@ export default function ScrollProjectShowcase() {
           <div className="relative w-[85vw] h-[80vh] rounded-4xl overflow-hidden">
             <motion.div
               key={`bg-${activeIndex}`}
-              initial={{ scaleX: 0, originX: 0, originY: 0 }}
+              initial={{ scaleX: 0, originX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.5, ease: 'easeInOut' }}
               className="absolute inset-0 z-0 rounded-4xl"
-              style={{ backgroundColor: background }}
+              style={{ backgroundColor: background, willChange: 'transform' }}
             />
             <motion.div
               key={`border-${activeIndex}`}
@@ -110,6 +110,7 @@ export default function ScrollProjectShowcase() {
                   inset 0 0 0.5px ${adjustedBorder}
                 `,
                 border: `1px solid ${adjustedBorder}`,
+                willChange: 'transform',
                 ...(shouldUseBlend ? { mixBlendMode: 'screen' } : {}),
               }}
             />
@@ -121,10 +122,11 @@ export default function ScrollProjectShowcase() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute z-20 top-0 left-0 w-full h-full flex flex-col lg:flex-row items-center justify-center text-left px-6 sm:px-12 gap-10"
+                className="absolute z-20 top-0 left-0 w-full h-full flex flex-col lg:flex-row items-center justify-center text-left px-6 sm:px-12 gap-6 sm:gap-10 py-3 md:py-6 sm:py-10"
+                style={{ willChange: 'transform' }}
               >
-                <div className="basis-[40%] grow-0 shrink-0 space-y-5">
-                  <div className="w-50 h-28 relative mb-4 mt-6">
+                <div className="basis-full lg:basis-[40%] space-y-4 sm:space-y-5">
+                  <div className="relative w-28 h-12 lg:w-48 sm:h-20 mx-auto sm:mx-0">
                     <Image
                       src={`/companies/${current.company_logo}`}
                       alt={`${current.name} logo`}
@@ -135,12 +137,12 @@ export default function ScrollProjectShowcase() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-3 flex-wrap text-sm font-medium" style={{ color: textPrimary }}>
+                  <div className="flex items-center gap-2 flex-wrap text-[0.6rem] md:text-sm font-medium justify-center sm:justify-start" style={{ color: textPrimary }}>
                     <span>{activeIndex + 1} — {projects.length}</span>
                     {current.tags?.map((tag, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 rounded-full text-xs uppercase tracking-wide"
+                        className="px-2 py-0.5 md:px-3 md:py-1 rounded-full uppercase tracking-wide"
                         style={{
                           backgroundColor: tagBg,
                           color: tagText,
@@ -152,22 +154,22 @@ export default function ScrollProjectShowcase() {
                     ))}
                   </div>
 
-                  <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: textPrimary }}>
+                  <h2 className="text-xl md:text-2xl lg:text-4xl font-extrabold text-center sm:text-left" style={{ color: textPrimary }}>
                     {current.name}
                   </h2>
 
-                  <p className="text-md sm:text-lg max-w-xl" style={{ color: textSecondary }}>
+                  <p className="text-sm sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl max-w-xl mx-auto sm:mx-0" style={{ color: textSecondary }}>
                     {current.long_description}
                   </p>
 
-                  <div className="flex flex-wrap gap-3 pt-2">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 pt-1 sm:pt-2 justify-center sm:justify-start">
                     {current.external_links?.map((link, i) => (
                       <a
                         key={i}
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 rounded-full px-4 py-1.5 text-sm hover:opacity-80 transition"
+                        className="flex items-center gap-2 rounded-full px-3 py-1 text-xs md:text-sm hover:opacity-80 transition"
                         style={{
                           backgroundColor: buttonBg,
                           color: buttonText,
@@ -183,15 +185,16 @@ export default function ScrollProjectShowcase() {
 
                 <motion.div
                   key={`media-${current.name}`}
-                  className="basis-[60%] grow-0 shrink-0 max-h-[600px] w-full rounded-2xl overflow-hidden flex items-start justify-center relative"
+                  className="basis-full lg:basis-[60%] max-h-[380px] sm:max-h-[400px] lg:max-h-[600px] w-full rounded-2xl overflow-hidden flex items-start justify-center relative"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  style={{ backgroundColor: mediaBg }}
+                  style={{ backgroundColor: mediaBg, willChange: 'transform' }}
                 >
                   <MediaCarousel key={current.name} media={current.images} />
                 </motion.div>
+
               </motion.div>
             </AnimatePresence>
           </div>
