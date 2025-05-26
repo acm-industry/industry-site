@@ -7,7 +7,7 @@ import CallToAction from '@/components/landing/CallToAction'
 export default function HomePage() {
 
   return (
-    <>
+    <div>
       <Hero />
       <CompaniesCarousel />
       <WhatWeDo />
@@ -15,6 +15,6 @@ export default function HomePage() {
       {/* Metrics */}
       {/* Meet the Team */}
       <CallToAction />
-    </>
+    </div>
   )
 }

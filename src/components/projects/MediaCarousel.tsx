@@ -46,6 +46,7 @@ export default function MediaCarousel({ media }: { media?: string[] | null }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       className="relative w-full max-h-full z-10 flex items-start justify-center"
+      style={{ willChange: 'transform' }}
     >
       {isVideo ? (
         <video
