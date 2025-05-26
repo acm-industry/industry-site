@@ -21,7 +21,7 @@ export default function AboutStorySection() {
           className="w-full relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
         >
           <Image
-            src="/team/team.jpg"
+            src="/team/team.JPG"
             alt="ACM Industry Team"
             fill
             className="object-cover"
