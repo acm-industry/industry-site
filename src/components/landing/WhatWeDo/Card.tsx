@@ -65,7 +65,7 @@ const Card: React.FC<CardProps> = ({
     <motion.div
       ref={container}
       className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[100vh]' : 'h-[80vh]'} mb-[40vh]`}
-      style={{ top: topOffset, willChange: 'transform' }}
+      style={{ top: topOffset, willChange: 'transform, opacity' }}
     >
       <motion.div
         className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full max-w-7xl mx-auto"
@@ -73,7 +73,7 @@ const Card: React.FC<CardProps> = ({
           top: `calc(${i * 35}px)`,
           scale,
           transformOrigin: 'center center',
-          willChange: 'transform',
+          willChange: 'transform, opacity',
           opacity,
         }}
       >

@@ -12,11 +12,13 @@ const WorkInProgress: React.FC = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <motion.div
           className="mb-4"
           animate={{ rotate: [0, 10, -10, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          style={{ willChange: 'transform' }}
         >
           <span className="inline-flex items-center justify-center w-16 h-16 rounded-full border-4 border-yellow-400 bg-[#1a2327] drop-shadow-[0_0_12px_rgba(255,207,82,0.5)]">
             <Construction size={36} color="#FFD600" />

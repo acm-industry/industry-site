@@ -34,14 +34,16 @@ const WhatWeDo = () => {
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: isCardOverParagraph ? 0 : 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.05 }}
+              style={{ willChange: 'transform, opacity' }}
               className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
             >
               {whatwedoTitleWhite} <span style={{ color: 'var(--accent-gold)', textShadow: '0 0 20px rgba(255, 207, 82, 0.15)' }}>{whatwedoTitleGold}</span>
             </motion.h2>
             <motion.p
               animate={{ opacity: isCardOverParagraph ? 0 : 1 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.025 }}
+              style={{ willChange: 'transform, opacity' }}
               className="mt-4 text-lg text-[var(--text-secondary)] max-w-xl mx-auto"
             >
               {whatwedoDescription}

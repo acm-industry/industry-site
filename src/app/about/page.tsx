@@ -9,6 +9,7 @@ export default function AboutPage() {
       <AboutHero />
       <AboutStorySection />
       <AboutMetricsSection />
+      {/* <AboutRocket /> */}
       <WorkInProgress />
     </div>
   );

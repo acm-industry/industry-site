@@ -149,14 +149,18 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
                       scale,
                       opacity,
                       zIndex,
-                      willChange: 'transform',
+                      willChange: 'transform, opacity',
                     }}
                     initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity, scale, x: `calc(-50% + ${x}px)` }}
                     exit={{ opacity: 0, scale: 0.85 }}
                     transition={{ type: 'spring', stiffness: 200, damping: 30 }}
                   >
-                    <Link href={`/projects?project=${project.id}`} scroll={false} className="flex flex-col group bg-[var(--bg-tertiary)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition h-auto">
+                    <Link
+                      href={`/projects?project=${project.id}`}
+                      scroll={false}
+                      className="flex flex-col group bg-[var(--bg-tertiary)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition h-auto"
+                    >
                       <div className="relative w-full h-[420px]">
                         <Image
                           src={`/projects/${project.images?.[0]}` || '/fallback.jpg'}

@@ -43,6 +43,7 @@ const StarField: React.FC<StarFieldProps> = ({ numberOfStars = 200 }) => {
             top: `${star.y}%`,
             opacity: 0.2,
             filter: 'blur(0.5px)',
+            willChange: 'transform, opacity'
           }}
           animate={{ opacity: [0.2, 0.7, 0.2] }}
           transition={{

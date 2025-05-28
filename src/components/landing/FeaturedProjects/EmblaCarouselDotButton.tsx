@@ -58,7 +58,7 @@ import React, {
     const { children, ...restProps } = props
   
     return (
-      <button type="button" {...restProps}>
+      <button type="button" {...restProps} style={{ willChange: 'transform, opacity' }}>
         {children}
       </button>
     )

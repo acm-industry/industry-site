@@ -7,6 +7,7 @@ import Image from 'next/image'
 import acmNavLogo from '@/public/club-logos/industry-nav-logo.png'
 import { usePathname } from 'next/navigation'
 import { useScroll } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const navItems = ['Home', 'Services', 'Team', 'Projects', 'Join', 'About']
 
@@ -94,31 +95,40 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden px-6 pb-4 space-y-2">
-          {navItems.map((item) => {
-            const path = item === 'Home' ? '' : item.toLowerCase()
-            const fullPath = `/${path}`
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden px-6 pb-4 space-y-2"
+          >
+            {navItems.map((item) => {
+              const path = item === 'Home' ? '' : item.toLowerCase()
+              const fullPath = `/${path}`
 
-            return (
-              <Link
-                key={item}
-                href={fullPath}
-                onClick={(e) => {
-                  if (pathname === fullPath) {
-                    e.preventDefault()
-                    window.scrollTo({ top: 0, behavior: 'smooth' })
-                  }
-                  setOpen(false)
-                }}
-                className="block text-base font-medium text-[var(--foreground)] hover:text-[var(--accent-gold)] transition"
-              >
-                {item}
-              </Link>
-            )
-          })}
-        </div>
-      )}
+              return (
+                <Link
+                  key={item}
+                  href={fullPath}
+                  onClick={(e) => {
+                    if (pathname === fullPath) {
+                      e.preventDefault()
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }
+                    setOpen(false)
+                  }}
+                  className="block text-base font-medium text-[var(--foreground)] hover:text-[var(--accent-gold)] transition"
+                >
+                  {item}
+                </Link>
+              )
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
