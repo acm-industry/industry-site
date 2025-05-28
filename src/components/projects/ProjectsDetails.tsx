@@ -96,7 +96,7 @@ export default function ScrollProjectShowcase() {
         </motion.p>
       </div>
 
-      <div id="project-details" className="relative" style={{ height: `${total * 175}vh` }}>
+      <div id="project-details" className="relative" style={{ height: `${total * 125}vh` }}>
         <div className="sticky top-10 h-screen flex items-center justify-center" style={{ overflowX: 'clip' }}>
           <div className="relative w-full max-w-[85vw] h-[80vh] rounded-4xl overflow-hidden">
             <motion.div
