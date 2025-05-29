@@ -111,7 +111,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[800px] md:pb-32 lg:h-[100vh] overflow-visible smooth-element"
+      className="relative min-h-[800px] md:pb-32 lg:h-[100vh] overflow-x-hidden smooth-element"
       style={{ 
         background: 'var(--background)', 
         color: 'var(--foreground)',

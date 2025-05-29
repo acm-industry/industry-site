@@ -51,8 +51,8 @@ const Card: React.FC<CardProps> = ({
   }, []);
 
   const baseTopVH = useMemo(() => {
-    if (!windowWidth) return 15;
-    if (windowWidth < 640) return 15;
+    if (!windowWidth) return 12;
+    if (windowWidth < 640) return 12;
     if (windowWidth < 1024) return 20;
     return 23;
   }, [windowWidth]);
@@ -64,11 +64,11 @@ const Card: React.FC<CardProps> = ({
   return (
     <motion.div
       ref={container}
-      className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[100vh]' : 'h-[80vh]'} mb-[40vh]`}
+      className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[80vh]' : 'h-[80vh]'} mb-[40vh]`}
       style={{ top: topOffset, willChange: 'transform, opacity' }}
     >
       <motion.div
-        className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full max-w-7xl mx-auto"
+        className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full mx-auto"
         style={{
           top: `calc(${i * 35}px)`,
           scale,
@@ -80,7 +80,7 @@ const Card: React.FC<CardProps> = ({
         <div
           className={`flex ${
             isSmall ? 'flex-col' : 'lg:flex-row'
-          } w-full items-center gap-4 lg:gap-8 px-4 sm:px-6 py-6 sm:py-8`}
+          } w-full items-center gap-4 lg:gap-8 px-4 sm:px-6 ${isSmall ? 'py-12 min-h-[70vh]' : 'py-6 sm:py-8'}`}
         >
           {/* Text Section */}
           <div
@@ -105,7 +105,7 @@ const Card: React.FC<CardProps> = ({
             <h2 className="text-xl sm:text-xl lg:text-2xl font-semibold text-[var(--text-primary)] mb-2">
               {title}
             </h2>
-            <p className="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base mb-3">
+            <p className="text-[var(--text-secondary)] leading-relaxed text-md sm:text-base mb-3">
               {description}
             </p>
             <a

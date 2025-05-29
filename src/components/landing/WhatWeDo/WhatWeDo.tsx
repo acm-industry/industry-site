@@ -29,7 +29,7 @@ const WhatWeDo = () => {
   return (
     <section className="relative z-10 w-full px-6 bg-[var(--background)] text-[var(--foreground)] pt-32">
       <div className="max-w-7xl mx-auto">
-        <div className="sticky top-28 z-0 bg-[var(--background)]">
+        <div className="md:sticky top-28 z-0 bg-[var(--background)]">
           <div className="text-center mb-16">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
