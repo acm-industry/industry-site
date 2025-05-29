@@ -16,15 +16,16 @@
 
 /* Light Mode */
 :root {
-  --background: #ffffff;
-  --foreground: #011013;
+  --background: #011013;
+  --foreground: #E5E7EB;
 
-  --bg-primary: #ffffff;
-  --bg-secondary: #C0DEE3;
-  --bg-accent: #81BDC8;
+  --bg-primary: #011013;
+  --bg-secondary: #023E49;
+  --bg-tertiary: #022d35;
+  --bg-accent: #047C91;
 
-  --text-primary: #011013;
-  --text-secondary: #023E49;
+  --text-primary: #E5E7EB;
+  --text-secondary: #81BDC8;
 
   --accent-blue: #047C91;
   --accent-gold: #FFCF52;
