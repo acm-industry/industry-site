@@ -2,8 +2,8 @@
 
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { motion, useScroll, AnimatePresence } from 'framer-motion';
-import StarField from '../global/StarField';
-import { projects } from '../../data/ProjectsData';
+import StarField from '../../global/StarField';
+import { projects } from '../../../data/ProjectsData';
 import Image from 'next/image';
 import MediaCarouselRaw from './MediaCarousel';
 import { useDebounce } from 'use-debounce';

@@ -41,7 +41,7 @@ export default function TeamCTA() {
         </motion.h2>
         
         <motion.p 
-          className="text-white/80 text-lg max-w-xl mx-auto mb-12 smooth-element"
+          className="text-white/80 text-lg max-w-xl mx-auto mb-8 smooth-element"
           initial={{ opacity: 0, y: 20, filter: 'blur(2px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
@@ -57,7 +57,7 @@ export default function TeamCTA() {
         </motion.p>
 
         <motion.div 
-          className="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-6"
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-2"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,7 +70,7 @@ export default function TeamCTA() {
         >
           {/* Email Block */}
           <motion.div 
-            className="flex flex-col items-center sm:items-start"
+            className="flex flex-col items-center"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
@@ -83,7 +83,7 @@ export default function TeamCTA() {
           >
             <motion.a
               href="mailto:ucsbacm.industry@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-black bg-[var(--accent-gold)] rounded-lg shadow-md transition-all hover:bg-[#ffdc70] hover:shadow-[0_0_15px_rgba(255,207,82,0.5)]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-2.5 text-base font-semibold min-w-[160px] box-border bg-[var(--accent-gold)] text-black rounded-lg shadow-md transition-all hover:bg-[#ffdc70] hover:shadow-[0_0_15px_rgba(255,207,82,0.5)]"
               whileHover={{ 
                 scale: 1.05, 
                 y: -2
@@ -124,7 +124,7 @@ export default function TeamCTA() {
             >
               <Link
                 href="/join"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md transition-all hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_15px_rgba(255,207,82,0.5)]"
+                className="inline-flex items-center justify-center gap-2 px-7 py-2.5 text-base font-semibold min-w-[160px] box-border border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md transition-all hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_15px_rgba(255,207,82,0.5)]"
               >
                 View Join Page
               </Link>

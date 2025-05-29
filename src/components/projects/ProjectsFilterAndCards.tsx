@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import { projects, currentQuarter } from '@/data/ProjectsData'
 import { Star } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { scrollToProjectDetailsById } from './ProjectsDetails'
+import { scrollToProjectDetailsById } from './ProjectDetails/ProjectsDetails'
 import React from 'react'
 
 // Quarter name map
