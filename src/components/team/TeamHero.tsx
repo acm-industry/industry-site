@@ -59,8 +59,8 @@ export default function TeamHero() {
         initial={{ opacity: 0, y: 30, filter: 'blur(2px)' }}
         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         transition={{ 
-          delay: 0.6, 
-          duration: 0.7,
+          delay: 0.5, 
+          duration: 0.6,
           ease: [0.16, 1, 0.3, 1],
           filter: { duration: 0.4, ease: "easeOut" }
         }}

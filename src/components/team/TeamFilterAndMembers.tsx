@@ -6,6 +6,7 @@ import { Linkedin } from 'lucide-react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { roles, teamMembers } from '@/data/TeamData'
+import { projects as allProjects } from '@/data/ProjectsData'
 
 interface TeamMember {
   name: string
@@ -13,6 +14,7 @@ interface TeamMember {
   role: string
   img: string
   linkedin: string
+  project?: string
 }
 
 export default function TeamSection() {
@@ -197,6 +199,12 @@ export default function TeamSection() {
 type TeamCardProps = { member: TeamMember; delay?: number; filterKey: number }
 function TeamCard({ member, delay = 0, filterKey }: TeamCardProps) {
   // Use filterKey in keys for children to force re-mount on filter change
+  // Project lookup
+  const project = member.project ? allProjects.find(p => p.id === member.project) : null;
+  const accent = project?.colors?.accent || '#ffffff';
+  const background = project?.colors?.background || '#0B0B0B';
+  const logoSrc = project?.company_logo ? `/companies/` + project.company_logo : null;
+
   return (
     <motion.div 
       className="flex flex-col items-center text-center bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-md backdrop-blur-sm smooth-element"
@@ -259,31 +267,54 @@ function TeamCard({ member, delay = 0, filterKey }: TeamCardProps) {
       >
         {member.role}
       </motion.p>
-      <motion.a
-        href={member.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-sm sm:text-base font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-400 text-black shadow-md transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,207,82,0.5)]"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration: 0.08, ease: [0.16, 1, 0.3, 1] }}
-        whileHover={{ 
-          scale: 1.08, 
-          y: -2,
-          boxShadow: '0 0 20px rgba(255, 207, 82, 0.3)',
-          transition: { duration: 0.08, ease: [0.16, 1, 0.3, 1] }
-        }}
-        whileTap={{ scale: 0.95 }}
-        style={{ 
-          willChange: 'transform',
-          transition: 'all 0.08s cubic-bezier(0.16, 1, 0.3, 1)'
-        }}
-        key={`linkedin-${filterKey}`}
-      >
-        <Linkedin size={18} />
-        LinkedIn
-      </motion.a>
+      <div className="flex gap-2 mt-2">
+        {project && logoSrc && (
+          <motion.a
+            href={`/projects?project=${project.id}`}
+            className="inline-flex items-center justify-center w-22 h-10 rounded-full shadow border-1 transition-all duration-300 p-3"
+            style={{
+              willChange: 'transform',
+              borderColor: accent,
+              background: background,
+              transition: 'box-shadow 0.08s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+            whileHover={{
+              scale: 1.08,
+              y: -2,
+              boxShadow: `0 0 10px 2px ${accent}66`,
+              transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Image src={logoSrc} alt={project.name + ' logo'} width={70} height={70} className="object-contain mx-auto" unoptimized={true} priority />
+          </motion.a>
+        )}
+        <motion.a
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm sm:text-base font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-400 text-black shadow transition-all duration-300"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ 
+            scale: 1.08, 
+            y: -2,
+            boxShadow: '0 0 10px 2px rgba(255, 207, 82, 0.25)',
+            transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+          }}
+          whileTap={{ scale: 0.95 }}
+          style={{ 
+            willChange: 'transform',
+            transition: 'all 0.08s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+          key={`linkedin-${filterKey}`}
+        >
+          <Linkedin size={18} />
+          LinkedIn
+        </motion.a>
+      </div>
     </motion.div>
   )
 }

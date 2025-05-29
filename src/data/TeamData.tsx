@@ -28,12 +28,70 @@ export const teamMembers = [
       role: 'Outreach Director',
       img: '/team/sachit.JPG',
       linkedin: 'https://www.linkedin.com/in/sachit-madaan-239235282/',
+      project: 'paskin'
     },
     {
       name: 'Aditya Iyer',
       group: ['Leadership', 'Developers'],
       role: 'Project Executive',
       img: '/team/aditya.jpeg',
-      linkedin: 'https://www.linkedin.com/in/aditya-a-iyer/'
+      linkedin: 'https://www.linkedin.com/in/aditya-a-iyer/',
+      project: 'probability-management'
+    },
+    {
+      name: 'Srinandha Murugesan',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
+      img: '/team/srinandha.PNG',
+      linkedin: 'https://www.linkedin.com/in/srinandham',
+      project: 'finsight'
+    },
+    {
+      name: 'Simon Yan',
+      group: ['Developers', 'Outreach'],
+      role: 'AI/ML Engineer',
+      img: '/team/simon.jpg',
+      linkedin: 'https://www.linkedin.com/in/simon-yan/',
+      project: 'finsight'
+    },
+    {
+      name: 'Aarush Narang',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/arush.JPG',
+      linkedin: 'https://www.linkedin.com/in/aarush-narang/',
+      project: 'finsight'
+    },
+    {
+      name: 'Hami Hoshiyama',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/hami.jpg',
+      linkedin: 'https://www.linkedin.com/in/hami-hoshiyama',
+      project: 'finsight'
+    },
+    {
+      name: 'Kenneth Tan',
+      group: ['Developers'],
+      role: 'AI/ML & Full Stack Engineer',
+      img: '/team/kenneth.JPG',
+      linkedin: 'https://www.linkedin.com/in/kenneth-i-tan/',
+      project: 'paskin'
+    },
+    {
+      name: 'Xuanye Wang',
+      group: ['Developers'],
+      role: 'Software Engineer',
+      img: '/team/xuanye.JPG',
+      linkedin: 'https://www.linkedin.com/in/xuanye-wang-9387bb297/',
+      project: 'probability-management'
+    },
+    {
+      name: 'Varsha Narasiman',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/varsha.png',
+      linkedin: 'https://www.linkedin.com/in/varsha-narasiman/',
+      project: 'paskin'
     }
   ]
