@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import CardStack from './CardStack'
 import { whatwedo, whatwedoTitleWhite, whatwedoTitleGold, whatwedoDescription } from '@/data/WhatWeDoData'
@@ -8,7 +8,23 @@ import StarField from '@/components/global/StarField'
 
 const WhatWeDo = () => {
   const endCardStackRef = useRef<HTMLDivElement>(null)
+  const descRef = useRef<HTMLParagraphElement>(null)
+  const firstCardRef = useRef<HTMLDivElement>(null)
+  const headerEndRef = useRef<HTMLDivElement>(null)
+  const [headerHeight, setHeaderHeight] = useState(0)
   const [isOverViewport, setIsOverViewport] = useState(false)
+  const [descVisible, setDescVisible] = useState(true)
+
+  useLayoutEffect(() => {
+    function updateHeight() {
+      if (headerEndRef.current) {
+        setHeaderHeight(headerEndRef.current.offsetTop);
+      }
+    }
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
 
   useEffect(() => {
     const checkPosition = () => {
@@ -23,6 +39,24 @@ const WhatWeDo = () => {
 
     return () => window.removeEventListener('scroll', checkPosition)
   }, [])
+
+  useEffect(() => {
+    function checkOverlap() {
+      if (descRef.current && firstCardRef.current) {
+        const descRect = descRef.current.getBoundingClientRect();
+        const cardRect = firstCardRef.current.getBoundingClientRect();
+        // Hide if description is within the vertical bounds of the first card
+        setDescVisible(descRect.bottom <= cardRect.top - 5 || descRect.top >= cardRect.bottom + 5);
+      }
+    }
+    window.addEventListener('scroll', checkOverlap);
+    window.addEventListener('resize', checkOverlap);
+    checkOverlap();
+    return () => {
+      window.removeEventListener('scroll', checkOverlap);
+      window.removeEventListener('resize', checkOverlap);
+    };
+  }, []);
 
   const isCardOverParagraph = useInView(endCardStackRef) || isOverViewport
 
@@ -41,18 +75,20 @@ const WhatWeDo = () => {
               {whatwedoTitleWhite} <span style={{ color: 'var(--accent-gold)', textShadow: '0 0 20px rgba(255, 207, 82, 0.15)' }}>{whatwedoTitleGold}</span>
             </motion.h2>
             <motion.p
-              animate={{ opacity: isCardOverParagraph ? 0 : 1 }}
-              transition={{ duration: 0.025 }}
+              ref={descRef}
+              animate={{ opacity: descVisible ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
               style={{ willChange: 'transform, opacity' }}
               className="mt-4 text-lg text-[var(--text-secondary)] max-w-xl mx-auto"
             >
               {whatwedoDescription}
             </motion.p>
           </div>
+          <div ref={headerEndRef} />
         </div>
         <div>
           <div className="relative z-10">
-            <CardStack endCardStackRef={endCardStackRef} whatwedo={whatwedo} />
+            <CardStack firstCardRef={firstCardRef as React.RefObject<HTMLDivElement>} endCardStackRef={endCardStackRef} whatwedo={whatwedo} headerHeight={headerHeight} />
           </div>
         </div>
       </div>

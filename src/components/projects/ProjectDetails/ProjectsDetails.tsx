@@ -190,7 +190,7 @@ export default function ScrollProjectShowcase() {
             scrollSnapAlign: 'start'
           }}
         >
-          <div className="relative w-full max-w-[85vw] h-[80vh] rounded-4xl overflow-hidden smooth-element">
+          <div className="relative w-full max-w-[85vw] h-[80vh] rounded-4xl overflow-visible smooth-element">
             <motion.div
               key={`bg-${debouncedIndex}`}
               initial={{ scaleX: 0, opacity: 0.8 }}
@@ -201,7 +201,7 @@ export default function ScrollProjectShowcase() {
                 scaleX: { duration: 1.0, ease: [0.16, 1, 0.3, 1] },
                 opacity: { duration: 0.8, ease: "easeOut" }
               }}
-              className="absolute inset-0 z-0 rounded-4xl origin-left overflow-hidden"
+              className="absolute inset-0 z-0 rounded-4xl origin-left overflow-visible"
               style={{ backgroundColor: background }}
             />
             <motion.div
@@ -214,7 +214,7 @@ export default function ScrollProjectShowcase() {
                 delay: 0.15,
                 filter: { duration: 0.6, ease: "easeOut" }
               }}
-              className="absolute inset-0 z-10 pointer-events-none rounded-4xl overflow-hidden"
+              className="absolute inset-0 z-10 pointer-events-none rounded-4xl overflow-visible"
               style={{
                 border: `1px solid ${adjustedBorder}`,
                 ...(shouldUseBlend ? { mixBlendMode: 'screen' } : {}),
@@ -234,11 +234,11 @@ export default function ScrollProjectShowcase() {
                   scale: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
                   filter: { duration: 0.5, ease: "easeOut" }
                 }}
-                className="absolute z-20 top-0 left-0 w-full h-full flex flex-col lg:flex-row items-center justify-center text-left px-6 sm:px-12 gap-0 sm:gap-10 py-3 md:py-6 sm:py-10 overflow-hidden smooth-element"
-                style={{ willChange: 'transform, opacity, filter' }}
+                className="absolute z-20 top-0 left-0 w-full h-full flex flex-col lg:flex-row items-center justify-center text-left px-6 sm:px-12 gap-0 sm:gap-10 py-3 md:py-16 sm:py-10 overflow-visible smooth-element"
+                style={{ willChange: 'transform, opacity, filter', overflow: 'visible' }}
               >
                 <motion.div
-                  className="basis lg:basis-[40%] space-y-2 sm:space-y-5 pt-2 sm:pt-5 overflow-hidden smooth-element"
+                  className="basis lg:basis-[40%] space-y-2 sm:space-y-5 pt-2 sm:pt-5 overflow-visible smooth-element"
                   initial={{ opacity: 0, x: -50, scale: 0.94, rotateX: 5 }}
                   animate={{ opacity: 1, x: 0, scale: 1, rotateX: 0 }}
                   transition={{ 
@@ -272,7 +272,7 @@ export default function ScrollProjectShowcase() {
                   </motion.div>
 
                   <motion.div
-                    className="flex items-start gap-2 flex-wrap text-[0.6rem] md:text-sm font-medium justify-center sm:justify-start"
+                    className="flex items-start gap-2 flex-wrap text-[0.6rem] md:text-md lg:text-lg xl:text-xl 2xl:text-2xl font-medium justify-center sm:justify-start overflow-visible px-1"
                     style={{ color: textPrimary }}
                     initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -297,7 +297,7 @@ export default function ScrollProjectShowcase() {
                     {current.tags?.map((tag, i) => (
                       <motion.span
                         key={`${debouncedIndex}-tag-${i}-${tag}`}
-                        className="px-2 py-0.5 md:px-3 md:py-1 rounded-full uppercase tracking-wide"
+                        className="px-2 py-0.5 md:px-2 md:py-1 rounded-full text-base sm:text-sm md:text-base lg:text-base xl:text-base 2xl:text-xl uppercase tracking-wide"
                         style={{
                           backgroundColor: tagBg,
                           color: tagText,
@@ -305,16 +305,15 @@ export default function ScrollProjectShowcase() {
                         }}
                         initial={{ opacity: 0, scale: 0.6, y: 15, rotateZ: -5 }}
                         animate={{ opacity: 1, scale: 1, y: 0, rotateZ: 0 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          ease: [0.34, 1.56, 0.64, 1], 
-                          delay: 0.4 + i * 0.1,
-                          rotateZ: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+                        whileHover={{ 
+                          scale: 1.05, 
+                          y: -2,
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                          zIndex: 10
                         }}
-                        whileHover={{
-                          scale: 1.05,
-                          rotateZ: 2,
-                          transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+                        transition={{ 
+                          duration: 0.3,
+                          ease: [0.16, 1, 0.3, 1],
                         }}
                       >
                         {tag}
@@ -323,7 +322,7 @@ export default function ScrollProjectShowcase() {
                   </motion.div>
 
                   <motion.h2
-                    className="text-xl md:text-2xl lg:text-4xl font-extrabold text-center sm:text-left overflow-hidden"
+                    className="text-xl md:text-2xl lg:text-4xl xl:text-4xl 2xl:text-6xl font-extrabold text-center sm:text-left overflow-visible"
                     style={{ color: textPrimary }}
                     initial={{ opacity: 0, y: 30, scale: 0.95, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
@@ -338,7 +337,7 @@ export default function ScrollProjectShowcase() {
                   </motion.h2>
 
                   <motion.p
-                    className="text-sm sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl max-w-xl mx-auto sm:mx-0 overflow-hidden"
+                    className="text-sm sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-2xl max-w-xl mx-auto sm:mx-0 overflow-visible"
                     style={{ color: textSecondary }}
                     initial={{ opacity: 0, y: 25, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -353,7 +352,7 @@ export default function ScrollProjectShowcase() {
                   </motion.p>
 
                   <motion.div
-                    className="flex flex-wrap gap-2 sm:gap-3 pt-1 sm:pt-2 pb-2 sm:pb-3 justify-center sm:justify-start overflow-hidden"
+                    className="flex flex-wrap gap-2 sm:gap-3 pt-1 sm:pt-2 pb-2 sm:pb-3 justify-center sm:justify-start overflow-visible"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ 
@@ -368,14 +367,14 @@ export default function ScrollProjectShowcase() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 rounded-full px-3 py-1 text-xs md:text-sm transition-all duration-200"
+                        className="z-30 flex items-center gap-2 rounded-full px-3 py-1 text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl"
                         style={{
                           backgroundColor: buttonBg,
                           color: buttonText,
                           border: `1px solid ${buttonBorder}`,
                         }}
                         whileHover={{ 
-                          scale: 1.02, 
+                          scale: 1.05, 
                           opacity: 0.8,
                           transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
                         }}
@@ -387,8 +386,7 @@ export default function ScrollProjectShowcase() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ 
                           duration: 0.5, 
-                          ease: [0.16, 1, 0.3, 1], 
-                          delay: 0.6 + i * 0.08
+                          ease: [0.16, 1, 0.3, 1],
                         }}
                       >
                         {link.icon && <span>{link.icon}</span>}

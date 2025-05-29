@@ -69,30 +69,30 @@ const ProjectCard = React.memo(function ProjectCard({ p, index, onClick, priorit
       key={p.id}
       id={`project-card-${p.id}`}
       onClick={onClick}
-      className="cursor-pointer group bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.015] transition-all backdrop-blur-sm smooth-element"
+      className="cursor-pointer group bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-md backdrop-blur-sm"
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.95 }}
       whileHover={{ 
-        scale: 1.05, 
+        scale: 1.02, 
         y: -2,
         boxShadow: '0 10px 30px rgba(255, 207, 82, 0.15)',
-        transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] }
       }}
-      transition={{ duration: 0.75, delay: 0.1 * Math.min(index, 5), ease: [0.16, 1, 0.3, 1] }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ 
+        duration: 0.3,
+        ease: [0.16, 1, 0.3, 1],
+        scale: { duration: 0.3 },
+        y: { duration: 0.3 }
+      }}
     >
-      <motion.div 
-        className="relative w-full h-48"
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.08, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <div className="relative w-full h-48 overflow-hidden">
         {p.images ? (
           <Image
             src={`/projects/${p.images[0]}`}
             alt={p.name}
             fill
-            className="object-cover"
+            className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
             unoptimized={true}
             priority={priority}
             loading={priority ? undefined : 'lazy'}
@@ -102,15 +102,15 @@ const ProjectCard = React.memo(function ProjectCard({ p, index, onClick, priorit
             <span className="text-white text-lg font-medium">Coming Soon</span>
           </div>
         )}
-      </motion.div>
+      </div>
       <motion.div 
         className="p-5"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
         transition={{ 
-          duration: 0.4, 
-          delay: 0.2 + 0.1 * Math.min(index, 5),
+          duration: 0.3, 
+          delay: 0.1 * Math.min(index, 5),
           ease: [0.16, 1, 0.3, 1]
         }}
       >
@@ -124,9 +124,9 @@ const ProjectCard = React.memo(function ProjectCard({ p, index, onClick, priorit
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ 
-              duration: 0.4, 
-              delay: 0.3 + 0.1 * Math.min(index, 5),
-              ease: [0.34, 1.56, 0.64, 1]
+              duration: 0.3, 
+              delay: 0.2 * Math.min(index, 5),
+              ease: [0.16, 1, 0.3, 1]
             }}
           >
             <Star size={14} className="relative top-[-1px]" fill="currentColor" /> Featured
@@ -222,8 +222,7 @@ export default function ProjectFilterAndCards() {
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          style={{ willChange: 'transform' }}
+          transition={{ duration: 0.3 }}
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((p, index) => (

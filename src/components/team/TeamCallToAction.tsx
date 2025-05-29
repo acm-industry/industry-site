@@ -91,7 +91,7 @@ export default function TeamCTA() {
               whileTap={{ scale: 0.95 }}
               style={{ 
                 willChange: 'transform',
-                transition: 'scale 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
               <Mail size={18} />
@@ -119,7 +119,7 @@ export default function TeamCTA() {
               whileTap={{ scale: 0.95 }}
               style={{ 
                 willChange: 'transform',
-                transition: 'scale 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
               <Link

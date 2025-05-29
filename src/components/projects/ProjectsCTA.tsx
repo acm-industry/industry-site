@@ -54,29 +54,69 @@ export default function ProjectsCTA() {
           transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           style={{ willChange: 'transform, opacity' }}
         >
-          <motion.a
-            href="/join"
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold text-black bg-[var(--accent-gold)] rounded-lg shadow-md hover:scale-[1.05] hover:bg-[#ffd75c] hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-transform"
-            whileHover={{ scale: 1.06, y: -2, boxShadow: '0 0 25px rgba(255,207,82,0.4)' }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.5, 
+              delay: 0.7,
+              ease: [0.34, 1.56, 0.64, 1]
+            }}
             style={{ willChange: 'transform' }}
           >
-            <GraduationCap className="w-5 h-5" />
-            Join ACM Industry
-          </motion.a>
+            <motion.div
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                willChange: 'transform',
+                transition: 'scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <motion.a
+                href="/join"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold text-black bg-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[#ffd75c] hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+              >
+                <GraduationCap className="w-5 h-5" />
+                Join ACM Industry
+              </motion.a>
+            </motion.div>
+          </motion.div>
 
-          <motion.a
-            href="/services"
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md hover:scale-[1.05] hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-transform"
-            whileHover={{ scale: 1.06, y: -2, backgroundColor: 'var(--accent-gold)', color: '#000', boxShadow: '0 0 25px rgba(255,207,82,0.4)' }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.5, 
+              delay: 0.8,
+              ease: [0.34, 1.56, 0.64, 1]
+            }}
             style={{ willChange: 'transform' }}
           >
-            <Handshake className="w-5 h-5" />
-            Partner With Us
-          </motion.a>
+            <motion.div
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                willChange: 'transform',
+                transition: 'scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <motion.a
+                href="/services"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+              >
+                <Handshake className="w-5 h-5" />
+                Partner With Us
+              </motion.a>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.section>

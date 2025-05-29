@@ -80,22 +80,27 @@ export default function CallToAction() {
               delay: 0.7,
               ease: [0.34, 1.56, 0.64, 1]
             }}
-            whileHover={{ 
-              scale: 1.05, 
-              y: -2,
-              transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="smooth-element"
             style={{ willChange: 'transform' }}
           >
-            <Link
-              href="/join"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold text-black bg-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[#ffd75c] hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+            <motion.div
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                willChange: 'transform',
+                transition: 'scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
             >
-              <GraduationCap className="w-5 h-5" />
-              For Students
-            </Link>
+              <Link
+                href="/join"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold text-black bg-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[#ffd75c] hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+              >
+                <GraduationCap className="w-5 h-5" />
+                For Students
+              </Link>
+            </motion.div>
           </motion.div>
 
           <motion.div
@@ -104,25 +109,30 @@ export default function CallToAction() {
             viewport={{ once: true }}
             transition={{ 
               duration: 0.5, 
-              delay: 0.6,
+              delay: 0.8,
               ease: [0.34, 1.56, 0.64, 1]
             }}
-            whileHover={{ 
-              scale: 1.05, 
-              y: -2,
-              transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="smooth-element"
             style={{ willChange: 'transform' }}
           >
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+            <motion.div
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                willChange: 'transform',
+                transition: 'scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
             >
-              <Handshake className="w-5 h-5" />
-              For Companies
-            </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+              >
+                <Handshake className="w-5 h-5" />
+                For Companies
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
