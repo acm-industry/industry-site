@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/10 bg-[var(--background)] text-[var(--foreground)]" style={{ willChange: 'transform, opacity' }}>
-      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-[16px] font-medium">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-[16px] font-medium relative">
         
         {/* Left: Logo + affiliations */}
         <div className="flex items-center gap-5">
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         {/* Center: Nav links */}
-        <nav className="flex flex-wrap justify-center gap-7 text-[16px]">
+        <nav className="absolute left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-7 text-[16px]">
           {[
             { name: 'Home', href: '/' },
             { name: 'Services', href: '/services' },
@@ -74,7 +74,7 @@ export default function Footer() {
         </nav>
 
         {/* Right: Socials */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 ml-auto">
           <a
             href="https://github.com/acm-industry"
             target="_blank"

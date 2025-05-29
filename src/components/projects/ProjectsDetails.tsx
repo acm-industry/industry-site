@@ -74,7 +74,7 @@ export default function ScrollProjectShowcase() {
 
   return (
     <section className="relative max-w-[100vw] w-full bg-black text-[var(--foreground)] overflow-x-clip" ref={containerRef}>
-      <StarField numberOfStars={3000} />
+      <StarField numberOfStars={1000} />
 
       {/* Custom CSS for aggressive scroll snapping */}
       <style jsx>{`

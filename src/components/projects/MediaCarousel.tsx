@@ -144,7 +144,7 @@ const MediaCarousel = memo(({ media }: { media?: string[] | null }) => {
       <AnimatePresence>
         {isLoading && (
           <motion.div
-            className="absolute inset-0 flex items-start justify-center bg-black/20 backdrop-blur-sm rounded-2xl smooth-element"
+            className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm rounded-2xl smooth-element"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
