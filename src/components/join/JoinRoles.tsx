@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code2, Palette, Users, Megaphone, Handshake } from 'lucide-react'
+import { Code2, Users, Megaphone, Handshake } from 'lucide-react'
 import StarField from '../global/StarField'
 import SectionGlow from '../global/SectionGlow'
 import React from 'react'

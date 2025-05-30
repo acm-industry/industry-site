@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll } from 'framer-motion'
 import JoinContent from './JoinContent'
 import JoinImage from './JoinImage'
 
@@ -76,25 +75,12 @@ const events = [
 
 export default function StickyProjectTimeline() {
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
 
-  const [currentIndex, setCurrentIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const headingRef = useRef<HTMLDivElement | null>(null)
   const [lineTop, setLineTop] = useState(0)
-  const [lineHeight, setLineHeight] = useState(0)
 
   const timelineHeightVh = events.length * 120 + 20;
-
-  useEffect(() => {
-    return scrollYProgress.on('change', (v) => {
-      const idx = Math.floor(v * events.length)
-      setCurrentIndex(Math.min(events.length - 1, idx))
-    })
-  }, [scrollYProgress])
 
   useEffect(() => {
     function updateLine() {
@@ -103,10 +89,8 @@ export default function StickyProjectTimeline() {
         const headingRect = headingRef.current.getBoundingClientRect()
         const top = headingRect.bottom - sectionRect.top
         setLineTop(top + 50)
-        setLineHeight(sectionRect.height - top - 200)
       } else {
         setLineTop(160)
-        setLineHeight(900)
       }
     }
     updateLine()
@@ -139,7 +123,7 @@ export default function StickyProjectTimeline() {
 
       {/* Timeline stacked sticky cards */}
       <div className="relative max-w-6xl mx-auto" style={{ minHeight: `${timelineHeightVh}vh` }}>
-        {events.map((event, idx) => (
+        {events.map((event) => (
           <div key={event.title} style={{ height: '120vh' }}>
             <div className="sticky top-1/4 h-[40vh] flex items-center justify-between">
               <JoinContent event={event} />

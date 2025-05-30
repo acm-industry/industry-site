@@ -66,7 +66,7 @@ export default function JoinHero() {
         className="text-md sm:text-lg max-w-2xl mx-auto text-[var(--text-secondary)] smooth-element"
         style={{ willChange: 'transform, opacity, filter' }}
       >
-        Thank you for your interest in ACM Industry! We'll be kicking off our next cycle in Fall 2025.
+        Thank you for your interest in ACM Industry! We&apos;ll be kicking off our next cycle in Fall 2025.
       </motion.p>
 
       {/* Add custom CSS for smooth animations */}

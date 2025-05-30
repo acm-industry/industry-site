@@ -1,4 +1,10 @@
-export default function JoinContent({ event }: { event: any }) {
+interface Event {
+  title: string;
+  timeframe?: string;
+  bullets: string[];
+}
+
+export default function JoinContent({ event }: { event: Event }) {
   return (
     <div className="w-1/2 flex flex-col gap-4">
       <h2 className="text-3xl font-bold text-[var(--foreground)]">{event.title}</h2>

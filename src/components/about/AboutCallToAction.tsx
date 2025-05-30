@@ -44,7 +44,7 @@ export default function AboutCTA() {
           transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           style={{ willChange: 'transform, opacity' }}
         >
-          We're building a program where students and companies don't just work together — they grow together. Join us in pushing the boundary of what a student-run org can do.
+          We&apos;re building a program where students and companies don&apos;t just work together — they grow together. Join us in pushing the boundary of what a student-run org can do.
         </motion.p>
 
         <motion.div
