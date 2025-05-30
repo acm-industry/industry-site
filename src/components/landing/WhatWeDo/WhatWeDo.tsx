@@ -49,13 +49,15 @@ const WhatWeDo = () => {
         setDescVisible(descRect.bottom <= cardRect.top - 5 || descRect.top >= cardRect.bottom + 5);
       } else if (endCardStackRef.current){
         const endRect = endCardStackRef.current.getBoundingClientRect();
-        const endInViewport = endRect.top < window.innerHeight && endRect.bottom > 0;
-        if (endInViewport) {
+        const endInViewportOrAbove = (endRect.top < window.innerHeight && endRect.bottom > 0) || endRect.bottom < 0;
+        if (endInViewportOrAbove) {
           setDescVisible(false);
           return;
         }else{
           setDescVisible(true);
         }
+      } else {
+        setDescVisible(false);
       }
     }
     window.addEventListener('scroll', checkOverlap);

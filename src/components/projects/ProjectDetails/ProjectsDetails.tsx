@@ -272,7 +272,7 @@ export default function ScrollProjectShowcase() {
                   </motion.div>
 
                   <motion.div
-                    className="flex items-start gap-2 flex-wrap text-[0.6rem] md:text-md lg:text-lg xl:text-xl 2xl:text-2xl font-medium justify-center sm:justify-start overflow-visible px-1"
+                    className="flex items-start gap-4 flex-wrap text-[0.6rem] md:text-md lg:text-lg xl:text-xl font-medium justify-center sm:justify-start overflow-visible px-1"
                     style={{ color: textPrimary }}
                     initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -297,7 +297,7 @@ export default function ScrollProjectShowcase() {
                     {current.tags?.map((tag, i) => (
                       <motion.span
                         key={`${debouncedIndex}-tag-${i}-${tag}`}
-                        className="px-2 py-0.5 md:px-2 md:py-1 rounded-full text-base sm:text-sm md:text-base lg:text-base xl:text-base 2xl:text-xl uppercase tracking-wide"
+                        className="px-2 py-0.5 md:px-2 md:py-1 rounded-full text-base sm:text-sm md:text-base lg:text-base xl:text-base uppercase tracking-wide"
                         style={{
                           backgroundColor: tagBg,
                           color: tagText,
@@ -322,7 +322,7 @@ export default function ScrollProjectShowcase() {
                   </motion.div>
 
                   <motion.h2
-                    className="text-xl md:text-2xl lg:text-4xl xl:text-4xl 2xl:text-6xl font-extrabold text-center sm:text-left overflow-visible"
+                    className="text-xl md:text-2xl lg:text-4xl xl:text-4xl font-extrabold text-center sm:text-left overflow-visible"
                     style={{ color: textPrimary }}
                     initial={{ opacity: 0, y: 30, scale: 0.95, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
@@ -337,7 +337,7 @@ export default function ScrollProjectShowcase() {
                   </motion.h2>
 
                   <motion.p
-                    className="text-sm sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-2xl max-w-xl mx-auto sm:mx-0 overflow-visible"
+                    className="text-sm sm:text-sm md:text-base lg:text-base xl:text-lg max-w-xl mx-auto sm:mx-0 overflow-visible"
                     style={{ color: textSecondary }}
                     initial={{ opacity: 0, y: 25, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -367,7 +367,7 @@ export default function ScrollProjectShowcase() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="z-30 flex items-center gap-2 rounded-full px-3 py-1 text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl"
+                        className="z-30 flex items-center gap-2 rounded-full px-3 py-1 text-xs md:text-sm lg:text-base xl:text-lg"
                         style={{
                           backgroundColor: buttonBg,
                           color: buttonText,

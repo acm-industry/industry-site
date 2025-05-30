@@ -21,7 +21,7 @@ export const projects = [
     company_logo: 'pwc-logo.png',
     tags: ['Next.js', 'Flask', 'AI / ML'],
     external_links: [
-      { label: "VIEW SITE", href: "https://pwc-project.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://pwc-project.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#2B170D',
@@ -82,7 +82,7 @@ export const projects = [
     company_logo: 'sweet-petes-logo.png',
     tags: ['Next.js', 'UI / UX', 'Supabase'],
     external_links: [
-      { label: "VIEW SITE", href: "https://sweetpetestreats.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://sweetpetestreats.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#2E1C13',
@@ -115,7 +115,7 @@ export const projects = [
     company_logo: 'teddy-rice-logo.png',
     tags: ['Square', 'UI / UX'],
     external_links: [
-      { label: "VIEW SITE", href: "https://teddyriceusa.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://teddyriceusa.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#1A1A2E',
@@ -148,7 +148,7 @@ export const projects = [
     company_logo: 'iv-drip-logo.png',
     tags: ['Next.js', 'Supabase', 'UI / UX'],
     external_links: [
-      { label: "VIEW SITE", href: "https://iv-drip.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://iv-drip.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#362110',
@@ -183,7 +183,7 @@ export const projects = [
     company_logo: 'sams-to-go-logo.png',
     tags: ['Webflow', 'Static Site', 'UI / UX'],
     external_links: [
-      { label: "VIEW SITE", href: "https://samstogoislavista.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://samstogoislavista.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#fdf5e6',
@@ -218,7 +218,7 @@ export const projects = [
     company_logo: 'palm-coast-living-logo.png',
     tags: ['Next.js', 'Supabase', 'UI / UX'],
     external_links: [
-      { label: "VIEW SITE", href: "https://property-management-five.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://property-management-five.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#f1f3f6',
@@ -251,7 +251,7 @@ export const projects = [
     company_logo: 'sweet-jane-logo.svg',
     tags: ['Next.js', 'Supabase', 'UI / UX'],
     external_links: [
-      { label: "VIEW SITE", href: "https://sweetjaneiv.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" /> },
+      { label: "VIEW SITE", href: "https://sweetjaneiv.com/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
     ],
     colors: {
       background: '#faf8f4',
