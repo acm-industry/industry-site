@@ -12,6 +12,8 @@ export default function JoinTimeline() {
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const headingRef = useRef<HTMLDivElement | null>(null)
   const [lineTop, setLineTop] = useState(0)
+  const [activeIdx, setActiveIdx] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const timelineHeightVh = events.length * 120 + 20;
 
@@ -31,13 +33,26 @@ export default function JoinTimeline() {
     return () => window.removeEventListener('resize', updateLine)
   }, [])
 
+  useEffect(() => {
+    function onScroll() {
+      const offsets = cardRefs.current.map(ref =>
+        ref ? Math.abs(ref.getBoundingClientRect().top + window.innerHeight * 0.15) : Infinity
+      );
+      const minIdx = offsets.indexOf(Math.min(...offsets));
+      setActiveIdx(minIdx);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // initialize on mount
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <section
       ref={el => {
         containerRef.current = el as HTMLDivElement | null;
         sectionRef.current = el as HTMLDivElement | null;
       }}
-      className="relative w-full h-auto bg-[var(--background)] text-[var(--foreground)] px-6 overflow-x-clip"
+      className="relative w-full h-auto pt-32 bg-[var(--background)] text-[var(--foreground)] px-6 overflow-x-clip"
     >
       <StarField numberOfStars={1000} />
 
@@ -83,8 +98,13 @@ export default function JoinTimeline() {
         className="relative max-w-6xl mx-auto"
         style={{ minHeight: `${timelineHeightVh}vh` }}
       >
-        {events.map((event) => (
-          <div key={event.title} style={{ height: '120vh' }}>
+        {events.map((event, idx) => (
+          <div
+            key={event.title}
+            ref={el => { cardRefs.current[idx] = el; }}
+            style={{ height: '120vh' }}
+            className={`transition-opacity duration-300 ${activeIdx === idx ? 'opacity-100' : 'opacity-30'}`}
+          >
             <div className="sticky top-1/4 h-[70vh] md:h-[45vh] flex flex-col md:flex-row items-center md:justify-between">
               {/* 1) CONTENT */}
               <div className="order-1 w-full md:w-1/2">

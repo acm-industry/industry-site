@@ -7,7 +7,7 @@ export default function JoinFAQ() {
   return (
     <section className="relative w-full bg-[var(--background)] text-[var(--foreground)] py-16 px-4">
       <StarField numberOfStars={100} />
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center md:items-start">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center md:items-start mb-24">
         {/* Left: Title, description, illustration */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-6">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(0,212,255,0.10)]">
