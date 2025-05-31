@@ -12,9 +12,11 @@ export default function Footer() {
   const pathname = usePathname()
 
   return (
-    <footer className="border-t border-white/10 bg-[var(--background)] text-[var(--foreground)]" style={{ willChange: 'transform, opacity' }}>
-      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-[16px] font-medium relative">
-        
+    <footer
+      className="border-t border-white/10 bg-[var(--background)] text-[var(--foreground)]"
+      style={{ willChange: 'transform, opacity' }}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col items-center md:flex-row md:justify-between gap-6 text-[16px] font-medium relative">
         {/* Left: Logo + affiliations */}
         <div className="flex items-center gap-5">
           <Link href="/" className="flex items-center">
@@ -35,7 +37,14 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="w-12 h-12 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
           >
-            <Image src={acmLogo} alt="ACM UCSB" width={40} height={40} unoptimized={true} priority/>
+            <Image
+              src={acmLogo}
+              alt="ACM UCSB"
+              width={40}
+              height={40}
+              unoptimized={true}
+              priority
+            />
           </a>
 
           <a
@@ -44,12 +53,19 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="h-12 px-4 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
           >
-            <Image src={bruinaiLogo} alt="BruinAI" width={100} height={28} unoptimized={true} priority/>
+            <Image
+              src={bruinaiLogo}
+              alt="BruinAI"
+              width={100}
+              height={28}
+              unoptimized={true}
+              priority
+            />
           </a>
         </div>
 
         {/* Center: Nav links */}
-        <nav className="absolute left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-7 text-[16px]">
+        <nav className="flex flex-wrap justify-center gap-7 text-[16px] md:absolute md:left-1/2 md:-translate-x-1/2">
           {[
             { name: 'Home', href: '/' },
             { name: 'Services', href: '/services' },
@@ -74,7 +90,7 @@ export default function Footer() {
         </nav>
 
         {/* Right: Socials */}
-        <div className="flex items-center gap-6 ml-auto">
+        <div className="flex items-center gap-6 md:ml-auto">
           <a
             href="https://github.com/acm-industry"
             target="_blank"

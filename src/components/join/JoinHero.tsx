@@ -50,7 +50,7 @@ export default function JoinHero() {
             transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
           }}
         >
-          Open
+          Closed
         </motion.span>
       </motion.h1>
 
