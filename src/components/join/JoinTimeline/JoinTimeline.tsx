@@ -37,7 +37,7 @@ export default function JoinTimeline() {
         containerRef.current = el as HTMLDivElement | null;
         sectionRef.current = el as HTMLDivElement | null;
       }}
-      className="relative w-full h-[900vh] bg-[var(--background)] text-[var(--foreground)] px-6 py-20 overflow-x-clip"
+      className="relative w-full h-auto bg-[var(--background)] text-[var(--foreground)] px-6 overflow-x-clip"
     >
       <StarField numberOfStars={1000} />
 
@@ -93,7 +93,7 @@ export default function JoinTimeline() {
 
               {/* 2) DOT */}
               <div className="order-2 ml-6 md:ml-0 w-full flex justify-end md:w-8 md:justify-center mt-4 md:mt-0">
-                <div className="w-7 h-7 rounded-full bg-[var(--accent-gold)] shadow-lg border-7 border-[var(--background)]" />
+                <div className="w-8 h-8 rounded-full bg-[var(--accent-gold)] shadow-lg border-7 border-[var(--background)]" />
               </div>
 
               {/* 3) IMAGE */}

@@ -86,4 +86,27 @@ export const events = [
       icon: <ArrowRightCircle className="w-9 h-9 text-[#F15BB5]" />,
       iconAccent: '#F15BB5',
     },
+  ];
+
+  export const faq = [
+    {
+      question: 'Why should I join ACM Industry?',
+      answer: 'You’ll gain real-world experience by working on production-grade software for actual companies — with mentorship, technical growth, and a team of motivated peers.',
+    },
+    {
+      question: 'Who can join a project team?',
+      answer: 'Any UCSB student is welcome to apply, regardless of experience level. We look for people eager to learn, contribute, and collaborate in a real-world development setting.',
+    },
+    {
+      question: 'Do I need experience to join?',
+      answer: 'Nope! Many of our applicants are first-time developers or designers. We provide onboarding and mentorship to help you grow into your role.',
+    },
+    {
+      question: 'How are teams structured?',
+      answer: 'Each team has a Project Executive (senior lead), developers, and designers. You’ll meet weekly, have check-ins, and collaborate on GitHub like a real engineering team.',
+    },
+    {
+      question: 'How can I get involved?',
+      answer: 'Applications open 2–3 weeks before each quarter. Join our interest list or follow @acm.ucsb for announcements!',
+    },
   ];  
