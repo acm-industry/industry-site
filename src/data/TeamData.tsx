@@ -93,5 +93,13 @@ export const teamMembers = [
       img: '/team/varsha.png',
       linkedin: 'https://www.linkedin.com/in/varsha-narasiman/',
       project: 'paskin'
+    },
+    {
+      name: 'Natasha Joshi',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/natasha.png',
+      linkedin: 'https://www.linkedin.com/in/natasha-joshi-89818234a/',
+      project: 'paskin'
     }
   ]
