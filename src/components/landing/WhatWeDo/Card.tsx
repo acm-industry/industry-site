@@ -127,8 +127,6 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
               </p>
               <a
                 href={link}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group inline-flex items-center text-yellow-400 text-sm sm:text-base relative"
               >
                 <span className="relative inline-flex items-center">

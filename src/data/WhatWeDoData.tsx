@@ -47,7 +47,7 @@ export const whatwedo = [
       description:
         "For companies, ACM.Industry means access to UCSB's best engineers and builders — organized, vetted, and driven to deliver.",
       src: 'parallax/proud-coder.svg',
-      link: '/about',
+      link: '/team',
       icon: BadgeCheck,
       link_value: {
         text: 'Meet the Talent',

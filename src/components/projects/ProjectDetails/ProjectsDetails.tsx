@@ -135,7 +135,7 @@ export default function ScrollProjectShowcase() {
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.15, ease: 'easeOut' }}
           className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4"
           style={{ color: textPrimary, willChange: 'transform, opacity' }}
         >
@@ -152,7 +152,7 @@ export default function ScrollProjectShowcase() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
+          transition={{ delay: 0.05, duration: 0.05, ease: 'easeOut' }}
           className="text-md sm:text-lg lg:text-xl max-w-2xl mx-auto"
           style={{ color: textSecondary, willChange: 'transform, opacity' }}
         >
@@ -196,10 +196,10 @@ export default function ScrollProjectShowcase() {
               initial={{ scaleX: 0, opacity: 0.8 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ 
-                duration: 1.2, 
+                duration: 0.65, 
                 ease: [0.16, 1, 0.3, 1],
-                scaleX: { duration: 1.0, ease: [0.16, 1, 0.3, 1] },
-                opacity: { duration: 0.8, ease: "easeOut" }
+                scaleX: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.45, ease: "easeOut" }
               }}
               className="absolute inset-0 z-0 rounded-4xl origin-left overflow-visible"
               style={{ backgroundColor: background }}
@@ -209,10 +209,10 @@ export default function ScrollProjectShowcase() {
               initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
               animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
               transition={{ 
-                duration: 1.0, 
+                duration: 0.65, 
                 ease: [0.16, 1, 0.3, 1], 
-                delay: 0.15,
-                filter: { duration: 0.6, ease: "easeOut" }
+                delay: 0.05,
+                filter: { duration: 0.25, ease: "easeOut" }
               }}
               className="absolute inset-0 z-10 pointer-events-none rounded-4xl overflow-visible"
               style={{
@@ -228,11 +228,11 @@ export default function ScrollProjectShowcase() {
                 animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -40, scale: 0.96, filter: 'blur(8px)' }}
                 transition={{ 
-                  duration: 0.8, 
+                  duration: 0.45, 
                   ease: [0.16, 1, 0.3, 1],
-                  opacity: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-                  scale: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-                  filter: { duration: 0.5, ease: "easeOut" }
+                  opacity: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                  scale: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+                  filter: { duration: 0.15, ease: "easeOut" }
                 }}
                 className="absolute z-20 top-0 left-0 w-full h-full flex flex-col lg:flex-row items-center justify-center text-left px-6 sm:px-12 gap-0 sm:gap-10 py-3 md:py-16 sm:py-10 overflow-visible smooth-element"
                 style={{ willChange: 'transform, opacity, filter', overflow: 'visible' }}
@@ -242,11 +242,11 @@ export default function ScrollProjectShowcase() {
                   initial={{ opacity: 0, x: -50, scale: 0.94, rotateX: 5 }}
                   animate={{ opacity: 1, x: 0, scale: 1, rotateX: 0 }}
                   transition={{ 
-                    duration: 0.9, 
+                    duration: 0.55, 
                     ease: [0.16, 1, 0.3, 1], 
-                    delay: 0.2,
-                    opacity: { duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] },
-                    rotateX: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                    delay: 0.05,
+                    opacity: { duration: 0.35, delay: 0.05, ease: [0.16, 1, 0.3, 1] },
+                    rotateX: { duration: 0.45, ease: [0.16, 1, 0.3, 1] }
                   }}
                   style={{ willChange: 'transform, opacity' }}
                 >
@@ -255,10 +255,10 @@ export default function ScrollProjectShowcase() {
                     initial={{ opacity: 0, y: 30, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ 
-                      duration: 0.8, 
+                      duration: 0.45, 
                       ease: [0.16, 1, 0.3, 1], 
-                      delay: 0.25,
-                      scale: { duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }
+                      delay: 0.05,
+                      scale: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }
                     }}
                   >
                     <Image
@@ -277,18 +277,18 @@ export default function ScrollProjectShowcase() {
                     initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ 
-                      duration: 0.7, 
+                      duration: 0.35, 
                       ease: [0.16, 1, 0.3, 1], 
-                      delay: 0.3,
-                      filter: { duration: 0.4, ease: "easeOut" }
+                      delay: 0.05,
+                      filter: { duration: 0.1, ease: "easeOut" }
                     }}
                   >
                     <motion.span
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ 
-                        duration: 0.6, 
-                        delay: 0.35, 
+                        duration: 0.25, 
+                        delay: 0.05, 
                         ease: [0.34, 1.56, 0.64, 1] 
                       }}
                     >
@@ -312,7 +312,7 @@ export default function ScrollProjectShowcase() {
                           zIndex: 10
                         }}
                         transition={{ 
-                          duration: 0.3,
+                          duration: 0.08,
                           ease: [0.16, 1, 0.3, 1],
                         }}
                       >
@@ -327,10 +327,10 @@ export default function ScrollProjectShowcase() {
                     initial={{ opacity: 0, y: 30, scale: 0.95, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                     transition={{ 
-                      duration: 0.8, 
+                      duration: 0.45, 
                       ease: [0.16, 1, 0.3, 1], 
-                      delay: 0.35,
-                      filter: { duration: 0.5, ease: "easeOut" }
+                      delay: 0.05,
+                      filter: { duration: 0.1, ease: "easeOut" }
                     }}
                   >
                     {current.name}
@@ -342,10 +342,10 @@ export default function ScrollProjectShowcase() {
                     initial={{ opacity: 0, y: 25, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ 
-                      duration: 0.8, 
+                      duration: 0.45, 
                       ease: [0.16, 1, 0.3, 1], 
-                      delay: 0.45,
-                      filter: { duration: 0.5, ease: "easeOut" }
+                      delay: 0.1,
+                      filter: { duration: 0.1, ease: "easeOut" }
                     }}
                   >
                     {current.long_description}
@@ -356,9 +356,9 @@ export default function ScrollProjectShowcase() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ 
-                      duration: 0.6, 
+                      duration: 0.25, 
                       ease: [0.16, 1, 0.3, 1], 
-                      delay: 0.55 
+                      delay: 0.15 
                     }}
                   >
                     {current.external_links?.map((link, i) => (
@@ -376,16 +376,16 @@ export default function ScrollProjectShowcase() {
                         whileHover={{ 
                           scale: 1.05, 
                           opacity: 0.8,
-                          transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+                          transition: { duration: 0.05, ease: [0.16, 1, 0.3, 1] }
                         }}
                         whileTap={{ 
                           scale: 0.98, 
-                          transition: { duration: 0.1 }
+                          transition: { duration: 0.05 }
                         }}
                         initial={{ opacity: 0, scale: 0.9, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ 
-                          duration: 0.5, 
+                          duration: 0.15, 
                           ease: [0.16, 1, 0.3, 1],
                         }}
                       >
@@ -416,18 +416,18 @@ export default function ScrollProjectShowcase() {
                     filter: 'blur(0px)'
                   }}
                   transition={{ 
-                    duration: 1.0, 
+                    duration: 0.65, 
                     ease: [0.16, 1, 0.3, 1], 
-                    delay: 0.25,
-                    opacity: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
-                    filter: { duration: 0.6, ease: "easeOut" },
-                    rotateY: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-                    rotateX: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                    delay: 0.05,
+                    opacity: { duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] },
+                    filter: { duration: 0.25, ease: "easeOut" },
+                    rotateY: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+                    rotateX: { duration: 0.45, ease: [0.16, 1, 0.3, 1] }
                   }}
                   whileHover={{
                     scale: 1.02,
                     rotateY: -1,
-                    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
+                    transition: { duration: 0.08, ease: [0.16, 1, 0.3, 1] }
                   }}
                 >
                   <MediaCarousel key={`${debouncedIndex}-${current.name}`} media={current.images} />
