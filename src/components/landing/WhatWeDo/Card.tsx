@@ -71,12 +71,12 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       return (headerHeight / window.innerHeight) * 100;
     }, [headerHeight]);
 
+    const isSmall = windowWidth !== null && windowWidth < 640;
+
     const topOffset = useTransform(
       progress,
-      latest => `calc(${headerHeightVh}vh - ${latest * 9}vh)`
+      latest => isSmall ? `calc(20vh - ${latest * 16}vh)` : `calc(${headerHeightVh}vh - ${latest * 9}vh)`
     );
-
-    const isSmall = windowWidth !== null && windowWidth < 640;
 
     return (
       <motion.div
@@ -87,7 +87,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         <motion.div
           className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full mx-auto"
           style={{
-            top: `calc(${i * 35}px)`,
+            top: `calc(${i * (isSmall ? 25 : 35)}px)`,
             scale,
             transformOrigin: 'center center',
             willChange: 'transform, opacity',

@@ -7,7 +7,7 @@ import CallToAction from '@/components/landing/CallToAction'
 export default function HomePage() {
 
   return (
-    <div className='overflow-x-clip'>
+    <div style={{ overflowX: 'clip', overflowY: 'visible' }}>
       <Hero />
       <CompaniesCarousel />
       <WhatWeDo />

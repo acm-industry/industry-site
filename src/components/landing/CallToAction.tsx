@@ -66,7 +66,7 @@ export default function CallToAction() {
           viewport={{ once: true }}
           transition={{ 
             duration: 0.6, 
-            delay: 0.6,
+            delay: 0.5,
             ease: [0.16, 1, 0.3, 1]
           }}
           style={{ willChange: 'transform, opacity' }}

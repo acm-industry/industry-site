@@ -6,7 +6,7 @@ import AboutCTA from '@/components/about/AboutCallToAction';
 
 export default function AboutPage() {
   return (
-    <div>
+    <div className='overflow-x-clip'>
       <AboutHero />
       <AboutStorySection />
       <AboutMetricsSection />

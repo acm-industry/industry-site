@@ -6,7 +6,7 @@ import JoinFAQ from '@/components/join/JoinFAQ/JoinFAQ';
 
 export default function JoinPage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black overflow-x-clip">
       <JoinHero />
       <JoinRoles />
       <JoinTimeline />

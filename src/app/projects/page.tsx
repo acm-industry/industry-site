@@ -5,7 +5,7 @@ import ProjectsCTA from '@/components/projects/ProjectsCTA';
 
 export default function ProjectsPage() {
   return (
-    <div>
+    <div className='overflow-x-clip'>
       <ProjectsHero />
       <ProjectsFilterAndCards />
       <ScrollProjectShowcase />

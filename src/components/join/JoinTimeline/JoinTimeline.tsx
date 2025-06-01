@@ -15,7 +15,7 @@ export default function JoinTimeline() {
   const [activeIdx, setActiveIdx] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const timelineHeightVh = events.length * 120 + 20;
+  const timelineHeightVh = events.length * 150 + 20;
 
   useEffect(() => {
     function updateLine() {
@@ -102,10 +102,10 @@ export default function JoinTimeline() {
           <div
             key={event.title}
             ref={el => { cardRefs.current[idx] = el; }}
-            style={{ height: '120vh' }}
+            style={{ height: '150vh' }}
             className={`transition-opacity duration-300 ${activeIdx === idx ? 'opacity-100' : 'opacity-30'}`}
           >
-            <div className="sticky top-1/4 h-[70vh] md:h-[45vh] flex flex-col md:flex-row items-center md:justify-between">
+            <div className="sticky top-1/6 h-[80vh] md:h-[45vh] flex flex-col md:flex-row items-center md:justify-between">
               {/* 1) CONTENT */}
               <div className="order-1 w-full md:w-1/2">
                 <JoinContent event={event} />
@@ -126,7 +126,7 @@ export default function JoinTimeline() {
 
         {/* Hidden spacer to help push last card up */}
         <div style={{ height: '20vh' }}>
-          <div className="sticky top-3/5 h-[5vh] flex items-center justify-between" />
+          <div className="sticky top-4/5 h-[5vh] flex items-center justify-between" />
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import TeamFilterAndMembers from '@/components/team/TeamFilterAndMembers';
 import TeamCTA from '@/components/team/TeamCallToAction';
 export default function TeamPage() {
   return (
-    <div>
+    <div className='overflow-x-clip'>
       <TeamHero />
       <TeamFilterAndMembers />
       <TeamCTA />

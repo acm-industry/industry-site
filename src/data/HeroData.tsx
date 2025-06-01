@@ -12,5 +12,5 @@ export const techTags = [
     'AR/VR',
     'Cloud',
     'Systems',
-    'Artificial Intelligence',
+    'AI',
 ];

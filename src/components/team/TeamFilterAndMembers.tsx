@@ -267,7 +267,7 @@ function TeamCard({ member, delay = 0, filterKey }: TeamCardProps) {
       >
         {member.role}
       </motion.p>
-      <div className="flex gap-2 mt-2">
+      <div className="flex flex-col sm:flex-row gap-4 md:gap-2 mt-2 items-center justify-center">
         {project && logoSrc && (
           <motion.a
             href={`/projects?project=${project.id}`}
