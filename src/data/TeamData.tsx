@@ -101,5 +101,37 @@ export const teamMembers = [
       img: '/team/natasha.png',
       linkedin: 'https://www.linkedin.com/in/natasha-joshi-89818234a/',
       project: 'paskin'
+    },
+    {
+      name: 'Yash Chanchani',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/yash.jpeg',
+      linkedin: 'https://www.linkedin.com/in/yash-chanchani-3392a4216/',
+      project: 'finsight'
+    },
+    {
+      name: 'Samprita Chakraborty',
+      group: ['Developers'],
+      role: 'Full Stack Engineer',
+      img: '/team/samprita.jpeg',
+      linkedin: 'https://www.linkedin.com/in/samprita-c',
+      project: 'paskin'
+    },
+    {
+      name: 'Akul Singh',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/akul.jpeg',
+      linkedin: 'https://www.linkedin.com/in/akulsingh108',
+      project: 'paskin'
+    },
+    {
+      name: 'Junhyung Yoon',
+      group: ['Developers'],
+      role: 'AI/ML Engineer',
+      img: '/team/junhyung.jpg',
+      linkedin: 'https://www.linkedin.com/in/junhyungyoon/',
+      project: 'paskin'
     }
   ]
