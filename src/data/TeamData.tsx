@@ -133,5 +133,13 @@ export const teamMembers = [
       img: '/team/junhyung.jpg',
       linkedin: 'https://www.linkedin.com/in/junhyungyoon/',
       project: 'paskin'
+    },
+    {
+      name: 'Jay Udall',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
+      img: '/team/jay.png',
+      linkedin: 'https://www.linkedin.com/in/jayden-udall-926716253/',
+      project: 'probability-management'
     }
   ]
