@@ -141,5 +141,13 @@ export const teamMembers = [
       img: '/team/jay.png',
       linkedin: 'https://www.linkedin.com/in/jayden-udall-926716253/',
       project: 'probability-management'
+    },
+    {
+      name: 'Christian Cabacungan',
+      group: ['Developers', 'Outreach'],
+      role: 'AI/ML Engineer',
+      img: '/team/christian.png',
+      linkedin: 'https://www.linkedin.com/in/christiancabacungan',
+      project: 'finsight'
     }
   ]
