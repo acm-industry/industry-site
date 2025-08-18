@@ -20,6 +20,7 @@ export const projects = [
     quarter: [4, 2025],
     company_logo: 'riskwise-logo.png',
     tags: ['Next.js', 'Django', 'Anthropic'],
+    external_links: [],
     colors: {
       background: '#000000',
       border: '#0066CC',
@@ -50,6 +51,7 @@ export const projects = [
     quarter: [4, 2025],
     company_logo: 'dossmd-logo.avif',
     tags: ['AR Kit', 'Swift', 'XCode'],
+    external_links: [],
     colors: {
       background: '#F8F6F0',
       border: '#2E7D32',
