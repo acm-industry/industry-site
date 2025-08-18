@@ -136,14 +136,14 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
         </button>
 
         <div className="overflow-hidden rounded-xl flex items-center justify-center">
-          <div className="relative w-full flex items-center justify-center h-[66vh]">
+          <div className="relative w-full flex items-center justify-center h-[72vh]">
             <AnimatePresence initial={false}>
               {projects.map((project, idx) => {
                 const { scale, opacity, zIndex, x } = getCardProps(idx)
                 return (
                   <motion.div
                     key={project.id}
-                    className="absolute left-1/2 top-0 flex-shrink-0 w-full sm:w-[680px] md:w-[860px] py-6 h-auto"
+                    className="absolute left-1/2 top-1/2 -translate-y-1/2 flex-shrink-0 w-full sm:w-[680px] md:w-[860px] py-6 h-auto"
                     style={{
                       x: `calc(-50% + ${x}px)`,
                       scale,
@@ -162,14 +162,20 @@ const FeaturedProjectsCarousel: React.FC<FeaturedProjectsCarouselProps> = ({ pro
                       className="flex flex-col group bg-[var(--bg-tertiary)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition h-auto"
                     >
                       <div className="relative w-full h-[420px]">
-                        <Image
-                          src={`/projects/${project.images?.[0]}` || '/fallback.jpg'}
-                          alt={project.name || 'Project'}
-                          fill
-                          className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                          unoptimized={true}
-                          priority
-                        />
+                        {project.images && project.images.length > 0 ? (
+                          <Image
+                            src={`/projects/${project.images[0]}`}
+                            alt={project.name || 'Project'}
+                            fill
+                            className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                            unoptimized={true}
+                            priority
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-700/50 backdrop-blur flex items-center justify-center">
+                            <span className="text-white text-lg font-medium">Coming Soon</span>
+                          </div>
+                        )}
                       </div>
                       <div className="p-6 flex-1 flex flex-col">
                         <h3 className="text-2xl font-bold mb-2 text-[var(--text-primary)]">{project.name}</h3>
