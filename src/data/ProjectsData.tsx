@@ -10,6 +10,68 @@ export const currentQuarter = [4, 2025]
 
 export const projects = [
   {
+    id: 'data-constr-innov',
+    name: 'RiskWise',
+    short_description: 'A stealth startup building a platform with AI-powered tools.',
+    long_description: 'A stealth startup building a platform with AI-powered tools. More coming soon...',
+    images: null,
+    link: '/projects/#data-constr-innov',
+    featured: true,
+    quarter: [4, 2025],
+    company_logo: 'riskwise-logo.png',
+    tags: ['Next.js', 'Django', 'Anthropic'],
+    external_links: [],
+    colors: {
+      background: '#000000',
+      border: '#0066CC',
+      textPrimary: '#FFFFFF',
+      textSecondary: '#E6E6E6',
+      accent: '#0066CC',
+      mediaBackground: '#1A1A1A',
+      tag: {
+        background: '#0066CC33',
+        text: '#0066CC',
+        border: '#0066CC80'
+      },
+      button: {
+        background: '#0066CC',
+        text: '#FFFFFF',
+        border: '#0066CC80'
+      }
+    }
+  },
+  {
+    id: 'dossmd',
+    name: 'BioMeasure',
+    short_description: 'An ARKit-powered iOS app that scans faces in real time and extracts biometric facial measurements.',
+    long_description: 'BioMeasure is an innovative iOS application that leverages Apple\'s ARKit technology to provide real-time facial biometric measurements. The app uses advanced computer vision algorithms to scan faces and extract precise measurements including distances between facial landmarks, angles of facial features, and other biometric data points. Built with Swift and SwiftUI, DossMD represents a breakthrough in mobile facial analysis technology, offering medical professionals, researchers, and beauty industry experts a portable tool for accurate facial measurements without the need for expensive equipment.',
+    images: null,
+    link: '/projects/#dossmd',
+    featured: true,
+    quarter: [4, 2025],
+    company_logo: 'dossmd-logo.avif',
+    tags: ['AR Kit', 'Swift', 'XCode'],
+    external_links: [],
+    colors: {
+      background: '#F8F6F0',
+      border: '#2E7D32',
+      textPrimary: '#2E2E2E',
+      textSecondary: '#6B6B6B',
+      accent: '#2E7D32',
+      mediaBackground: '#FFFFFF',
+      tag: {
+        background: '#2E7D321A',
+        text: '#2E7D32',
+        border: '#2E7D3240'
+      },
+      button: {
+        background: '#2E7D32',
+        text: '#FFFFFF',
+        border: '#2E7D3280'
+      }
+    }
+  },
+  {
     id: 'finsight',
     name: 'FinSight AI Analytics',
     short_description: 'AI-driven platform for forecasting transactions, detecting anomalies, and uncovering hidden financial patterns.',
@@ -20,9 +82,7 @@ export const projects = [
     quarter: [3, 2025],
     company_logo: 'pwc-logo.png',
     tags: ['Next.js', 'Flask', 'AI / ML'],
-    external_links: [
-      { label: "VIEW SITE", href: "https://pwc-project.vercel.app/", icon: <ExternalLink className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6" /> },
-    ],
+    external_links: [],
     colors: {
       background: '#2B170D',
       border: '#A65A2A',
@@ -47,7 +107,7 @@ export const projects = [
     name: 'AI Property Forecasting',
     short_description: 'Machine learning models to forecast rental income and equity growth using custom real estate data pipelines in one clean dashboard.',
     long_description: 'A real estate forecasting platform that combines proprietary web scraping with a suite of predictive models to estimate rental income and long-term equity growth. For each property, we extract rich datasets from sources like Zillow, Redfin, and regional property appraisal sites to drive accurate forecasts. The platform uses a mix of models—including linear regressions, XGBoost, and custom pipelines—to deliver tailored investment insights. Built with Next.js, Flask, and Supabase, it features full authentication, historical analysis, and a clean web interface for property evaluation.',
-    images: null,
+    images: ['paskin/dashboard1.png', 'paskin/dashboard2.png', 'paskin/dashboard3.png'],
     link: '/projects/#paskin',
     featured: false,
     quarter: [3, 2025],
@@ -61,14 +121,31 @@ export const projects = [
     name: 'Stochastic Modeling Library',
     short_description: 'A modern Python library for generating and manipulating Stochastic Information Packets (SIPs), with LLM-powered features and a demo dashboard.',
     long_description: 'Working in the novel statistical space of Stochastic Information Packets (SIPs), we developed a modern Python library by overhauling an early prototype provided by the company. The new library integrates core functionalities from their Excel-based SIP tools, adds support for generating SIPs using LLMs like ChatGPT and Gemini, and introduces utility functions for simulation, transformation, and interpretation of probabilistic data. A lightweight Streamlit dashboard was built to demonstrate the library’s capabilities and showcase example use cases.',
-    images: null,
+    images: ['prob-manage/dashboard1.png', 'prob-manage/dashboard2.png', 'prob-manage/dashboard3.png', 'prob-manage/dashboard4.png', 'prob-manage/dashboard5.png', 'prob-manage/dashboard6.png'],
     link: '/projects/#probability-management',
     featured: false,
     quarter: [3, 2025],
     company_logo: 'prob-manage-logo.png',
     tags: ['Python', 'LLM', 'Stochastic Data'],
     external_links: [],
-    colors: {}
+    colors: {
+      background: '#1E1E1E',
+      border: '#0066CC',
+      textPrimary: '#FFFFFF',
+      textSecondary: '#B8B8B8',
+      accent: '#0066CC',
+      mediaBackground: '#1A1A1A',
+      tag: {
+        background: '#0066CC1A',
+        text: '#0066CC',
+        border: '#0066CC40'
+      },
+      button: {
+        background: '#0066CC',
+        text: '#FFFFFF',
+        border: '#0066CC80'
+      }
+    }
   },
   {
     id: 'sweet-petes',
@@ -77,7 +154,7 @@ export const projects = [
     long_description: 'A fully custom website built with Next.js and Supabase for a local bakery, featuring a complete admin dashboard that allows the owner to edit all content — from text and images to entire sections of the page. The site includes a unique online ordering system where customers place cookie orders through a form that sends a real-time text message to the owner for preparation and in-store pickup. Designed with thoughtful UI/UX, deployed on Vercel, and configured with a custom domain for a professional, branded experience.',
     images: ['sweet-petes/sweet-petes-1.png', 'sweet-petes/sweet-petes-2.png', 'sweet-petes/sweet-petes-3.png', 'sweet-petes/sweet-petes-4.png', 'sweet-petes/sweet-petes-5.png', 'sweet-petes/sweet-petes-6.png'],
     link: '/projects/#sweet-petes',
-    featured: true,
+    featured: false,
     quarter: [2, 2025],
     company_logo: 'sweet-petes-logo.png',
     tags: ['Next.js', 'UI / UX', 'Supabase'],
@@ -143,7 +220,7 @@ export const projects = [
     long_description: 'A fully custom Next.js and Supabase site built for IV Drip, designed to let the owner manage and publish their store content in real time. The site features a full admin dashboard for updating menus, images, and descriptions, along with a public-facing gallery to showcase and promote branded merchandise. While it doesn’t support online ordering, it provides a curated digital storefront experience. Content is cached with a 1-hour eviction policy for smooth performance, and the site is hosted on Vercel with a custom domain.',
     images: ['iv-drip/iv-drip-1.png', 'iv-drip/iv-drip-2.png', 'iv-drip/iv-drip-3.png', 'iv-drip/iv-drip-4.png', 'iv-drip/iv-drip-5.png', 'iv-drip/iv-drip-6.png', 'iv-drip/iv-drip-7.png', 'iv-drip/iv-drip-8.png'],
     link: '/projects/#iv-drip',
-    featured: true,
+    featured: false,
     quarter: [2, 2025],
     company_logo: 'iv-drip-logo.png',
     tags: ['Next.js', 'Supabase', 'UI / UX'],

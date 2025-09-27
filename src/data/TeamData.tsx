@@ -157,5 +157,29 @@ export const teamMembers = [
       img: '/team/katie.JPG',
       linkedin: 'https://www.linkedin.com/in/katie-pyo-5b478b318/',
       project: 'finsight'
+    },
+    {
+      name: 'Shuang Li',
+      group: ['Developers'],
+      role: 'Full Stack Engineer',
+      img: '/team/shuang.jpg',
+      linkedin: 'https://www.linkedin.com/in/shuang-li-12717a2a2/',
+      project: 'data-constr-innov'
+    },
+    {
+      name: 'Jayden Tan',
+      group: ['Developers'],
+      role: 'Full Stack Engineer',
+      img: '/team/jayden.jpeg',
+      linkedin: 'https://www.linkedin.com/in/jaydentan1206/',
+      project: 'data-constr-innov'
+    },
+    {
+      name: 'Joshua Gray',
+      group: ['Developers'],
+      role: 'Full Stack Engineer',
+      img: '/team/joshua.jpeg',
+      linkedin: 'https://www.linkedin.com/in/joshuaegray/',
+      project: 'data-constr-innov'
     }
   ]
