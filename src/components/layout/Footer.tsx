@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Github, Linkedin, Mail } from 'lucide-react'
+import { FaDiscord } from 'react-icons/fa'
 import acmLogo from '@/public/club-logos/acm-logo.png'
 import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
 import industryLogo from '@/public/club-logos/industry-logo.png'
@@ -91,6 +92,14 @@ export default function Footer() {
 
         {/* Right: Socials */}
         <div className="flex items-center gap-6 md:ml-auto">
+          <a
+            href="https://discord.gg/WZUYgk2Aur"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[var(--accent-gold)]"
+          >
+            <FaDiscord size={24} />
+          </a>
           <a
             href="https://github.com/acm-industry"
             target="_blank"
