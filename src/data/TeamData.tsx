@@ -4,28 +4,28 @@ export const teamMembers = [
     {
       name: 'Aman Desai',
       group: ['Leadership', 'Developers'],
-      role: 'President',
+      role: 'Co-President',
       img: '/team/aman.JPG',
       linkedin: 'https://www.linkedin.com/in/amanpdesai/',
     },
     {
       name: 'Vala Bahrami',
       group: ['Leadership', 'Outreach'],
-      role: 'Vice President',
+      role: 'Advisor',
       img: '/team/vala.JPG',
       linkedin: 'https://www.linkedin.com/in/va1a/',
     },
     {
       name: 'Akhil Gorla',
       group: ['Leadership', 'Developers'],
-      role: 'Techincal Director',
+      role: 'Advisor',
       img: '/team/akhil.JPG',
       linkedin: 'https://www.linkedin.com/in/akhil-gorla/',
     },
     {
       name: 'Sachit Madaan',
       group: ['Leadership', 'Outreach', 'Developers'],
-      role: 'Outreach Director',
+      role: 'Co-President',
       img: '/team/sachit.JPG',
       linkedin: 'https://www.linkedin.com/in/sachit-madaan-239235282/',
       project: 'paskin'
@@ -33,7 +33,7 @@ export const teamMembers = [
     {
       name: 'Aditya Iyer',
       group: ['Leadership', 'Developers'],
-      role: 'Project Executive',
+      role: 'Advisor',
       img: '/team/aditya.jpeg',
       linkedin: 'https://www.linkedin.com/in/aditya-a-iyer/',
       project: 'probability-management'
@@ -50,14 +50,14 @@ export const teamMembers = [
       name: 'Katie Pyo',
       group: ['Leadership', 'Outreach'],
       role: 'Technical Director',
-      img: '/team/katie.JPG',
+      img: '/team/katie.jpg',
       linkedin: 'https://www.linkedin.com/in/katie-pyo-5b478b318/',
       project: 'finsight'
     },
     {
       name: 'Simon Yan',
-      group: ['Developers', 'Outreach'],
-      role: 'AI/ML Engineer',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
       img: '/team/simon.jpg',
       linkedin: 'https://www.linkedin.com/in/simon-yan/',
       project: 'finsight'
@@ -80,8 +80,8 @@ export const teamMembers = [
     },
     {
       name: 'Kenneth Tan',
-      group: ['Developers'],
-      role: 'AI/ML & Full Stack Engineer',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
       img: '/team/kenneth.JPG',
       linkedin: 'https://www.linkedin.com/in/kenneth-i-tan/',
       project: 'paskin'
@@ -96,8 +96,8 @@ export const teamMembers = [
     },
     {
       name: 'Varsha Narasiman',
-      group: ['Developers'],
-      role: 'AI/ML Engineer',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
       img: '/team/varsha.png',
       linkedin: 'https://www.linkedin.com/in/varsha-narasiman/',
       project: 'paskin'
@@ -112,9 +112,9 @@ export const teamMembers = [
     },
     {
       name: 'Yash Chanchani',
-      group: ['Developers'],
-      role: 'AI/ML Engineer',
-      img: '/team/yash.jpeg',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
+      img: '/team/yash.JPG',
       linkedin: 'https://www.linkedin.com/in/yash-chanchani-3392a4216/',
       project: 'finsight'
     },
@@ -189,5 +189,26 @@ export const teamMembers = [
       img: '/team/joshua.jpeg',
       linkedin: 'https://www.linkedin.com/in/joshuaegray/',
       project: 'data-constr-innov'
+    },
+    {
+      name: 'Ian Sequeira',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
+      img: '/team/ian.jpeg',
+      linkedin: 'www.linkedin.com/in/ian-sequ7',
+    },
+    {
+      name: 'Julianna Flores',
+      group: ['Leadership', 'Outreach'],
+      role: 'Director of Marketing',
+      img: '/team/julianna.jpg',
+      linkedin: 'https://www.linkedin.com/in/juliannaflores/',
+    },
+    {
+      name: 'Bobby Chavez',
+      group: ['Leadership', 'Developers'],
+      role: 'Project Executive',
+      img: '/team/bobby.jpeg',
+      linkedin: 'https://www.linkedin.com/in/bobby-chavez',
     }
   ]
