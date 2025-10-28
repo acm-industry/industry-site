@@ -47,14 +47,6 @@ export const teamMembers = [
       project: 'finsight'
     },
     {
-      name: 'Katie Pyo',
-      group: ['Leadership', 'Outreach'],
-      role: 'Technical Director',
-      img: '/team/katie.jpg',
-      linkedin: 'https://www.linkedin.com/in/katie-pyo-5b478b318/',
-      project: 'finsight'
-    },
-    {
       name: 'Simon Yan',
       group: ['Leadership', 'Developers'],
       role: 'Project Executive',
