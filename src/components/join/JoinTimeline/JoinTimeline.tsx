@@ -1,10 +1,11 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useMemo, useRef, useState, useEffect } from 'react'
 import JoinContent from './JoinContent'
 import JoinImage from './JoinImage'
-import { events } from '@/data/JoinData';
-import StarField from '@/components/global/StarField';
+import { getJoinEvents } from '@/data/JoinData'
+import StarField from '@/components/global/StarField'
+import { useTheme } from '@/theme/ThemeContext'
 
 export default function JoinTimeline() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -14,9 +15,16 @@ export default function JoinTimeline() {
   const [lineTop, setLineTop] = useState(0)
   const [activeIdx, setActiveIdx] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { theme } = useTheme()
+  const events = useMemo(() => getJoinEvents(theme), [theme])
 
   const baseSectionHeight = 110;
   const timelineHeightVh = events.length * baseSectionHeight + 20;
+
+  useEffect(() => {
+    cardRefs.current = []
+    setActiveIdx(0)
+  }, [theme])
 
   useEffect(() => {
     function updateLine() {
@@ -53,7 +61,7 @@ export default function JoinTimeline() {
         containerRef.current = el as HTMLDivElement | null;
         sectionRef.current = el as HTMLDivElement | null;
       }}
-      className="relative w-full h-auto pt-32 bg-[var(--background)] text-[var(--foreground)] px-6 overflow-x-clip"
+      className="relative w-full h-auto pt-32 bg-[var(--color-background)] text-[var(--color-text-primary)] px-6 overflow-x-clip"
     >
       <StarField numberOfStars={1000} />
 
@@ -62,18 +70,17 @@ export default function JoinTimeline() {
         ref={headingRef}
         className="relative z-10 max-w-3xl mx-auto text-center mb-16"
       >
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-[0_0_20px_rgba(255,207,82,0.10)]">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-[0_0_20px_var(--color-accent-muted)]">
           Project{' '}
           <span
-            className="text-[var(--accent-gold)]"
-            style={{ textShadow: '0 0 20px rgba(255, 207, 82, 0.3)' }}
+            className="text-[var(--color-accent-primary)]"
+            style={{ textShadow: '0 0 20px var(--color-accent-muted)' }}
           >
             Lifeline
           </span>
         </h2>
-        <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-          See what your ACM Industry quarter looks like, from onboarding to demo
-          day.
+        <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+          See what your quarter with us looks like, from onboarding to demo day.
         </p>
       </div>
 
@@ -89,7 +96,7 @@ export default function JoinTimeline() {
           className="w-[4px] h-full md:-translate-x-1/2"
           style={{
             background:
-              'linear-gradient(to bottom, transparent 0%, var(--accent-gold) 7%, var(--accent-gold) 93%, transparent 100%)',
+              'linear-gradient(to bottom, transparent 0%, var(--color-accent-primary) 7%, var(--color-accent-primary) 93%, transparent 100%)',
           }}
         />
       </div>
@@ -99,14 +106,16 @@ export default function JoinTimeline() {
         className="relative max-w-6xl mx-auto"
         style={{ minHeight: `${timelineHeightVh}vh` }}
       >
-        {events.map((event, idx) => (
-          <div
-            key={event.title}
-            ref={el => { cardRefs.current[idx] = el; }}
-            style={{ height: `${baseSectionHeight}vh` }}
-            className={`transition-opacity duration-300 ${activeIdx === idx ? 'opacity-100' : 'opacity-30'}`}
-          >
-            <div className="sticky top-[15vh] h-[65vh] md:h-[38vh] flex flex-col md:flex-row items-center md:justify-between">
+        {events.map((event, idx) => {
+          const accentColor = event.accent || 'var(--color-accent-primary)'
+          return (
+            <div
+              key={event.title}
+              ref={el => { cardRefs.current[idx] = el; }}
+              style={{ height: `${baseSectionHeight}vh` }}
+              className={`transition-opacity duration-300 ${activeIdx === idx ? 'opacity-100' : 'opacity-30'}`}
+            >
+              <div className="sticky top-[15vh] h-[65vh] md:h-[38vh] flex flex-col md:flex-row items-center md:justify-between">
               {/* 1) CONTENT */}
               <div className="order-1 w-full md:w-1/2">
                 <JoinContent event={event} />
@@ -114,7 +123,10 @@ export default function JoinTimeline() {
 
               {/* 2) DOT */}
               <div className="order-2 ml-6 md:ml-0 w-full flex justify-end md:w-8 md:justify-center mt-4 md:mt-0">
-                <div className="w-8 h-8 rounded-full bg-[var(--accent-gold)] shadow-lg border-7 border-[var(--background)]" />
+                <div
+                  className="w-8 h-8 rounded-full shadow-lg border-7 border-[var(--color-background)]"
+                  style={{ backgroundColor: accentColor }}
+                />
               </div>
 
               {/* 3) IMAGE */}
@@ -122,8 +134,9 @@ export default function JoinTimeline() {
                 <JoinImage image={event.image} />
               </div>
             </div>
-          </div>
-        ))}
+            </div>
+          )
+        })}
 
         {/* Hidden spacer to help push last card up */}
         <div style={{ height: '12vh' }}>

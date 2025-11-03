@@ -77,7 +77,7 @@ export default function TeamSection() {
               className={clsx(
                 'px-5 py-2.5 text-base font-medium rounded-full border transition-all duration-200 shadow-sm smooth-element',
                 filter === role
-                  ? 'bg-[var(--accent-gold)] text-black border-transparent shadow-[0_0_15px_rgba(255,207,82,0.4)]'
+                  ? 'bg-[var(--color-accent-primary)] text-black border-transparent shadow-[0_0_15px_var(--color-accent-muted)]'
                   : 'border-white/20 text-white hover:bg-white/10 hover:border-white/30'
               )}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -125,8 +125,8 @@ export default function TeamSection() {
                   }}
                   style={{ willChange: 'transform, opacity' }}
                 >
-                  <motion.h3 
-                    className="text-xl font-semibold text-left mb-6 border-l-4 border-[var(--accent-gold)] pl-4 smooth-element"
+      <motion.h3 
+        className="text-xl font-semibold text-left mb-6 border-l-4 border-[var(--color-accent-primary)] pl-4 smooth-element"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
@@ -215,14 +215,14 @@ function TeamCard({ member, delay = 0, filterKey }: TeamCardProps) {
       whileHover={{ 
         scale: 1.05, 
         y: -2,
-        boxShadow: '0 10px 30px rgba(255, 207, 82, 0.15)',
+        boxShadow: '0 10px 30px var(--color-accent-muted)',
         transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] }
       }}
       whileTap={{ scale: 0.95 }}
       style={{ willChange: 'transform' }}
     >
       <motion.div 
-        className="relative w-32 h-32 sm:w-40 sm:h-40 mb-4 sm:mb-5 rounded-xl overflow-hidden border-4 border-[var(--accent-gold)] shadow smooth-element"
+        className="relative w-32 h-32 sm:w-40 sm:h-40 mb-4 sm:mb-5 rounded-xl overflow-hidden border-4 border-[var(--color-accent-primary)] shadow smooth-element"
         initial={{ opacity: 0, scale: 0.8, rotateZ: -5 }}
         animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
         exit={{ opacity: 0, scale: 0.8, rotateZ: -5 }}

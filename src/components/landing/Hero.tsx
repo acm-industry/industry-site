@@ -5,8 +5,8 @@ import { motion, useAnimationFrame, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MoveDown } from 'lucide-react'
-import acmIndustryLogo from '@/public/club-logos/industry-logo.png'
-import { techTags, heroDescription, heroTitleWhite, heroTitleGold } from '@/data/HeroData'
+import { useTheme } from '@/theme/ThemeContext'
+import { heroContent, techTags } from '@/data/HeroData'
 import StarField from '../global/StarField'
 import SectionGlow from '../global/SectionGlow'
 
@@ -26,15 +26,15 @@ function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: nu
     <motion.div
       className="absolute px-5 py-2.5 rounded-full text-sm font-medium shadow whitespace-nowrap smooth-element"
       style={{
-        background: 'rgba(129, 189, 200, 0.15)',
-        border: '1px solid rgba(129, 189, 200, 0.3)',
+        background: 'var(--color-tag-background)',
+        border: '1px solid var(--color-tag-border)',
         backdropFilter: 'blur(8px)',
-        color: 'white',
+        color: 'var(--color-text-secondary)',
         left: `${left}px`,
         top: `${top}px`,
         transform: 'translate(-50%, -50%)',
-        boxShadow: '0 4px 15px rgba(129, 189, 200, 0.15), 0 0 0 1px rgba(129, 189, 200, 0.1)',
-        textShadow: '0 0 20px rgba(129, 189, 200, 0.9), 0 0 30px rgba(129, 189, 200, 0.5)',
+        boxShadow: '0 4px 15px var(--color-tag-glow), 0 0 0 1px var(--color-tag-border)',
+        textShadow: '0 0 18px var(--color-tag-glow)',
         willChange: 'transform'
       }}
       initial={{ 
@@ -63,7 +63,7 @@ function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: nu
       whileHover={{
         scale: 1.1,
         rotateZ: 5,
-        boxShadow: '0 6px 20px rgba(129, 189, 200, 0.25), 0 0 0 1px rgba(129, 189, 200, 0.2)',
+        boxShadow: '0 6px 20px var(--color-tag-glow), 0 0 0 1px var(--color-tag-border)',
         transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
       }}
     >
@@ -75,6 +75,10 @@ function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: nu
 export default function Hero() {
   const [mounted, setMounted] = useState(false)
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
+  const { theme, tokens } = useTheme()
+  const isACM = theme === 'acm'
+  const heroCopy = heroContent[theme]
+  const heroLogo = tokens.logos.heroMark ?? tokens.logos.nav
 
   useEffect(() => {
     const updateSize = () => setWindowWidth(window.innerWidth)
@@ -113,8 +117,8 @@ export default function Hero() {
     <section
       className="relative min-h-[800px] md:pb-32 lg:h-[100vh] overflow-hidden smooth-element"
       style={{ 
-        background: 'var(--background)', 
-        color: 'var(--foreground)',
+        background: 'var(--color-background)', 
+        color: 'var(--color-text-primary)',
         willChange: 'transform'
       }}
     >
@@ -157,7 +161,7 @@ export default function Hero() {
               willChange: 'transform, opacity'
             }}
           >
-            {heroTitleWhite}
+            {heroCopy.titleWhite}
           </motion.h1>
           
           <motion.h2
@@ -170,12 +174,12 @@ export default function Hero() {
             }}
             className="text-5xl lg:text-6xl font-extrabold smooth-element"
             style={{
-              color: 'var(--accent-gold)',
-              textShadow: '0 0 20px rgba(255, 207, 82, 0.3)',
+              color: 'var(--color-accent-primary)',
+              textShadow: '0 0 20px var(--color-accent-muted)',
               willChange: 'transform, opacity'
             }}
           >
-            {heroTitleGold}
+            {heroCopy.titleAccent}
           </motion.h2>
           
           <motion.p
@@ -188,12 +192,12 @@ export default function Hero() {
               filter: { duration: 0.5, ease: "easeOut" }
             }}
             className="mt-6 text-lg lg:text-lg max-w-xl smooth-element"
-            style={{ 
-              color: 'var(--text-secondary)',
-              willChange: 'transform, opacity, filter'
-            }}
+          style={{ 
+            color: 'var(--color-text-secondary)',
+            willChange: 'transform, opacity, filter'
+          }}
           >
-            {heroDescription}
+            {heroCopy.description}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -225,10 +229,10 @@ export default function Hero() {
               style={{ willChange: 'transform, opacity' }}
             >
               <Link
-                href="/projects"
-                className="block px-6 py-3 rounded-lg text-sm font-semibold text-black bg-[var(--accent-gold)] shadow-md transition-all duration-300 hover:bg-[#ffdc70] hover:shadow-[0_0_20px_rgba(255,207,82,0.5)]"
+                href={heroCopy.ctaPrimaryHref}
+                className="block px-6 py-3 rounded-lg text-sm font-semibold text-black bg-[var(--color-accent-primary)] shadow-md transition-all duration-300 hover:bg-[var(--color-accent-secondary)] hover:shadow-[0_0_20px_var(--color-accent-muted)]"
               >
-                Explore Projects
+                {heroCopy.ctaPrimary}
               </Link>
             </motion.div>
             
@@ -249,17 +253,17 @@ export default function Hero() {
               style={{ willChange: 'transform, opacity' }}
             >
               <Link
-                href="/services"
-                className="block px-6 py-3 rounded-lg text-sm font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] shadow-md transition-all duration-300 hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_20px_rgba(255,207,82,0.5)]"
+                href={heroCopy.ctaSecondaryHref}
+                className="block px-6 py-3 rounded-lg text-sm font-semibold border border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] shadow-md transition-all duration-300 hover:bg-[var(--color-accent-primary)] hover:text-black hover:shadow-[0_0_20px_var(--color-accent-muted)]"
               >
-                Partner With Us
+                {heroCopy.ctaSecondary}
               </Link>
             </motion.div>
           </motion.div>
 
           {/* Affiliation Subtext */}
           <motion.p 
-            className="mt-4 text-sm text-[var(--text-secondary)] italic"
+            className="mt-4 text-sm text-[var(--color-text-secondary)] italic"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -268,7 +272,7 @@ export default function Hero() {
               ease: [0.16, 1, 0.3, 1]
             }}
           >
-            Powered by ACM UCSB.
+            {heroCopy.affiliation ?? `Powered by ${tokens.copy.orgName}`}
           </motion.p>
 
           {/* Scroll Indicator */}
@@ -284,7 +288,7 @@ export default function Hero() {
               ease: [0.16, 1, 0.3, 1]
             }}
             className="mt-10 flex flex-col-reverse sm:flex-row items-center gap-2 text-md"
-            style={{ color: 'var(--text-secondary)' }}
+            style={{ color: 'var(--color-text-secondary)' }}
           >
             <motion.div
               animate={{ y: [0, 6, 0] }}
@@ -328,12 +332,12 @@ export default function Hero() {
                 y: { duration: 0.75, ease: [0.16, 1, 0.3, 1] }
               }}
             >
-              <SectionGlow size={400} opacity={0.04} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+              <SectionGlow size={400} opacity={0.04} color={isACM ? 'var(--color-accent-primary)' : 'var(--color-accent-highlight)'} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
                   <Image
-                    src={acmIndustryLogo}
-                    alt="ACM Industry Logo"
+                    src={heroLogo.src}
+                    alt={heroLogo.alt}
                     className="object-contain"
                     fill
                     unoptimized={true}

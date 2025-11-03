@@ -2,14 +2,24 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import clsx from 'clsx'
 import { FileUser, Settings } from 'lucide-react'
+import { useTheme } from '@/theme/ThemeContext'
 import StarField from '../global/StarField'
 import SectionGlow from '../global/SectionGlow'
 
 export default function JoinCallToAction() {
+  const { theme } = useTheme()
+  const isACM = theme === 'acm'
+
   return (
     <motion.section 
-      className="relative w-full px-6 py-24 bg-black text-white overflow-hidden smooth-element"
+      className={clsx(
+        'relative w-full px-6 py-24 overflow-hidden border-t smooth-element transition-colors duration-500',
+        isACM
+          ? 'text-white border-white/10'
+          : 'text-[var(--color-text-primary)] border-[var(--color-border)]'
+      )}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10%' }}
@@ -18,17 +28,27 @@ export default function JoinCallToAction() {
         ease: [0.16, 1, 0.3, 1],
         opacity: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
       }}
-      style={{ willChange: 'transform, opacity' }}
+      style={{
+        willChange: 'transform, opacity',
+        background: 'var(--color-background)',
+      }}
     >
       {/* Starfield behind content */}
       <StarField numberOfStars={80} />
-      <SectionGlow size={900} opacity={0.04} />
 
+      <SectionGlow
+        size={isACM ? 900 : 950}
+        opacity={isACM ? 0.04 : 0.05}
+        color={isACM ? 'var(--color-accent-primary)' : 'var(--color-accent-highlight)'}
+      />
+
+      {/* Centered Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center">
-        {/* Glowing Ring Backdrop */}
-
         <motion.h2 
-          className="text-4xl md:text-5xl font-extrabold mb-6 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)] smooth-element"
+          className={clsx(
+            'text-4xl md:text-5xl font-extrabold mb-6 smooth-element',
+            'drop-shadow-[0_0_20px_var(--color-accent-muted)]'
+          )}
           initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
@@ -36,7 +56,7 @@ export default function JoinCallToAction() {
             duration: 0.7, 
             delay: 0.2,
             ease: [0.16, 1, 0.3, 1],
-            filter: { duration: 0.5, ease: "easeOut" }
+            filter: { duration: 0.5, ease: 'easeOut' }
           }}
           style={{ willChange: 'transform, opacity, filter' }}
         >
@@ -44,7 +64,7 @@ export default function JoinCallToAction() {
         </motion.h2>
         
         <motion.p 
-          className="text-lg text-white/70 max-w-xl mx-auto mb-12 smooth-element"
+          className="text-lg max-w-xl mx-auto mb-12 smooth-element"
           initial={{ opacity: 0, y: 20, filter: 'blur(2px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
@@ -52,13 +72,17 @@ export default function JoinCallToAction() {
             duration: 0.6, 
             delay: 0.4,
             ease: [0.16, 1, 0.3, 1],
-            filter: { duration: 0.4, ease: "easeOut" }
+            filter: { duration: 0.4, ease: 'easeOut' }
           }}
-          style={{ willChange: 'transform, opacity, filter' }}
+          style={{
+            willChange: 'transform, opacity, filter',
+            color: 'var(--color-text-secondary)',
+          }}
         >
-          Join ACM Industry—where students grow by building and companies innovate by collaborating. Let&apos;s create something meaningful together.
+          Join the builders’ community where students grow by shipping and partners move ideas forward. Let&apos;s create something meaningful together.
         </motion.p>
 
+        {/* Buttons */}
         <motion.div 
           className="flex flex-col sm:flex-row justify-center gap-6"
           initial={{ opacity: 0, y: 30 }}
@@ -71,6 +95,7 @@ export default function JoinCallToAction() {
           }}
           style={{ willChange: 'transform, opacity' }}
         >
+          {/* Primary Button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -83,10 +108,7 @@ export default function JoinCallToAction() {
             style={{ willChange: 'transform' }}
           >
             <motion.div
-              whileHover={{ 
-                scale: 1.05, 
-                y: -2
-              }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               style={{ 
                 willChange: 'transform',
@@ -95,7 +117,7 @@ export default function JoinCallToAction() {
             >
               <Link
                 href="/join"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold text-black bg-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[#ffd75c] hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold text-black bg-[var(--color-accent-primary)] rounded-lg shadow-md hover:bg-[var(--color-accent-secondary)] hover:shadow-[0_0_25px_var(--color-accent-muted)] transition-all duration-300"
               >
                 <FileUser className="w-5 h-5" />
                 Apply
@@ -103,6 +125,7 @@ export default function JoinCallToAction() {
             </motion.div>
           </motion.div>
 
+          {/* Secondary Button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -115,10 +138,7 @@ export default function JoinCallToAction() {
             style={{ willChange: 'transform' }}
           >
             <motion.div
-              whileHover={{ 
-                scale: 1.05, 
-                y: -2
-              }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               style={{ 
                 willChange: 'transform',
@@ -127,7 +147,7 @@ export default function JoinCallToAction() {
             >
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold border border-[var(--accent-gold)] text-[var(--accent-gold)] rounded-lg shadow-md hover:bg-[var(--accent-gold)] hover:text-black hover:shadow-[0_0_25px_rgba(255,207,82,0.4)] transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-lg font-semibold border border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] rounded-lg shadow-md hover:bg-[var(--color-accent-primary)] hover:text-black hover:shadow-[0_0_25px_var(--color-accent-muted)] transition-all duration-300"
               >
                 <Settings className="w-5 h-5" />
                 Services
@@ -137,7 +157,7 @@ export default function JoinCallToAction() {
         </motion.div>
       </div>
 
-      {/* Add custom CSS for smooth animations */}
+      {/* Smooth Animation Utility */}
       <style jsx>{`
         .smooth-element {
           will-change: transform, opacity;

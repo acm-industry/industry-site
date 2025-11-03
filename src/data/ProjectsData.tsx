@@ -1,10 +1,63 @@
 import { ExternalLink } from "lucide-react"
+import { themeIds, type ThemeId } from '@/theme/tokens'
 
-export const featuredProjectsTitleWhite = 'Featured'
-export const featuredProjectsTitleGold = 'Projects'
+export type ProjectsPageContent = {
+  hero: {
+    titlePrefix: string
+    titleHighlight: string
+    titleSuffix?: string
+    description: string
+  }
+  cta: {
+    heading: string
+    description: string
+    primaryLabel: string
+    primaryHref: string
+    secondaryLabel: string
+    secondaryHref: string
+  }
+}
 
-export const featuredProjectsDescription =
-  'See how our student teams build real products for real companies—creative, impactful, and industry-ready.'
+export const projectsPageContent: Record<ThemeId, ProjectsPageContent> = themeIds.reduce((acc, id) => {
+  if (id === 'acm') {
+    acc[id] = {
+      hero: {
+        titlePrefix: 'Explore ',
+        titleHighlight: 'Our Work',
+        description:
+          'A showcase of our student-built solutions — past and present. Filter by quarter, explore by type, and dive into the real work that defines ACM Industry.',
+      },
+      cta: {
+        heading: 'Ready to join us?',
+        description:
+          'Whether you’re a student ready to build or a company ready to collaborate — let’s make it happen.',
+        primaryLabel: 'Join ACM Industry',
+        primaryHref: '/join',
+        secondaryLabel: 'Partner With Us',
+        secondaryHref: '/services',
+      },
+    }
+  } else {
+    acc[id] = {
+      hero: {
+        titlePrefix: 'Explore ',
+        titleHighlight: 'Gaucho Builds',
+        description:
+          'See how Gaucho Software Engineers delivers production-ready products for campus, community, and industry partners. Find the projects and stories that inspire your next build.',
+      },
+      cta: {
+        heading: 'Ready to build with GSE?',
+        description:
+          'Join a team, mentor rising talent, or collaborate with us on your next initiative — we’d love to work together.',
+        primaryLabel: 'Join GSE',
+        primaryHref: '/join',
+        secondaryLabel: 'Partner With GSE',
+        secondaryHref: '/services',
+      },
+    }
+  }
+  return acc
+}, {} as Record<ThemeId, ProjectsPageContent>)
 
 export const currentQuarter = [4, 2025]
 
@@ -49,7 +102,7 @@ export const projects = [
     link: '/projects/#dossmd',
     featured: true,
     quarter: [4, 2025],
-    company_logo: 'dossmd-logo.avif',
+    company_logo: 'dossmd-logo.png',
     tags: ['AR Kit', 'Swift', 'XCode'],
     external_links: [],
     colors: {

@@ -85,7 +85,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         style={{ top: topOffset, willChange: 'transform, opacity', opacity: effectiveOpacity, transition: 'opacity 0.15s linear' }}
       >
         <motion.div
-          className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full mx-auto"
+          className="relative bg-[var(--color-background-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full mx-auto"
           style={{
             top: `calc(${i * (isSmall ? 18 : 28)}px)`,
             scale,
@@ -105,13 +105,13 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
             >
               {icon && (
                 <div className="mb-4 flex items-center justify-start">
-                  <span className="inline-flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-full border-4 border-yellow-400 drop-shadow-[0_0_12px_rgba(255,207,82,0.5)] p-0">
+                  <span className="inline-flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-full border-4 border-[var(--color-accent-primary)] drop-shadow-[0_0_12px_var(--color-accent-muted)] p-0">
                     {typeof icon === 'function'
                       ? React.createElement(icon, {
                           size: '100%',
-                          color: '#FFCF52',
+                          color: 'var(--color-accent-primary)',
                           style: {
-                            filter: 'drop-shadow(0 0 10px rgba(255,207,82,0.7))',
+                            filter: 'drop-shadow(0 0 10px var(--color-accent-muted))',
                             margin: 0,
                           },
                         })
@@ -119,21 +119,21 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
                   </span>
                 </div>
               )}
-              <h2 className="text-xl sm:text-xl lg:text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              <h2 className="text-xl sm:text-xl lg:text-2xl font-semibold text-[var(--color-text-primary)] mb-2">
                 {title}
               </h2>
-              <p className="text-[var(--text-secondary)] leading-relaxed text-md sm:text-base mb-3">
+              <p className="text-[var(--color-text-secondary)] leading-relaxed text-md sm:text-base mb-3">
                 {description}
               </p>
               <a
                 href={link}
-                className="group inline-flex items-center text-yellow-400 text-sm sm:text-base relative"
+                className="group inline-flex items-center text-[var(--color-accent-primary)] text-sm sm:text-base relative"
               >
                 <span className="relative inline-flex items-center">
                   {actionText}
                   {actionIcon && <span className="ml-2">{actionIcon}</span>}
                   <span
-                    className="absolute left-0 -bottom-1 w-full h-[2px] bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                    className="absolute left-0 -bottom-1 w-full h-[2px] bg-[var(--color-accent-primary)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                     aria-hidden="true"
                   />
                 </span>
@@ -142,7 +142,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
 
             {/* Visual Section */}
             <div
-              className={`w-full ${isSmall ? '' : 'lg:w-[60%]'} bg-[var(--bg-primary)] rounded-2xl flex items-center justify-center p-5 sm:p-6 lg:p-8 overflow-hidden`}
+              className={`w-full ${isSmall ? '' : 'lg:w-[60%]'} bg-[var(--color-background)] rounded-2xl flex items-center justify-center p-5 sm:p-6 lg:p-8 overflow-hidden`}
             >
               <motion.div
                 className="relative w-full aspect-[3/2] rounded-lg"

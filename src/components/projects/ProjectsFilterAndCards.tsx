@@ -182,7 +182,7 @@ export default function ProjectFilterAndCards() {
               className={clsx(
                 'px-5 py-2.5 text-base font-medium rounded-full border transition-all duration-200 shadow-sm smooth-element',
                 activeFilter === f
-                  ? 'bg-[var(--accent-gold)] text-black border-transparent shadow-[0_0_15px_rgba(255,207,82,0.4)]'
+                  ? 'bg-[var(--color-accent-primary)] text-black border-transparent shadow-[0_0_15px_var(--color-accent-muted)]'
                   : 'border-white/20 text-white hover:bg-white/10 hover:border-white/30'
               )}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}

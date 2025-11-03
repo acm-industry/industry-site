@@ -14,50 +14,182 @@
   50% { opacity: 0.7; }
 }
 
-/* Light Mode */
+/* ============================================================
+   DEFAULT (ACM Industry)
+   ============================================================ */
 :root {
-  --background: #011013;
-  --foreground: #E5E7EB;
+  --color-background: #011013;
+  --color-background-secondary: #023E49;
+  --color-background-tertiary: #022D35;
+  --color-surface: #032B32;
+  --color-surface-raised: #093740;
+  --color-border: rgba(255,255,255,0.08);
+  --color-focus-ring: rgba(255, 207, 82, 0.6);
+  --color-text-primary: #E5E7EB;
+  --color-text-secondary: #81BDC8;
+  --color-text-muted: rgba(255,255,255,0.6);
+  --color-accent-primary: #FFCF52;
+  --color-accent-secondary: #FEBC11;
+  --color-accent-highlight: #047C91;
+  --color-accent-muted: rgba(255, 207, 82, 0.25);
+  --color-success: #4ADE80;
+  --color-warning: #FACC15;
+  --color-danger: #F87171;
+  --color-tag-background: rgba(129, 189, 200, 0.15);
+  --color-tag-border: rgba(129, 189, 200, 0.3);
+  --color-tag-glow: rgba(129, 189, 200, 0.15);
+  --shadow-card: 0 10px 30px rgba(2, 26, 34, 0.45);
+  --color-nav-background: rgba(1, 8, 10, 0.9);
+  --color-nav-background-scrolled: rgba(1, 8, 10, 0.95);
+  --color-footer-background: linear-gradient(180deg, rgba(1,16,19,0.95) 0%, rgba(1,16,19,0.75) 100%);
+  --gradient-hero: radial-gradient(circle at top, rgba(4,124,145,0.25), rgba(1,16,19,0.9));
+  --gradient-cta: linear-gradient(135deg, rgba(255,207,82,0.25), rgba(4,124,145,0.15));
 
-  --bg-primary: #011013;
-  --bg-secondary: #023E49;
-  --bg-tertiary: #022d35;
-  --bg-accent: #047C91;
-
-  --text-primary: #E5E7EB;
-  --text-secondary: #81BDC8;
-
-  --accent-blue: #047C91;
-  --accent-gold: #FFCF52;
-  --accent-yellow: #FEBC11;
+  /* Legacy Aliases (for backwards compatibility) */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+  --bg-primary: var(--color-background);
+  --bg-secondary: var(--color-background-secondary);
+  --bg-tertiary: var(--color-background-tertiary);
+  --bg-accent: var(--color-accent-highlight);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --accent-blue: var(--color-accent-highlight);
+  --accent-gold: var(--color-accent-primary);
+  --accent-yellow: var(--color-accent-secondary);
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #011013;
-    --foreground: #E5E7EB;
+/* ============================================================
+   THEME: ACM Industry
+   ============================================================ */
+.theme-acm {
+  --color-background: #011013;
+  --color-background-secondary: #023E49;
+  --color-background-tertiary: #022D35;
+  --color-surface: #032B32;
+  --color-surface-raised: #093740;
+  --color-border: rgba(255,255,255,0.08);
+  --color-focus-ring: rgba(255, 207, 82, 0.6);
+  --color-text-primary: #E5E7EB;
+  --color-text-secondary: #81BDC8;
+  --color-text-muted: rgba(255,255,255,0.6);
+  --color-accent-primary: #FFCF52;
+  --color-accent-secondary: #FEBC11;
+  --color-accent-highlight: #047C91;
+  --color-accent-muted: rgba(255, 207, 82, 0.25);
+  --color-success: #4ADE80;
+  --color-warning: #FACC15;
+  --color-danger: #F87171;
+  --color-tag-background: rgba(129, 189, 200, 0.15);
+  --color-tag-border: rgba(129, 189, 200, 0.3);
+  --color-tag-glow: rgba(129, 189, 200, 0.15);
+  --shadow-card: 0 10px 30px rgba(2, 26, 34, 0.45);
+  --color-nav-background: rgba(1, 8, 10, 0.9);
+  --color-nav-background-scrolled: rgba(1, 8, 10, 0.95);
+  --color-footer-background: linear-gradient(180deg, rgba(1,16,19,0.95) 0%, rgba(1,16,19,0.75) 100%);
+  --gradient-hero: radial-gradient(circle at top, rgba(4,124,145,0.25), rgba(1,16,19,0.9));
+  --gradient-cta: linear-gradient(135deg, rgba(255,207,82,0.25), rgba(4,124,145,0.15));
 
-    --bg-primary: #011013;
-    --bg-secondary: #023E49;
-    --bg-tertiary: #022d35;
-    --bg-accent: #047C91;
-
-    --text-primary: #E5E7EB;
-    --text-secondary: #81BDC8;
-
-    --accent-blue: #047C91;
-    --accent-gold: #FFCF52;
-    --accent-yellow: #FEBC11;
-  }
+  /* Aliases */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+  --bg-primary: var(--color-background);
+  --bg-secondary: var(--color-background-secondary);
+  --bg-tertiary: var(--color-background-tertiary);
+  --bg-accent: var(--color-accent-highlight);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --accent-blue: var(--color-accent-highlight);
+  --accent-gold: var(--color-accent-primary);
+  --accent-yellow: var(--color-accent-secondary);
 }
 
+/* ============================================================
+   THEME: GSE (Gaucho Software Engineers)
+   ============================================================ */
+.theme-gse {
+  /* Base brand palette (from GSE Brand Book) */
+  --color-background: #0A1216;                  /* Deep navy / digital black */
+  --color-background-secondary: #12232C;        /* Dark teal backdrop for sections */
+  --color-background-tertiary: #1A3642;         /* Slightly lighter accent background */
+  --color-surface: rgba(18, 32, 42, 0.95);      /* Elevated card background */
+  --color-surface-raised: rgba(25, 45, 55, 0.95);
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  /* Text hierarchy */
+  --color-text-primary: #F6F6F7;                /* White-neutral text */
+  --color-text-secondary: #C4E0FF;              /* Soft blue text for secondary headings */
+  --color-text-muted: rgba(196, 224, 255, 0.6); /* Muted body text */
+
+  /* Accent + brand colors */
+  --color-accent-primary: #FEBC11;              /* Gaucho Gold (main brand yellow) */
+  --color-accent-secondary: #FFD76B;            /* Lighter gold for hover states */
+  --color-accent-highlight: #3982CB;            /* Gaucho Blue accent */
+  --color-accent-muted: rgba(57, 130, 203, 0.25);
+
+  /* Functional colors */
+  --color-success: #5EE1B7;
+  --color-warning: #F6C543;
+  --color-danger: #F57373;
+
+  /* Tag and UI background tints */
+  --color-tag-background: rgba(57, 130, 203, 0.15);
+  --color-tag-border: rgba(57, 130, 203, 0.4);
+  --color-tag-glow: rgba(57, 130, 203, 0.3);
+
+  /* Shadows and glows */
+  --shadow-card: 0 12px 35px rgba(10, 15, 18, 0.55);
+
+  /* Navigation + Footer */
+  --color-nav-background: rgba(10, 18, 25, 0.94);
+  --color-nav-background-scrolled: rgba(12, 22, 30, 0.96);
+  --color-footer-background: linear-gradient(
+    180deg,
+    rgba(8, 18, 25, 0.98) 0%,
+    rgba(10, 26, 35, 0.85) 100%
+  );
+
+  /* Gradients */
+  --gradient-hero: radial-gradient(
+    circle at top,
+    rgba(57, 130, 203, 0.3),
+    rgba(1, 15, 18, 0.94)
+  );
+  --gradient-cta: linear-gradient(
+    135deg,
+    rgba(254, 188, 17, 0.28),
+    rgba(57, 130, 203, 0.25)
+  );
+
+  /* Focus ring + accessibility */
+  --color-focus-ring: rgba(254, 188, 17, 0.5);
+
+  /* Aliases for backwards compatibility */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+  --bg-primary: var(--color-background);
+  --bg-secondary: var(--color-background-secondary);
+  --bg-tertiary: var(--color-background-tertiary);
+  --bg-accent: var(--color-accent-highlight);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --accent-blue: var(--color-accent-highlight);
+  --accent-gold: var(--color-accent-primary);
+  --accent-yellow: var(--color-accent-secondary);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
 }
 
+/* ============================================================
+   Embla Carousel
+   ============================================================ */
 .embla__container {
   display: flex;
 }

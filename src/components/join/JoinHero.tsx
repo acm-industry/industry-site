@@ -3,11 +3,17 @@
 import { motion } from 'framer-motion'
 import StarField from '../global/StarField'
 import SectionGlow from '../global/SectionGlow'
+import { useTheme } from '@/theme/ThemeContext'
+import { joinHeroContent } from '@/data/JoinData'
 
 export default function JoinHero() {
+  const { theme } = useTheme()
+  const hero = joinHeroContent[theme]
+
   return (
     <motion.section
-      className="relative overflow-hidden w-full px-6 pt-50 pb-40 text-center bg-[black] text-[var(--foreground)] smooth-element"
+      className="relative overflow-hidden w-full px-6 pt-50 pb-40 text-center text-[var(--color-text-primary)] smooth-element"
+      style={{ background: 'var(--gradient-hero)', willChange: 'transform, opacity' }}
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
@@ -15,10 +21,9 @@ export default function JoinHero() {
         ease: [0.16, 1, 0.3, 1],
         opacity: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
       }}
-      style={{ willChange: 'transform, opacity' }}
     >
       <StarField numberOfStars={100} />
-      <SectionGlow size={750} opacity={0.044} />
+      <SectionGlow size={750} opacity={0.06} color="var(--color-accent-primary)" />
 
       {/* Title with "Join" highlighted */}
       <motion.h1
@@ -33,10 +38,10 @@ export default function JoinHero() {
         className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.08)] smooth-element"
         style={{ willChange: 'transform, opacity, filter' }}
       >
-        Applications are{' '}
+        {hero.titlePrefix}
         <motion.span
-          className="text-[var(--accent-gold)]"
-          style={{ textShadow: '0 0 20px rgba(255, 207, 82, 0.3)' }}
+          className="text-[var(--color-accent-primary)]"
+          style={{ textShadow: '0 0 20px var(--color-accent-muted)' }}
           initial={{ opacity: 0, scale: 0.9, rotateZ: -2 }}
           animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
           transition={{ 
@@ -46,12 +51,13 @@ export default function JoinHero() {
           }}
           whileHover={{
             scale: 1.05,
-            textShadow: '0 0 30px rgba(255, 207, 82, 0.5)',
+            textShadow: '0 0 30px var(--color-accent-muted)',
             transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
           }}
         >
-          Closed
+          {hero.titleHighlight}
         </motion.span>
+        {hero.titleSuffix ?? ''}
       </motion.h1>
 
       <motion.p
@@ -63,10 +69,10 @@ export default function JoinHero() {
           ease: [0.16, 1, 0.3, 1],
           filter: { duration: 0.4, ease: "easeOut" }
         }}
-        className="text-md sm:text-lg max-w-2xl mx-auto text-[var(--text-secondary)] smooth-element"
+        className="text-md sm:text-lg max-w-2xl mx-auto text-[var(--color-text-secondary)] smooth-element"
         style={{ willChange: 'transform, opacity, filter' }}
       >
-        Thank you for your interest in ACM Industry! We&apos;ll be kicking off our next cycle in Fall 2025.
+        {hero.description}
       </motion.p>
 
       {/* Add custom CSS for smooth animations */}

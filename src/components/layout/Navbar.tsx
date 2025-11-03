@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
-import acmNavLogo from '@/public/club-logos/industry-nav-logo.png'
 import { usePathname } from 'next/navigation'
 import { useScroll } from 'framer-motion'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useTheme } from '@/theme/ThemeContext'
+import ThemeToggle from '@/theme/ThemeToggle'
 
 const navItems = ['Home', 'Services', 'Team', 'Projects', 'Join', 'About']
 
@@ -18,6 +19,11 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY } = useScroll()
   const pathname = usePathname()
+  const { tokens } = useTheme()
+  const navLogo = tokens.logos.nav
+  const isGSELogo = navLogo.alt.toLowerCase().includes('gaucho')
+  const logoWidth = isGSELogo ? 125 : 210
+  const logoHeight = isGSELogo ? 30 : 48
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
@@ -31,17 +37,24 @@ export default function Navbar() {
       style={{
         background:
           open && typeof window !== 'undefined' && window.innerWidth < 768
-            ? '#000'
+            ? 'var(--color-nav-background)'
             : isScrolled
-            ? 'rgba(1, 8, 10, 0.9)'
+            ? 'var(--color-nav-background-scrolled)'
             : 'transparent',
-        borderColor: isScrolled ? 'rgba(255,255,255,0.05)' : 'transparent',
-        color: 'var(--foreground)',
-      }}      
+        borderColor: isScrolled ? 'var(--color-border)' : 'transparent',
+        color: 'var(--color-text-primary)',
+      }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
         <Link href="/" className="text-xl font-bold">
-          <Image src={acmNavLogo} alt="ACM Industry Logo" width={210} height={48} unoptimized={true} priority/>
+          <Image
+            src={navLogo.src}
+            alt={navLogo.alt}
+            width={logoWidth}
+            height={logoHeight}
+            unoptimized={true}
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -71,12 +84,12 @@ export default function Navbar() {
                 }}
                 onMouseEnter={() => setHoveredItem(item)}
                 onMouseLeave={() => setHoveredItem(null)}
-                className={`relative text-base text-md font-medium transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[var(--accent-gold)] after:transition-all after:duration-300 ${
+                className={`relative text-base text-md font-medium transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[var(--color-accent-primary)] after:transition-all after:duration-300 ${
                   isHovered 
-                    ? 'text-[var(--accent-gold)] after:w-full' 
+                    ? 'text-[var(--color-accent-primary)] after:w-full' 
                     : isActive && !isNavHovered
-                      ? 'text-[var(--accent-gold)] after:w-full'
-                      : 'text-[var(--foreground)] after:w-0'
+                      ? 'text-[var(--color-accent-primary)] after:w-full'
+                      : 'text-[var(--color-text-primary)] after:w-0'
                 }`}
               >
                 {item}
@@ -85,13 +98,17 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden text-[var(--foreground)]"
-          onClick={() => setOpen((prev) => !prev)}
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-4">
+          <div className="hidden md:block">
+            <ThemeToggle variant="segmented" size="sm" ariaLabel="Switch site theme" />
+          </div>
+          <button
+            className="md:hidden text-[var(--color-text-primary)]"
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -103,8 +120,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden px-6 pb-4 space-y-2"
+            className="md:hidden px-6 pb-4 space-y-4"
           >
+            <ThemeToggle
+              variant="segmented"
+              size="sm"
+              className="w-full justify-between"
+              ariaLabel="Switch site theme"
+            />
             {navItems.map((item) => {
               const path = item === 'Home' ? '' : item.toLowerCase()
               const fullPath = `/${path}`
@@ -120,7 +143,7 @@ export default function Navbar() {
                     }
                     setOpen(false)
                   }}
-                  className="block text-base font-medium text-[var(--foreground)] hover:text-[var(--accent-gold)] transition"
+                  className="block text-base font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent-primary)] transition"
                 >
                   {item}
                 </Link>

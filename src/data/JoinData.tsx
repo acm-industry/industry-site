@@ -1,112 +1,168 @@
-import { ArrowRightCircle, PartyPopper, Rocket, Repeat, Users, MonitorPlay, UserPlus } from "lucide-react";
+import type { LucideIcon } from 'lucide-react'
+import {
+  ArrowRightCircle,
+  PartyPopper,
+  Rocket,
+  Repeat,
+  Users,
+  MonitorPlay,
+  UserPlus,
+} from 'lucide-react'
 
-export const events = [
-    {
-      title: 'Apply & Get Onboarded',
-      timeframe: '2–3 weeks before the quarter',
-      bullets: [
-        'Submit your application for a team role (e.g. developer, designer)',
-        'If accepted, you’ll be invited to onboarding and placed on a project team',
-        'Optional: If your project involves advanced tools or concepts, we’ll provide resources to get you up to speed',
-      ],
-      image: 'apply.svg',
-      icon: <UserPlus className="w-9 h-9 text-[var(--accent-blue)]" />,
-      iconAccent: '#047C91',
-    },
-    {
-      title: 'Project Kickoff & Orientation',
-      timeframe: 'Weeks 0–1',
-      bullets: [
-        'Meet your team, Project Executive, and other collaborators',
-        'Get introduced to the project scope, tech stack, and goals',
-        'Review documentation, GitHub repos, and core tools',
-        'If needed, complete short tutorials (e.g. Supabase, ARKit, Flask)',
-      ],
-      image: 'onboarding.svg',
-      icon: <Rocket className="w-9 h-9 text-[#F59E42]" />,
-      iconAccent: '#F59E42',
-    },
-    {
-      title: 'Weekly Build Cycle',
-      timeframe: 'Weeks 2–8',
-      bullets: [
-        'Start of Week: Receive specific tasks from the project GitHub board',
-        'Mid-Week: Post async updates or join a quick check-in to discuss blockers and progress',
-        'End of Week: Join your team’s standup, demo your work, and get feedback',
-        'New tasks will be assigned based on progress or areas for improvement',
-      ],
-      image: 'build.svg',
-      icon: <Repeat className="w-9 h-9 text-[#A259FF]" />,
-      iconAccent: '#A259FF',
-    },
-    {
-      title: 'Ongoing Mentorship & Support',
-      timeframe: 'Throughout the quarter',
-      bullets: [
-        'Receive mentorship from Project Execs, tech leads, and alumni',
-        'Get help resolving blockers or technical challenges',
-        'Gain more ownership over your section of the project as the quarter progresses',
-      ],
-      image: 'mentorship.svg',
-      icon: <Users className="w-9 h-9 text-[#2EC4B6]" />,
-      iconAccent: '#2EC4B6',
-    },
-    {
-      title: 'Final Touches & Demo Prep',
-      timeframe: 'Weeks 8–10',
-      bullets: [
-        'Polish final features and resolve outstanding bugs',
-        'Collaborate with your team to prepare a full demo',
-        'Rehearse your 5–10 minute presentation for Demo Day',
-      ],
-      image: 'finalize.svg',
-      icon: <MonitorPlay className="w-9 h-9 text-[#F96E46]" />,
-      iconAccent: '#F96E46',
-    },
-    {
-      title: 'Present & Celebrate',
-      timeframe: 'Weeks 10–11',
-      bullets: [
-        'Present your project to ACM members and partner companies',
-        'Attend the celebration and social event!',
-        'Your work will be featured on our website, Instagram, and LinkedIn',
-      ],
-      image: 'present.svg',
-      icon: <PartyPopper className="w-9 h-9 text-[#43AA8B]" />,
-      iconAccent: '#43AA8B',
-    },
-    {
-      title: 'Stay Involved After',
-      timeframe: 'Ongoing',
-      bullets: [
-        'Some projects continue next quarter — stay on or help onboard new members',
-        'You’re welcome to return as a contributor or apply to be a Project Executive',
-      ],
-      image: 'stay-in-touch.svg',
-      icon: <ArrowRightCircle className="w-9 h-9 text-[#F15BB5]" />,
-      iconAccent: '#F15BB5',
-    },
-  ];
+import type { ThemeId } from '@/theme/tokens'
 
-  export const faq = [
-    {
-      question: 'Why should I join ACM Industry?',
-      answer: 'You’ll gain real-world experience by working on production-grade software for actual companies — with mentorship, technical growth, and a team of motivated peers.',
-    },
-    {
-      question: 'Who can join a project team?',
-      answer: 'Any UCSB student is welcome to apply, regardless of experience level. We look for people eager to learn, contribute, and collaborate in a real-world development setting.',
-    },
-    {
-      question: 'Do I need experience to join?',
-      answer: 'Nope! Many of our applicants are first-time developers or designers. We provide onboarding and mentorship to help you grow into your role.',
-    },
-    {
-      question: 'How are teams structured?',
-      answer: 'Each team has a Project Executive (senior lead), developers, and designers. You’ll meet weekly, have check-ins, and collaborate on GitHub like a real engineering team.',
-    },
-    {
-      question: 'How can I get involved?',
-      answer: 'Applications open 2–3 weeks before each quarter. Join our interest list or follow @acm.ucsb for announcements!',
-    },
-  ];  
+export type TimelineEvent = {
+  title: string
+  timeframe?: string
+  bullets: string[]
+  image: string
+  icon: LucideIcon
+  accent: string
+}
+
+export type JoinFAQItem = {
+  question: string
+  answer: string
+}
+
+export type JoinHeroContent = {
+  titlePrefix: string
+  titleHighlight: string
+  titleSuffix?: string
+  description: string
+}
+
+const eventsTemplate = (orgShort: string): TimelineEvent[] => [
+  {
+    title: 'Apply & Get Onboarded',
+    timeframe: '2–3 weeks before the quarter',
+    bullets: [
+      'Submit your application for a team role (developer, designer, or product).',
+      'If accepted, you’ll be invited to onboarding and placed on a project team.',
+      'Optional: prep resources and tech primers are provided if your project uses unfamiliar tools.',
+    ],
+    image: 'apply.svg',
+    icon: UserPlus,
+    accent: '#047C91',
+  },
+  {
+    title: 'Project Kickoff & Orientation',
+    timeframe: 'Weeks 0–1',
+    bullets: [
+      'Meet your teammates, leads, and stakeholders.',
+      'Review the project scope, tech stack, and goals for the quarter.',
+      'Set up repos, design systems, and productivity tools together.',
+    ],
+    image: 'onboarding.svg',
+    icon: Rocket,
+    accent: '#F59E42',
+  },
+  {
+    title: 'Weekly Build Cycle',
+    timeframe: 'Weeks 2–8',
+    bullets: [
+      'Kick off the week with tasks from the team board and align on priorities.',
+      'Share async updates or hop into quick check-ins to surface blockers.',
+      'Ship increments, review PRs, and demo at the end-of-week standup.',
+    ],
+    image: 'build.svg',
+    icon: Repeat,
+    accent: '#A259FF',
+  },
+  {
+    title: 'Ongoing Mentorship & Support',
+    timeframe: 'Throughout the quarter',
+    bullets: [
+      'Get mentorship from execs, alumni, and partner engineers.',
+      'Pair on tricky problems and learn production best practices.',
+      'Take more ownership as the quarter progresses.',
+    ],
+    image: 'mentorship.svg',
+    icon: Users,
+    accent: '#2EC4B6',
+  },
+  {
+    title: 'Final Touches & Demo Prep',
+    timeframe: 'Weeks 8–10',
+    bullets: [
+      'Polish features, handle QA, and cut scope where needed.',
+      'Coordinate a cohesive story that highlights user impact.',
+      'Rehearse your 5–10 minute presentation for Demo Day.',
+    ],
+    image: 'finalize.svg',
+    icon: MonitorPlay,
+    accent: '#F96E46',
+  },
+  {
+    title: 'Present & Celebrate',
+    timeframe: 'Weeks 10–11',
+    bullets: [
+      `Present your project to ${orgShort} leadership, alumni, and partner companies.`,
+      'Celebrate with the community and capture photos for your portfolio.',
+      'Your work will be featured across our site and socials.',
+    ],
+    image: 'present.svg',
+    icon: PartyPopper,
+    accent: '#43AA8B',
+  },
+  {
+    title: 'Stay Involved After',
+    timeframe: 'Ongoing',
+    bullets: [
+      'Some teams continue next quarter — stay on or help onboard new members.',
+      'Return as a contributor, apply to be a Project Executive, or mentor new builders.',
+    ],
+    image: 'stay-in-touch.svg',
+    icon: ArrowRightCircle,
+    accent: '#F15BB5',
+  },
+]
+
+const faqTemplate = (orgShort: string): JoinFAQItem[] => [
+  {
+    question: `Why should I join ${orgShort}?`,
+    answer:
+      'You’ll work on production-grade software for real users with mentorship, structured team processes, and a community that wants you to grow.',
+  },
+  {
+    question: 'Who can join a project team?',
+    answer:
+      'Any UCSB student can apply — we welcome developers, designers, product thinkers, and operations folks eager to collaborate.',
+  },
+  {
+    question: 'Do I need experience to join?',
+    answer:
+      'Not necessarily. Many members are shipping their first project. We provide onboarding, guides, and mentorship to help you ramp up.',
+  },
+  {
+    question: 'How are teams structured?',
+    answer:
+      'Every team has a Project Executive plus builders across engineering, design, and product. You’ll collaborate through weekly standups, async updates, and GitHub workflows.',
+  },
+  {
+    question: 'How can I stay in the loop?',
+    answer:
+      `Applications open 2–3 weeks before the quarter. Join our interest list or follow us on Instagram and LinkedIn for announcements.`,
+  },
+]
+
+export const joinHeroContent: Record<ThemeId, JoinHeroContent> = {
+  acm: {
+    titlePrefix: 'Applications are ',
+    titleHighlight: 'Closed',
+    description:
+      'Thank you for your interest in ACM Industry! We’ll be kicking off our next cycle in Fall 2025.',
+  },
+  gse: {
+    titlePrefix: 'Applications are ',
+    titleHighlight: 'Closed',
+    description:
+      'Thanks for your interest in Gaucho Software Engineers. We reopen applications at the start of each quarter — join the interest list so you don’t miss the next launch.',
+  },
+}
+
+export const getJoinEvents = (theme: ThemeId): TimelineEvent[] =>
+  eventsTemplate(theme === 'acm' ? 'ACM Industry' : 'GSE')
+
+export const getJoinFAQ = (theme: ThemeId): JoinFAQItem[] =>
+  faqTemplate(theme === 'acm' ? 'ACM Industry' : 'GSE')

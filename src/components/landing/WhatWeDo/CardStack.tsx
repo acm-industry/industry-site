@@ -3,22 +3,11 @@
 import React, { useRef, forwardRef } from 'react';
 import Card from '@/components/landing/WhatWeDo/Card';
 import { useScroll } from 'framer-motion';
-
-interface WhatWeDoData {
-  title: string;
-  description: string;
-  src: string;
-  link: string;
-  icon: React.ComponentType<{ size: number }>;
-  link_value: {
-    text: string;
-    icon: React.ComponentType<{ size: number }>;
-  };
-}
+import type { WhatWeDoCard } from '@/data/LandingContent';
 
 interface CardStackProps {
   endCardStackRef: React.RefObject<HTMLDivElement | null>;
-  whatwedo: WhatWeDoData[];
+  whatwedo: WhatWeDoCard[];
   headerHeight: number;
   firstCardRef?: React.RefObject<HTMLDivElement>;
 }

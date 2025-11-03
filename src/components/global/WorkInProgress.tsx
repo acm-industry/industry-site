@@ -20,11 +20,11 @@ const WorkInProgress: React.FC = () => {
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           style={{ willChange: 'transform' }}
         >
-          <span className="inline-flex items-center justify-center w-16 h-16 rounded-full border-4 border-yellow-400 bg-[#1a2327] drop-shadow-[0_0_12px_rgba(255,207,82,0.5)]">
-            <Construction size={36} color="#FFD600" />
+          <span className="inline-flex items-center justify-center w-16 h-16 rounded-full border-4 border-[var(--color-accent-primary)] bg-[var(--color-background-secondary)] drop-shadow-[0_0_12px_var(--color-accent-muted)]">
+            <Construction size={36} color="var(--color-accent-highlight)" />
           </span>
         </motion.div>
-        <h2 className="text-3xl font-bold text-[var(--accent-gold)] drop-shadow-lg mb-2">Work in Progress</h2>
+        <h2 className="text-3xl font-bold text-[var(--color-accent-primary)] drop-shadow-[0_0_12px_var(--color-accent-muted)] mb-2">Work in Progress</h2>
         <p className="text-lg text-[var(--text-secondary)] text-center max-w-md">
           This page is under construction.<br />Check back soon for updates!
         </p>

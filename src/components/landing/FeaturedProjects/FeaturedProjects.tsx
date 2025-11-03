@@ -3,17 +3,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import FeaturedProjectsCarousel from './FeaturedProjectsCarousel'
-import {
-  projects,
-  featuredProjectsTitleWhite,
-  featuredProjectsTitleGold,
-  featuredProjectsDescription,
-} from '@/data/ProjectsData'
+import { projects } from '@/data/ProjectsData'
+import { landingContent } from '@/data/LandingContent'
+import { useTheme } from '@/theme/ThemeContext'
 import { Boxes } from 'lucide-react'
 
-const FeaturedProjects = () => (
-  <motion.section 
-    className="relative z-10 w-full px-6 bg-[var(--background)] text-[var(--foreground)] mb-12 smooth-element"
+const FeaturedProjects = () => {
+  const { theme } = useTheme()
+  const content = landingContent[theme].featuredProjects
+
+  return (
+    <motion.section 
+    className="relative z-10 w-full px-6 bg-[var(--color-background)] text-[var(--color-text-primary)] mb-12 smooth-element"
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40%' }}
@@ -38,19 +39,19 @@ const FeaturedProjects = () => (
         }}
         style={{ willChange: 'transform, opacity, filter' }}
       >
-        {featuredProjectsTitleWhite}{' '}
+        {content.titleWhite}{' '}
         <span
           style={{
-            color: 'var(--accent-gold)',
-            textShadow: '0 0 20px rgba(255, 207, 82, 0.15)',
+            color: 'var(--color-accent-primary)',
+            textShadow: '0 0 20px var(--color-accent-muted)',
           }}
         >
-          {featuredProjectsTitleGold}
+          {content.titleAccent}
         </span>
       </motion.h2>
       
       <motion.p 
-        className="mt-4 text-lg text-[var(--text-secondary)] max-w-xl mx-auto smooth-element"
+        className="mt-4 text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto smooth-element"
         initial={{ opacity: 0, y: 20, filter: 'blur(2px)' }}
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true }}
@@ -62,7 +63,7 @@ const FeaturedProjects = () => (
         }}
         style={{ willChange: 'transform, opacity, filter' }}
       >
-        {featuredProjectsDescription}
+        {content.description}
       </motion.p>
     </div>
 
@@ -97,11 +98,11 @@ const FeaturedProjects = () => (
         style={{ willChange: 'transform' }}
       >
         <a
-          href="/projects"
-          className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg border border-[var(--accent-gold)] text-[var(--accent-gold)] hover:bg-[var(--accent-gold)] hover:text-[#0b0e11] transition-all duration-300 shadow-[0_0_20px_rgba(255,207,82,0.25)] hover:shadow-[0_0_30px_rgba(255,207,82,0.4)]"
+          href={content.ctaHref}
+          className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg border border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] hover:bg-[var(--color-accent-primary)] hover:text-black transition-all duration-300 shadow-[0_0_20px_var(--color-accent-muted)] hover:shadow-[0_0_30px_var(--color-accent-muted)]"
         >
           <Boxes className="w-4 h-4" />
-          View All Projects
+          {content.ctaLabel}
         </a>
       </motion.div>
     </motion.div>
@@ -132,6 +133,7 @@ const FeaturedProjects = () => (
       }
     `}</style>
   </motion.section>
-)
+  )
+}
 
 export default FeaturedProjects

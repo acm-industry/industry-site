@@ -2,79 +2,135 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useEffect, useMemo, useState } from 'react'
 import SectionGlow from '../global/SectionGlow'
 import StarField from '../global/StarField'
-import { aboutStoryTitle, aboutStoryParagraph1White, aboutStoryParagraph1Gold, aboutStoryParagraph2White, aboutStoryParagraph2Gold, aboutStoryParagraph3White, aboutStoryParagraph3Gold } from '@/data/AboutData'
-import { useEffect, useState } from 'react'
+import { aboutContent } from '@/data/AboutData'
+import { useTheme } from '@/theme/ThemeContext'
 
-// Typewriter effect component
-function TypewriterText({ text, isGold = false, onComplete }: { text: string, isGold?: boolean, onComplete?: () => void }) {
-  const [displayText, setDisplayText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex])
-        setCurrentIndex(prev => prev + 1)
-      }, isGold ? 65 : 15) // Slower for gold text
-
-      return () => clearTimeout(timeout)
-    } else if (onComplete) {
-      onComplete()
-    }
-  }, [currentIndex, text, isGold, onComplete])
-
-  return (
-    <span className={isGold ? "text-[var(--accent-gold)] font-semibold" : ""}>
-      {displayText}
-      {currentIndex < text.length && (
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity }}
-          className="inline-block w-[2px] h-[1em] bg-[var(--accent-gold)] ml-[1px]"
-        />
-      )}
-    </span>
-  )
+type RenderSegment = {
+  text: string
+  highlight?: boolean
+  paragraphIndex: number
 }
 
-export default function AboutStorySection() {
-  // step: 0 = 1st white, 1 = 1st gold, 2 = 2nd white, 3 = 2nd gold, 4 = 3rd white, 5 = 3rd gold
-  const [step, setStep] = useState(0)
+const PRIMARY_SPEED = 15
+const HIGHLIGHT_SPEED = 65
 
-  // Handlers for each part
-  const handleWhite1Complete = () => setStep(1)
-  const handleGold1Complete = () => setStep(2)
-  const handleWhite2Complete = () => setStep(3)
-  const handleGold2Complete = () => setStep(4)
-  const handleWhite3Complete = () => setStep(5)
-  // No handler needed for last gold part
+export default function AboutStorySection() {
+  const { theme, tokens } = useTheme()
+  const story = aboutContent[theme].story
+  const isACM = theme === 'acm'
+
+  const segments = useMemo<RenderSegment[]>(() => {
+    const result: RenderSegment[] = []
+    story.paragraphs.forEach((paragraph, paragraphIndex) => {
+      paragraph.segments.forEach((segment) => {
+        result.push({ ...segment, paragraphIndex })
+      })
+    })
+    return result
+  }, [story])
+
+  const segmentIndexLookup = useMemo(() => {
+    let counter = 0
+    return story.paragraphs.map((paragraph) =>
+      paragraph.segments.map(() => counter++)
+    )
+  }, [story])
+
+  const totalSegments = segments.length
+  const [activeSegmentIndex, setActiveSegmentIndex] = useState(0)
+  const [typedText, setTypedText] = useState('')
+
+  useEffect(() => {
+    setActiveSegmentIndex(0)
+    setTypedText('')
+  }, [story])
+
+  useEffect(() => {
+    if (!segments.length || activeSegmentIndex >= segments.length) return
+
+    const segment = segments[activeSegmentIndex]
+    const fullText = segment.text
+
+    if (typedText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypedText(fullText.slice(0, typedText.length + 1))
+      }, segment.highlight ? HIGHLIGHT_SPEED : PRIMARY_SPEED)
+      return () => clearTimeout(timeout)
+    }
+
+    const timeout = setTimeout(() => {
+      setActiveSegmentIndex((prev) => prev + 1)
+      setTypedText('')
+    }, 160)
+    return () => clearTimeout(timeout)
+  }, [typedText, activeSegmentIndex, segments])
+
+  const renderSegment = (segment: { text: string; highlight?: boolean }, globalIndex: number) => {
+    const isCompleted = activeSegmentIndex > globalIndex || activeSegmentIndex >= totalSegments
+    const isActive = activeSegmentIndex === globalIndex && activeSegmentIndex < totalSegments
+    const value = isCompleted ? segment.text : isActive ? typedText : ''
+
+    if (!value && !isActive) {
+      return null
+    }
+
+    return (
+      <span
+        key={`${globalIndex}`}
+        className={segment.highlight ? 'text-[var(--color-accent-primary)] font-semibold' : ''}
+      >
+        {value}
+        {isActive && value.length < (segments[activeSegmentIndex]?.text.length ?? 0) && (
+          <motion.span
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.5, repeat: Infinity }}
+            className="inline-block w-[2px] h-[1em] bg-[var(--color-accent-primary)] ml-[1px]"
+          />
+        )}
+      </span>
+    )
+  }
 
   return (
-    <section className="relative w-full px-6 py-32 bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-hidden smooth-element">
-      <SectionGlow size={700} opacity={0.04} />
-      <StarField numberOfStars={100} />
+    <section
+      className="relative w-full px-6 py-32 overflow-hidden text-[var(--color-text-primary)] smooth-element transition-colors duration-500"
+      style={{ background: 'var(--color-background)' }}
+    >
+      {/* Background Effects */}
+      <SectionGlow
+        size={750}
+        opacity={isACM ? 0.035 : 0.05}
+        color={isACM ? 'var(--color-accent-primary)' : 'var(--color-accent-highlight)'}
+      />
+      <StarField numberOfStars={90} />
 
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left: Image */}
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ 
-            duration: 0.8, 
-            ease: [0.16, 1, 0.3, 1]
+          transition={{
+            duration: 0.8,
+            ease: [0.16, 1, 0.3, 1],
           }}
-          className="w-full relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 smooth-element"
-          style={{ willChange: 'transform, opacity' }}
+          className="w-full relative aspect-[4/3] rounded-2xl overflow-hidden border smooth-element"
+          style={{
+            borderColor: 'var(--color-border)',
+            boxShadow: '0 0 20px var(--color-accent-muted)',
+            willChange: 'transform, opacity',
+          }}
           whileHover={{
             scale: 1.02,
-            transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+            boxShadow: '0 0 35px var(--color-accent-muted)',
+            transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
           }}
         >
           <Image
             src="/team/team.JPG"
-            alt="ACM Industry Team"
+            alt={`${tokens.copy.orgName} team`}
             fill
             className="object-cover"
             priority
@@ -82,86 +138,46 @@ export default function AboutStorySection() {
           />
         </motion.div>
 
-        {/* Right: Text */}
+        {/* Right: Story Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            delay: 0.15, 
+          transition={{
+            delay: 0.15,
             duration: 0.7,
-            ease: [0.16, 1, 0.3, 1]
+            ease: [0.16, 1, 0.3, 1],
           }}
           style={{ willChange: 'transform, opacity' }}
         >
-          <motion.h2 
-            className="text-3xl sm:text-4xl font-extrabold mb-6 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.06)]"
+          <motion.h2
+            className="text-3xl sm:text-4xl font-extrabold mb-6 text-[var(--color-accent-primary)] drop-shadow-[0_0_10px_var(--color-accent-muted)]"
             initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ 
-              duration: 0.7, 
+            transition={{
+              duration: 0.7,
               ease: [0.16, 1, 0.3, 1],
-              filter: { duration: 0.4, ease: "easeOut" }
+              filter: { duration: 0.4, ease: 'easeOut' },
             }}
             style={{ willChange: 'transform, opacity, filter' }}
           >
-            {aboutStoryTitle}
+            {story.title}
           </motion.h2>
 
-          <div className="text-[var(--text-secondary)] text-lg leading-relaxed">
-            <p className="mb-5">
-              {/* 1st paragraph */}
-              {step >= 0 && (
-                <TypewriterText 
-                  text={aboutStoryParagraph1White} 
-                  onComplete={handleWhite1Complete}
-                />
-              )}
-              {step >= 1 && (
-                <TypewriterText 
-                  text={aboutStoryParagraph1Gold} 
-                  isGold 
-                  onComplete={handleGold1Complete}
-                />
-              )}
-            </p>
-
-            <p className="mb-5">
-              {/* 2nd paragraph */}
-              {step >= 2 && (
-                <TypewriterText 
-                  text={aboutStoryParagraph2White} 
-                  onComplete={handleWhite2Complete}
-                />
-              )}
-              {step >= 3 && (
-                <TypewriterText 
-                  text={aboutStoryParagraph2Gold} 
-                  isGold 
-                  onComplete={handleGold2Complete}
-                />
-              )}
-            </p>
-
-            <p>
-              {/* 3rd paragraph */}
-              {step >= 4 && (
-                <TypewriterText 
-                  text={aboutStoryParagraph3White} 
-                  onComplete={handleWhite3Complete}
-                />
-              )}
-              {step >= 5 && (
-                <TypewriterText 
-                  text={aboutStoryParagraph3Gold} 
-                  isGold
-                />
-              )}
-            </p>
+          <div className="text-[var(--color-text-secondary)] text-lg leading-relaxed">
+            {story.paragraphs.map((paragraph, paragraphIndex) => (
+              <p
+                key={paragraphIndex}
+                className={paragraphIndex === story.paragraphs.length - 1 ? '' : 'mb-5'}
+              >
+                {paragraph.segments.map((segment, segmentPosition) =>
+                  renderSegment(segment, segmentIndexLookup[paragraphIndex][segmentPosition])
+                )}
+              </p>
+            ))}
           </div>
         </motion.div>
       </div>
 
-      {/* Add custom CSS for smooth animations */}
       <style jsx>{`
         .smooth-element {
           will-change: transform, opacity;

@@ -36,19 +36,19 @@ const FAQ = ({ faq }: { faq: FAQItem[] }) => {
               border: '1px solid rgba(255, 255, 255, 0.08)',
               borderRadius: '8px',
               backdropFilter: 'blur(4px)',
-              boxShadow: '0 0 10px rgba(255, 207, 82, 0.05)',
+              boxShadow: '0 0 10px var(--color-accent-muted)',
               mb: 1.5,
               '&:before': { display: 'none' },
               overflow: 'hidden',
-              color: 'var(--foreground)',
+              color: 'var(--color-text-primary)',
             }}
           >
             <AccordionSummary
               expandIcon={
                 <ExpandMoreRounded
                   style={{
-                    color: 'var(--accent-gold)',
-                    backgroundColor: 'var(--accent-blue)',
+                    color: 'var(--color-accent-primary)',
+                    backgroundColor: 'var(--color-accent-highlight)',
                     borderRadius: '20%',
                     padding: 2,
                     width: 28,
@@ -62,7 +62,7 @@ const FAQ = ({ faq }: { faq: FAQItem[] }) => {
                   fontWeight: 700,
                   fontSize: '1.1rem',
                   textTransform: 'uppercase',
-                  color: 'var(--accent-gold)',
+                  color: 'var(--color-accent-primary)',
                 },
               }}
             >
@@ -72,7 +72,7 @@ const FAQ = ({ faq }: { faq: FAQItem[] }) => {
               sx={{
                 padding: '1rem 1.5rem',
                 fontSize: '0.95rem',
-                color: 'var(--text-secondary)',
+                color: 'var(--color-text-secondary)',
               }}
             >
               <Typography>{item.answer}</Typography>

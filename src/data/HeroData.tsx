@@ -1,16 +1,20 @@
-export const heroTitleWhite = "Built at UCSB.";
-export const heroTitleGold = "For the world.";
+import { themes, themeIds, type ThemeId, type ThemeTokens } from '@/theme/tokens'
 
-export const heroDescription = "ACM.Industry connects UCSB students with real-world companies to build technical solutions, gain hands-on experience, and make a lasting impact before graduation.";
+export type HeroCopy = ThemeTokens['copy']['hero']
+
+export const heroContent: Record<ThemeId, HeroCopy> = themeIds.reduce((acc, id) => {
+  acc[id] = themes[id].copy.hero
+  return acc
+}, {} as Record<ThemeId, HeroCopy>)
 
 export const techTags = [
-    'UI/UX',
-    'Databases',
-    'Machine Learning',
-    'DevOps',
-    'Web Development',
-    'AR/VR',
-    'Cloud',
-    'Systems',
-    'AI',
-];
+  'UI/UX',
+  'Databases',
+  'Machine Learning',
+  'DevOps',
+  'Web Development',
+  'AR/VR',
+  'Cloud',
+  'Systems',
+  'AI',
+]
