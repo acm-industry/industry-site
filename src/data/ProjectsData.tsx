@@ -49,7 +49,7 @@ export const projects = [
     link: '/projects/#dossmd',
     featured: true,
     quarter: [4, 2025],
-    company_logo: 'dossmd-logo.avif',
+    company_logo: 'dossmd-logo.png',
     tags: ['AR Kit', 'Swift', 'XCode'],
     external_links: [],
     colors: {
