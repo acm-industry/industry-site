@@ -4,14 +4,14 @@ export const teamMembers = [
     {
       name: 'Aman Desai',
       group: ['Leadership', 'Developers'],
-      role: 'Co-President',
+      role: 'Founder & Advisor',
       img: '/team/aman.JPG',
       linkedin: 'https://www.linkedin.com/in/amanpdesai/',
     },
     {
       name: 'Vala Bahrami',
       group: ['Leadership', 'Outreach'],
-      role: 'Advisor',
+      role: 'Founder & Advisor',
       img: '/team/vala.JPG',
       linkedin: 'https://www.linkedin.com/in/va1a/',
     },
@@ -56,8 +56,8 @@ export const teamMembers = [
     },
     {
       name: 'Aarush Narang',
-      group: ['Developers'],
-      role: 'AI/ML Engineer',
+      group: ['Leadership','Developers'],
+      role: 'Co-President',
       img: '/team/arush.JPG',
       linkedin: 'https://www.linkedin.com/in/aarush-narang/',
       project: 'finsight'
@@ -202,5 +202,12 @@ export const teamMembers = [
       role: 'Project Executive',
       img: '/team/bobby.jpeg',
       linkedin: 'https://www.linkedin.com/in/bobby-chavez',
+    },
+    {
+      name: 'Mason Le',
+      group: ['Outreach'],
+      role: 'Marketing Intern',
+      img: '/team/mason.png',
+      linkedin: 'https://www.linkedin.com/in/mason-le-68b75a274/',
     }
   ]
