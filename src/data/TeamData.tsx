@@ -5,7 +5,7 @@ export const teamMembers = [
       name: 'Aman Desai',
       group: ['Leadership', 'Developers'],
       role: 'Founder & Advisor',
-      img: '/team/aman.JPG',
+      img: '/team/aman.jpg',
       linkedin: 'https://www.linkedin.com/in/amanpdesai/',
     },
     {
