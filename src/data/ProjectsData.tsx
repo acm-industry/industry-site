@@ -11,14 +11,14 @@ export const currentQuarter = [4, 2025]
 export const projects = [
   {
     id: 'data-constr-innov',
-    name: 'RiskWise',
+    name: 'ConstructWise',
     short_description: 'A stealth startup building a platform with AI-powered tools.',
     long_description: 'A stealth startup building a platform with AI-powered tools. More coming soon...',
     images: null,
     link: '/projects/#data-constr-innov',
     featured: true,
     quarter: [4, 2025],
-    company_logo: 'riskwise-logo.png',
+    company_logo: 'constructwise-logo.png',
     tags: ['Next.js', 'Django', 'Anthropic'],
     external_links: [],
     colors: {

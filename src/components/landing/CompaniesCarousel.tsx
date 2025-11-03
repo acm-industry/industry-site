@@ -9,11 +9,14 @@ import 'slick-carousel/slick/slick-theme.css';
 import { comapnies, carouselTitle } from '@/data/CompaniesCarouselData';
 
 export default function CompaniesCarousel() {
+  const totalCompanies = comapnies.length;
+  const baseSlidesToShow = Math.min(Math.max(totalCompanies, 1), 5);
+
   const settings = {
     rtl: true,
     dots: false,
     infinite: true,
-    slidesToShow: comapnies.length,
+    slidesToShow: baseSlidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     speed: 4000,
@@ -24,6 +27,38 @@ export default function CompaniesCarousel() {
     swipe: false,
     touchMove: false,
     draggable: false,
+    responsive: [
+      {
+        breakpoint: 1536,
+        settings: {
+          slidesToShow: Math.min(Math.max(totalCompanies, 1), 5),
+        },
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: Math.min(Math.max(totalCompanies, 1), 4),
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: Math.min(Math.max(totalCompanies, 1), 3),
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: Math.min(Math.max(totalCompanies, 1), 2),
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -39,7 +74,7 @@ export default function CompaniesCarousel() {
       }}
       style={{ overflow: 'visible', willChange: 'transform, opacity' }}
     >
-      <div className="relative z-[20] max-w-7xl mx-auto" style={{ overflow: 'visible' }}>
+      <div className="relative z-[20] max-w-8xl mx-auto" style={{ overflow: 'visible' }}>
         <motion.h2
           className="text-center text-sm sm:text-xl md:text-3xl font-extrabold drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] pb-2 sm:pb-2 md:pb-8"
           initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
@@ -69,7 +104,7 @@ export default function CompaniesCarousel() {
           style={{ overflow: 'visible', willChange: 'transform, opacity' }}
         >
           {/* Left mask */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-50" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-96 bg-gradient-to-r from-black to-transparent z-50" />
 
           {/* Carousel */}
           <div style={{ overflow: 'visible' }}>
@@ -77,11 +112,11 @@ export default function CompaniesCarousel() {
               {comapnies.map((logo, idx) => (
                 <div
                   key={`logo-${idx}`}
-                  className="px-8 pt-4 lg:pt-6"
+                  className="flex items-center justify-center px-6 sm:px-8 md:px-10 pt-4 lg:pt-6"
                   style={{ overflow: 'visible' }}
                 >
                   <div
-                    className="relative w-[15vw] h-[80px] mx-auto z-[9999]"
+                    className="relative mx-auto h-[80px] w-[18vw] min-w-[180px] max-w-[260px] z-[9999]"
                     style={{
                       overflow: 'visible',
                       willChange: 'transform',
@@ -120,6 +155,11 @@ export default function CompaniesCarousel() {
         .slick-track,
         .slick-slide > div {
           overflow: visible !important;
+        }
+
+        .slick-slide > div {
+          display: flex !important;
+          justify-content: center;
         }
 
         html,

@@ -1,3 +1,6 @@
+import { comapnies } from "./CompaniesCarouselData"
+import { projects } from "./ProjectsData"
+import { teamMembers } from "./TeamData"
 
 export const aboutTitleWhite = "Our "
 export const aboutTitleGold = "Story"
@@ -17,8 +20,8 @@ export const aboutStoryParagraph3Gold = "this is your moment to build something 
 export const metricsTitle = "Within two quarters..."
 
 export const metrics = [
-    { label: 'Projects Shipped', value: '9' },
-    { label: 'Industry Partners', value: '14' },
-    { label: 'Student Contributors', value: '35+' },
-    { label: 'Engineering Hours Logged', value: '2500+' },
+    { label: 'Projects Shipped', value: (projects.length).toString() },
+    { label: 'Industry Partners', value: (comapnies.length+6).toString() },
+    { label: 'Student Contributors', value: (teamMembers.length + 13).toString() + '+' },
+    { label: 'Engineering Hours Logged', value: '6000+' },
   ]
