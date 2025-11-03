@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
@@ -44,13 +45,14 @@ const THEME_METADATA: Record<
 }
 
 // --------------------
-// Dynamic Viewport (async for Next.js 14)
+// Dynamic Viewport
 // --------------------
 export async function generateViewport(): Promise<Viewport> {
   const headersList = await headers()
   const host = headersList.get("host")?.toLowerCase() || ""
-  let theme = "acm"
+  let theme: "acm" | "gse" = "acm"
 
+  // Auto-detect by domain
   if (host.includes("gse")) theme = "gse"
 
   return {
@@ -59,7 +61,7 @@ export async function generateViewport(): Promise<Viewport> {
 }
 
 // --------------------
-// Dynamic Metadata (async for Next.js 14)
+// Dynamic Metadata
 // --------------------
 export async function generateMetadata({
   searchParams,
@@ -70,6 +72,7 @@ export async function generateMetadata({
   const host = headersList.get("host")?.toLowerCase() || ""
   let theme: "acm" | "gse" = "acm"
 
+  // Priority: query param > domain detection
   if (searchParams?.theme?.toLowerCase() === "gse") theme = "gse"
   else if (host.includes("gse")) theme = "gse"
 
@@ -78,7 +81,7 @@ export async function generateMetadata({
   return {
     title: meta.title,
     description: meta.description,
-    metadataBase: new URL("https://acmindustry.org"),
+    metadataBase: new URL("https://acmindustry.org"), // default fallback domain
     openGraph: {
       title: meta.title,
       description: meta.description,
@@ -98,7 +101,7 @@ export async function generateMetadata({
 }
 
 // --------------------
-// Root Layout (Server Component)
+// Root Layout
 // --------------------
 export default function RootLayout({
   children,
@@ -110,7 +113,10 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeRoot>
-          <ThemeInitializer />
+          <Suspense fallback={null}>
+            <ThemeInitializer />
+          </Suspense>
+
           <Navbar />
           {children}
           <Footer />
