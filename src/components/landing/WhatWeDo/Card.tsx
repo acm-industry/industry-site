@@ -81,13 +81,13 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     return (
       <motion.div
         ref={ref || container}
-        className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[80vh]' : 'h-[80vh]'} mb-[40vh]`}
+        className={`sticky flex flex-col justify-center items-center ${isSmall ? 'h-[70vh]' : 'h-[70vh]'} mb-[24vh]`}
         style={{ top: topOffset, willChange: 'transform, opacity', opacity: effectiveOpacity, transition: 'opacity 0.15s linear' }}
       >
         <motion.div
           className="relative bg-[var(--bg-tertiary)] rounded-3xl overflow-hidden shadow-2xl w-full mx-auto"
           style={{
-            top: `calc(${i * (isSmall ? 25 : 35)}px)`,
+            top: `calc(${i * (isSmall ? 18 : 28)}px)`,
             scale,
             transformOrigin: 'center center',
             willChange: 'transform, opacity',

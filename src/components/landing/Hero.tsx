@@ -268,7 +268,7 @@ export default function Hero() {
               ease: [0.16, 1, 0.3, 1]
             }}
           >
-            Powered by ACM UCSB, in collaboration with BruinAI.
+            Powered by ACM UCSB.
           </motion.p>
 
           {/* Scroll Indicator */}

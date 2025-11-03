@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { FaDiscord } from 'react-icons/fa'
 import acmLogo from '@/public/club-logos/acm-logo.png'
-import bruinaiLogo from '@/public/club-logos/bruin-ai-logo.png'
 import industryLogo from '@/public/club-logos/industry-logo.png'
 
 export default function Footer() {
@@ -43,22 +42,6 @@ export default function Footer() {
               alt="ACM UCSB"
               width={40}
               height={40}
-              unoptimized={true}
-              priority
-            />
-          </a>
-
-          <a
-            href="https://bruinai.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="h-12 px-4 rounded-full border border-white/10 bg-white/10 flex items-center justify-center hover:ring-2 hover:ring-accent-gold transition-all"
-          >
-            <Image
-              src={bruinaiLogo}
-              alt="BruinAI"
-              width={100}
-              height={28}
               unoptimized={true}
               priority
             />

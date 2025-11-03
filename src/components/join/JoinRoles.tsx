@@ -76,12 +76,10 @@ export default function JoinRoles() {
                       duration: 0.6,
                       ease: [0.16, 1, 0.3, 1] 
                     }}
-                    whileHover={{ 
-                      scale: 1.02,
-                      boxShadow: '0 0 25px rgba(255, 207, 82, 0.15)',
-                      transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-                    }}
                     className="relative p-6 rounded-xl border border-white/10 bg-[var(--bg-tertiary)]/50 backdrop-blur-sm"
+                    style={{
+                      boxShadow: '0 0 20px rgba(255, 207, 82, 0.08)',
+                    }}
                   >
                     <div className="flex items-start gap-4">
                       <div 
@@ -113,12 +111,10 @@ export default function JoinRoles() {
                   duration: 0.6,
                   ease: [0.16, 1, 0.3, 1] 
                 }}
-                whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: '0 0 25px rgba(255, 207, 82, 0.15)',
-                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-                }}
                 className="relative p-6 rounded-xl border border-white/10 bg-[var(--bg-tertiary)]/50 backdrop-blur-sm"
+                style={{
+                  boxShadow: '0 0 20px rgba(255, 207, 82, 0.08)',
+                }}
               >
                 <div className="flex items-start gap-4">
                   <div 
