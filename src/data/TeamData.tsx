@@ -18,7 +18,7 @@ export const teamMembers = [
     {
       name: 'Akhil Gorla',
       group: ['Leadership', 'Developers'],
-      role: 'Advisor',
+      role: 'Founder & Advisor',
       img: '/team/akhil.JPG',
       linkedin: 'https://www.linkedin.com/in/akhil-gorla/',
     },
@@ -37,6 +37,13 @@ export const teamMembers = [
       img: '/team/aditya.jpeg',
       linkedin: 'https://www.linkedin.com/in/aditya-a-iyer/',
       project: 'probability-management'
+    },
+    {
+      name: 'Sanjana Bhupathi',
+      group: ['Leadership', 'Marketing'],
+      role: 'Co-President',
+      img: '/team/sanjana.jpg',
+      linkedin: 'https://www.linkedin.com/in/sanjanabhupathi/',
     },
     {
       name: 'Srinandha Murugesan',
