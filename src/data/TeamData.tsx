@@ -211,6 +211,13 @@ export const teamMembers = [
       linkedin: 'https://www.linkedin.com/in/bobby-chavez',
     },
     {
+      name: 'Rohan Nihalani',
+      group: ['Leadership', 'Developers'],
+      role: 'Technical Director',
+      img: '/team/rohan.JPG',
+      linkedin: 'https://www.linkedin.com/in/rohannihalani',
+    },
+    {
       name: 'Mason Le',
       group: ['Outreach'],
       role: 'Marketing Intern',
