@@ -29,7 +29,8 @@
     "react-icons": "^5.5.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
-    "use-debounce": "^10.0.4"
+    "use-debounce": "^10.0.4",
+    "vercel": "^50.3.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

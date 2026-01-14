@@ -55,8 +55,8 @@ function FloatingTag({ tag, left, top, i }: { tag: string; left: number; top: nu
         duration: 0.8,
         delay: 1.2 + i * 0.1,
         ease: [0.16, 1, 0.3, 1],
-        x: { type: 'linear', ease: 'linear' },
-        y: { type: 'linear', ease: 'linear' },
+        x: { ease: 'linear' },
+        y: { ease: 'linear' },
         filter: { duration: 0.5, ease: "easeOut" },
         rotateZ: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
       }}
