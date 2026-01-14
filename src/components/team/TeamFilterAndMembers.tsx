@@ -17,6 +17,18 @@ interface TeamMember {
   project?: string
 }
 
+// Sort function for Leadership members by role priority
+function getLeadershipRolePriority(role: string): number {
+  if (role === 'Co-President') return 0
+  if (role.includes('Director')) return 1
+  if (role === 'Project Executive') return 2
+  return 3 // Other roles
+}
+
+function sortLeadershipMembers(members: TeamMember[]): TeamMember[] {
+  return [...members].sort((a, b) => getLeadershipRolePriority(a.role) - getLeadershipRolePriority(b.role))
+}
+
 export default function TeamSection() {
   const [filter, setFilter] = useState('All')
   // Used to force re-mount cards on filter change
@@ -32,14 +44,18 @@ export default function TeamSection() {
   const filteredMembers =
     filter === 'All'
       ? teamMembers
-      : teamMembers.filter(member => member.group.includes(filter))
+      : filter === 'Leadership'
+        ? sortLeadershipMembers(teamMembers.filter(member => member.group.includes(filter)))
+        : teamMembers.filter(member => member.group.includes(filter))
 
   // Grouped by primary group for "All"
   const groupedByPrimary = roles
     .filter(role => role !== 'All')
     .map(role => ({
       role,
-      members: teamMembers.filter(member => member.group[0] === role),
+      members: role === 'Leadership'
+        ? sortLeadershipMembers(teamMembers.filter(member => member.group[0] === role))
+        : teamMembers.filter(member => member.group[0] === role),
     }))
     .filter(group => group.members.length > 0)
 

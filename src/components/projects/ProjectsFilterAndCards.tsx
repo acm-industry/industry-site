@@ -20,13 +20,7 @@ const currentYear = currentQuarter[1]
 const availableYears = [currentYear, currentYear - 1, currentYear - 2].filter(year => year >= 2025)
 
 // Define filters
-const filters = ['recent', 'all', ...availableYears.map(String)]
-
-// Utility to get previous quarter
-const getPreviousQuarter = ([q, y]: number[]): number[] => {
-  if (q === 1) return [4, y - 1]
-  return [q - 1, y]
-}
+const filters = ['current', 'all', ...availableYears.map(String)]
 
 // Define Project type based on ProjectsData
 export type Project = {
@@ -98,9 +92,25 @@ const ProjectCard = React.memo(function ProjectCard({ p, index, onClick, priorit
             loading={priority ? undefined : 'lazy'}
           />
         ) : (
-          <div className="w-full h-full bg-gray-700/50 backdrop-blur flex items-center justify-center">
-            <span className="text-white text-lg font-medium">Coming Soon</span>
-          </div>
+          p.quarter[0] === currentQuarter[0] && p.quarter[1] === currentQuarter[1] && p.company_logo ? (
+            <div
+              className="w-full h-full backdrop-blur flex items-center justify-center"
+              style={{ backgroundColor: p.colors?.background || 'rgba(55, 65, 81, 0.5)' }}
+            >
+              <Image
+                src={`/companies/${p.company_logo}`}
+                alt={p.name}
+                width={120}
+                height={120}
+                className="object-contain"
+                unoptimized={true}
+              />
+            </div>
+          ) : (
+            <div className="w-full h-full bg-gray-700/50 backdrop-blur flex items-center justify-center">
+              <span className="text-white text-lg font-medium">Coming Soon</span>
+            </div>
+          )
         )}
       </div>
       <motion.div 
@@ -138,16 +148,12 @@ const ProjectCard = React.memo(function ProjectCard({ p, index, onClick, priorit
 })
 
 export default function ProjectFilterAndCards() {
-  const [activeFilter, setActiveFilter] = useState('recent')
-
-  const recentQuarters = [currentQuarter, getPreviousQuarter(currentQuarter)]
+  const [activeFilter, setActiveFilter] = useState('current')
 
   const filteredProjects = projects.filter(p => {
     if (activeFilter === 'all') return true
-    if (activeFilter === 'recent') {
-      return recentQuarters.some(
-        ([q, y]) => p.quarter[0] === q && p.quarter[1] === y
-      )
+    if (activeFilter === 'current') {
+      return p.quarter[0] === currentQuarter[0] && p.quarter[1] === currentQuarter[1]
     }
     return String(p.quarter[1]) === activeFilter
   })
@@ -197,7 +203,7 @@ export default function ProjectFilterAndCards() {
               whileTap={{ scale: 0.95 }}
               style={{ willChange: 'transform' }}
             >
-              {f === 'recent' ? 'Recent' : f === 'all' ? 'All' : f}
+              {f === 'current' ? 'Current' : f === 'all' ? 'All' : f}
             </motion.button>
           ))}
         </motion.div>

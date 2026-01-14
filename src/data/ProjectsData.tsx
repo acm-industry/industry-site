@@ -6,9 +6,93 @@ export const featuredProjectsTitleGold = 'Projects'
 export const featuredProjectsDescription =
   'See how our student teams build real products for real companies—creative, impactful, and industry-ready.'
 
-export const currentQuarter = [4, 2025]
+export const currentQuarter = [1, 2026]
 
 export const projects = [
+  {
+    id: 'unwrap',
+    name: 'Social Media Classifier',
+    short_description: 'Low-cost, low-latency classifier that determines whether a given social media post is actually feedback about a target company or product.',
+    long_description: 'Low-cost, low-latency classifier that determines whether a given social media post is actually feedback about a target company or product.',
+    images: null,
+    link: '/projects/#unwrap',
+    featured: false,
+    quarter: [1, 2026],
+    company_logo: 'unwrap-logo.png',
+    tags: ['AI/ML', 'Data Scraping'],
+    external_links: [],
+    colors: {
+      background: '#FFFFFF',
+      accent: 'rgb(246, 81, 75)',
+      border: 'rgb(246, 81, 75)',
+      textPrimary: 'rgb(246, 81, 75)',
+      textSecondary: 'rgb(246, 81, 75)',
+      tag: {
+        background: 'rgb(246, 193, 191)',
+        text: 'rgb(246, 81, 75)',
+        border: 'rgb(246, 81, 75)'
+      }
+    }
+  },
+  {
+    id: 'turing',
+    name: 'AI Product Development Mentorship',
+    short_description: 'A 15-week guided mentorship where students learn to design, build, and demo a functional LangGraph-based AI workflow.',
+    long_description: 'A 15-week guided mentorship where students learn to design, build, and demo a functional LangGraph-based AI workflow.',
+    images: null,
+    link: '/projects/#turing',
+    featured: false,
+    quarter: [1, 2026],
+    company_logo: 'turing-logo.png',
+    tags: ['AI/ML', 'LangGraph', 'RAG'],
+    external_links: [],
+    colors: {}
+  },
+  {
+    id: 'iv-outfitters',
+    name: 'Ordering & Receiving Automation System',
+    short_description: 'Web-based operations platform that automates purchase order generation, tracking, and receiving while maintaining human oversight through an employee confirmation step.',
+    long_description: 'Web-based operations platform that automates purchase order generation, tracking, and receiving while maintaining human oversight through an employee confirmation step.',
+    images: null,
+    link: '/projects/#iv-outfitters',
+    featured: false,
+    quarter: [1, 2026],
+    company_logo: 'iv-outfitters-logo.png',
+    tags: ['Next.js', 'FastAPI', 'Supabase'],
+    external_links: [],
+    colors: {}
+  },
+  {
+    id: 'rtx',
+    name: 'RISC-V RF Classifier',
+    short_description: 'An RF classifier designed to leverage RISC-V vector instruction extensions.',
+    long_description: 'An RF classifier designed to leverage RISC-V vector instruction extensions.',
+    images: null,
+    link: '/projects/#rtx',
+    featured: false,
+    quarter: [1, 2026],
+    company_logo: 'rtx-logo.png',
+    tags: ['AI/ML', 'RISC-V'],
+    external_links: [],
+    colors: {
+      background: 'rgba(255, 255, 255, 0.92)',
+      accent: '#0033A0',
+      textPrimary: '#1a1a1a',
+      textSecondary: '#4a4a4a',
+      border: '#0033A0',
+      mediaBackground: '#FFFFFF',
+      tag: {
+        background: '#0033A020',
+        text: '#0033A0',
+        border: '#0033A060'
+      },
+      button: {
+        background: '#0033A0',
+        text: '#FFFFFF',
+        border: '#0033A080'
+      }
+    }
+  },
   {
     id: 'data-constr-innov',
     name: 'ConstructWise',

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, forwardRef } from 'react';
+import React, { useRef } from 'react';
 import Card from '@/components/landing/WhatWeDo/Card';
 import { useScroll } from 'framer-motion';
 
@@ -23,12 +23,11 @@ interface CardStackProps {
   firstCardRef?: React.RefObject<HTMLDivElement>;
 }
 
-const CardStack = forwardRef<HTMLDivElement, CardStackProps>(
-  ({ endCardStackRef, whatwedo, headerHeight, firstCardRef }, cardStackRef) => {
-    const container = useRef(null)
-    const { scrollYProgress } = useScroll({target: container, offset: ['start start', 'end end']})
-    return (
-      <div ref={cardStackRef as React.RefObject<HTMLDivElement>} className="py-12 px-4">
+const CardStack = ({ endCardStackRef, whatwedo, headerHeight, firstCardRef }: CardStackProps) => {
+  const container = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({target: container, offset: ['start start', 'end end']})
+  return (
+      <div ref={container} className="py-12 px-4">
         {whatwedo.map((item, i) => {
           const Icon = item.icon;
           const LinkIcon = item.link_value.icon;
@@ -53,9 +52,7 @@ const CardStack = forwardRef<HTMLDivElement, CardStackProps>(
         })}
         <div ref={endCardStackRef}/>
       </div>
-    );
-  }
-);
-CardStack.displayName = 'CardStack';
+  );
+}
 
 export default CardStack;
