@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Linkedin } from 'lucide-react'
 import Image from 'next/image'
 import clsx from 'clsx'
-import { roles, teamMembers } from '@/data/TeamData'
+import { rolesByYear, teamMembersByYear, years, type Year } from '@/data/TeamData'
 import { projects as allProjects } from '@/data/ProjectsData'
 
 interface TeamMember {
@@ -19,10 +19,12 @@ interface TeamMember {
 
 // Sort function for Leadership members by role priority
 function getLeadershipRolePriority(role: string): number {
-  if (role === 'Co-President') return 0
-  if (role.includes('Director')) return 1
-  if (role === 'Project Executive') return 2
-  return 3 // Other roles
+  if (role === 'President') return 0
+  if (role === 'Vice President') return 1
+  if (role === 'Co-President') return 2
+  if (role.includes('Director')) return 3
+  if (role === 'Project Executive') return 4
+  return 5
 }
 
 function sortLeadershipMembers(members: TeamMember[]): TeamMember[] {
@@ -30,6 +32,7 @@ function sortLeadershipMembers(members: TeamMember[]): TeamMember[] {
 }
 
 export default function TeamSection() {
+  const [year, setYear] = useState<Year>('2025-26')
   const [filter, setFilter] = useState('All')
   // Used to force re-mount cards on filter change
   const [filterAnimationKey, setFilterAnimationKey] = useState(0)
@@ -40,13 +43,22 @@ export default function TeamSection() {
     setFilterAnimationKey(prev => prev + 1)
   }
 
+  function handleSetYear(y: Year) {
+    setYear(y)
+    setFilter('All')
+    setFilterAnimationKey(prev => prev + 1)
+  }
+
+  const members = teamMembersByYear[year]
+  const roles = rolesByYear[year]
+
   // Filtered members logic
   const filteredMembers =
     filter === 'All'
-      ? teamMembers
+      ? members
       : filter === 'Leadership'
-        ? sortLeadershipMembers(teamMembers.filter(member => member.group.includes(filter)))
-        : teamMembers.filter(member => member.group.includes(filter))
+        ? sortLeadershipMembers(members.filter(member => member.group.includes(filter)))
+        : members.filter(member => member.group.includes(filter))
 
   // Grouped by primary group for "All"
   const groupedByPrimary = roles
@@ -54,8 +66,8 @@ export default function TeamSection() {
     .map(role => ({
       role,
       members: role === 'Leadership'
-        ? sortLeadershipMembers(teamMembers.filter(member => member.group[0] === role))
-        : teamMembers.filter(member => member.group[0] === role),
+        ? sortLeadershipMembers(members.filter(member => member.group[0] === role))
+        : members.filter(member => member.group[0] === role),
     }))
     .filter(group => group.members.length > 0)
 
@@ -73,8 +85,28 @@ export default function TeamSection() {
       style={{ willChange: 'transform, opacity' }}
     >
       <div className="max-w-7xl mx-auto text-center">
+        {/* Year Selector */}
+        <div className="flex justify-start gap-2 mb-6">
+          {years.map(y => (
+            <motion.button
+              key={y}
+              onClick={() => handleSetYear(y)}
+              className={clsx(
+                'px-3 py-1 text-xs sm:text-sm font-medium rounded-md border transition-all duration-200 smooth-element',
+                year === y
+                  ? 'border-[var(--accent-gold)] text-[var(--accent-gold)] bg-transparent'
+                  : 'border-white/15 text-white/70 hover:border-white/30 hover:text-white'
+              )}
+              whileHover={{ y: -1 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              {y}
+            </motion.button>
+          ))}
+        </div>
+
         {/* Filter Chips */}
-        <motion.div 
+        <motion.div
           className="flex flex-wrap justify-center gap-4 mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -305,31 +337,33 @@ function TeamCard({ member, delay = 0, filterKey }: TeamCardProps) {
             <Image src={logoSrc} alt={project.name + ' logo'} width={70} height={70} className="object-contain mx-auto" unoptimized={true} priority />
           </motion.a>
         )}
-        <motion.a
-          href={member.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm sm:text-base font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-400 text-black shadow transition-all duration-300"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={{ 
-            scale: 1.08, 
-            y: -2,
-            boxShadow: '0 0 10px 2px rgba(255, 207, 82, 0.25)',
-            transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-          }}
-          whileTap={{ scale: 0.95 }}
-          style={{ 
-            willChange: 'transform',
-            transition: 'all 0.08s cubic-bezier(0.16, 1, 0.3, 1)'
-          }}
-          key={`linkedin-${filterKey}`}
-        >
-          <Linkedin size={18} />
-          LinkedIn
-        </motion.a>
+        {member.linkedin && (
+          <motion.a
+            href={member.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm sm:text-base font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-400 text-black shadow transition-all duration-300"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{
+              scale: 1.08,
+              y: -2,
+              boxShadow: '0 0 10px 2px rgba(255, 207, 82, 0.25)',
+              transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              willChange: 'transform',
+              transition: 'all 0.08s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+            key={`linkedin-${filterKey}`}
+          >
+            <Linkedin size={18} />
+            LinkedIn
+          </motion.a>
+        )}
       </div>
     </motion.div>
   )
