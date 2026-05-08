@@ -140,7 +140,7 @@ export const teamMembersByYear: Record<Year, TeamMember[]> = {
       name: 'Sarah Hong',
       group: ['Developers'],
       role: 'Software Engineer',
-      img: '/team/girl-avatar.png',
+      img: '/team/sarah.jpg',
       linkedin: 'https://www.linkedin.com/in/s-arahhong/',
       project: 'iv-outfitters'
     },
